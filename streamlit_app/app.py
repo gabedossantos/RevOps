@@ -10,6 +10,7 @@ from typing import Optional, Sequence
 
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import streamlit as st
 
 # Ensure project root and src directory are importable when running via `streamlit run`
@@ -401,6 +402,52 @@ def render_marketing_tab(marketing_df: pd.DataFrame, filters: FilterSet) -> None
 
     channel_data = channel_performance(marketing_df, filters)
     funnel_data = funnel_breakdown(marketing_df, filters)
+    funnel_area_data = funnel_data.copy()
+    funnel_area_data["value"] = funnel_area_data["count"].astype(float)
+    stage_order = {
+        "Leads": 0,
+        "MQLs": 1,
+        "SQLs": 2,
+        "Opportunities": 3,
+        "Closed Won": 4,
+    }
+    funnel_area_data["order"] = funnel_area_data["stage"].map(stage_order).fillna(99)
+    funnel_area_data.sort_values("order", inplace=True)
+    top_value = funnel_area_data["value"].max() or 1.0
+    min_ratio = 0.26
+    closed_won_mask = funnel_area_data["stage"] == "Closed Won"
+    closed_won_actual = (
+        float(funnel_area_data.loc[closed_won_mask, "value"].iloc[0])
+        if closed_won_mask.any()
+        else 0.0
+    )
+    desired_closed_won_display = (
+        max(closed_won_actual, min_ratio * top_value)
+        if closed_won_mask.any()
+        else 0.0
+    )
+
+    offset = 0.0
+    if closed_won_mask.any() and closed_won_actual >= 0:
+        offset = max(desired_closed_won_display - closed_won_actual, 0.0)
+
+    funnel_area_data["display_value"] = funnel_area_data["value"] + offset
+    if closed_won_mask.any():
+        funnel_area_data.loc[closed_won_mask, "display_value"] = desired_closed_won_display
+    total_display = float(funnel_area_data["display_value"].sum()) or 1.0
+    total_actual = float(funnel_area_data["value"].sum()) or 1.0
+    funnel_area_data["display_share"] = funnel_area_data["display_value"] / total_display
+    funnel_area_data["actual_share"] = funnel_area_data["value"] / total_actual
+    funnel_area_data.reset_index(drop=True, inplace=True)
+
+    stage_palette = {
+        "Leads": "#c7d2fe",
+        "MQLs": "#a5b4fc",
+        "SQLs": "#7dd3fc",
+        "Opportunities": "#38bdf8",
+        "Closed Won": "#0ea5e9",
+    }
+    gradient_colors = [stage_palette.get(stage, "#38bdf8") for stage in funnel_area_data["stage"]]
     trends = trend_timeseries(marketing_df, filters)
 
     left, right = st.columns(2)
@@ -422,9 +469,40 @@ def render_marketing_tab(marketing_df: pd.DataFrame, filters: FilterSet) -> None
     apply_compact_margins(channel_chart, top=70)
     left.plotly_chart(channel_chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
 
-    funnel_chart = px.funnel(funnel_data, x="count", y="stage", title="Funnel Breakdown")
-    funnel_chart.update_layout(xaxis_title="Volume", yaxis_title="")
-    apply_compact_margins(funnel_chart, top=70, left=28, right=18, bottom=28)
+    funnel_chart = go.Figure(
+        go.Funnelarea(
+            labels=funnel_area_data["stage"],
+            values=funnel_area_data["display_value"],
+            customdata=funnel_area_data[["value", "actual_share"]].to_numpy(),
+            texttemplate="<b>%{label}</b><br>%{customdata[0]:,.0f}",
+            textposition="inside",
+            opacity=0.9,
+            baseratio=0.7,
+            marker=dict(
+                colors=gradient_colors,
+                line=dict(color="rgba(15, 23, 42, 0.28)", width=1.6),
+            ),
+            insidetextfont=dict(color="rgba(15, 23, 42, 0.78)", size=13),
+            hovertemplate=(
+                "<b>%{label}</b><br>"
+                "%{customdata[0]:,.0f} records<br>"
+                "%{customdata[1]:.1%} of total"
+                "<extra></extra>"
+            ),
+        )
+    )
+    funnel_chart.update_layout(
+        title="Funnel Momentum",
+        uniformtext=dict(mode="show", minsize=12),
+        legend=dict(
+            orientation="h",
+            yanchor="top",
+            y=-0.15,
+            x=0.5,
+            xanchor="center",
+        ),
+    )
+    apply_compact_margins(funnel_chart, top=58, left=26, right=26, bottom=16)
     right.plotly_chart(funnel_chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
 
     trend_chart = px.area(
