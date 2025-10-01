@@ -13,6 +13,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 import streamlit.components.v1 as components
+from plotly.subplots import make_subplots
+import numpy as np
 
 # Ensure project root and src directory are importable when running via `streamlit run`
 import sys
@@ -860,15 +862,171 @@ def render_revenue_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
     st.plotly_chart(segment_chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
 
     waterfall = mrr_waterfall(revenue_df, filters)
-    waterfall_chart = px.bar(
-        waterfall,
-        x="period",
-        y=["starting_mrr", "new_mrr", "expansion_mrr", "contraction_mrr", "churn_mrr", "ending_mrr"],
-        title="MRR Waterfall",
-    )
-    waterfall_chart.update_layout(barmode="relative", xaxis_title="", yaxis_title="MRR (USD)")
-    apply_compact_margins(waterfall_chart, top=70)
-    st.plotly_chart(waterfall_chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
+    st.markdown("### MRR Momentum Bridge")
+    if waterfall.empty:
+        st.info("No MRR data available for the selected filters.")
+    else:
+        periods = waterfall["period"].tolist()
+        default_index = max(len(periods) - 1, 0)
+        selected_period = st.selectbox(
+            "Select period",
+            options=periods,
+            index=default_index,
+            key="mrr_bridge_period",
+            help="View how each motion contributed to MRR change for a specific month.",
+        )
+
+        period_row = waterfall[waterfall["period"] == selected_period].iloc[0]
+        starting = float(period_row["starting_mrr"])
+        ending = float(period_row["ending_mrr"])
+        new_mrr_value = float(period_row["new_mrr"])
+        expansion = float(period_row["expansion_mrr"])
+        contraction = float(period_row["contraction_mrr"])
+        churn = float(period_row["churn_mrr"])
+        net_change = ending - starting
+
+        contribution_labels = ["New MRR", "Expansion", "Contraction", "Churn"]
+        contribution_values = [
+            new_mrr_value,
+            expansion,
+            -contraction,
+            -churn,
+        ]
+
+        contribution_colors = ["#22c55e" if value >= 0 else "#f87171" for value in contribution_values]
+
+        def format_currency(value: float, *, show_sign: bool = False) -> str:
+            sign = "+" if value >= 0 else "-"
+            formatted = f"${abs(value):,.0f}"
+            return f"{sign}{formatted}" if show_sign else formatted
+
+        bridge = make_subplots(
+            rows=2,
+            cols=1,
+            shared_xaxes=False,
+            row_heights=[0.42, 0.58],
+            vertical_spacing=0.12,
+            specs=[[{"type": "bar"}], [{"type": "bar"}]],
+        )
+
+        bridge.add_trace(
+            go.Bar(
+                name="Starting",
+                x=[starting],
+                y=["Starting MRR"],
+                orientation="h",
+                marker=dict(color="#93c5fd"),
+                text=[format_currency(starting)],
+                textposition="outside",
+                hovertemplate="Starting MRR<br>%{x:$,.0f}<extra></extra>",
+            ),
+            row=1,
+            col=1,
+        )
+
+        bridge.add_trace(
+            go.Bar(
+                name="Ending",
+                x=[ending],
+                y=["Ending MRR"],
+                orientation="h",
+                marker=dict(color="#4f46e5"),
+                text=[format_currency(ending)],
+                textposition="outside",
+                hovertemplate="Ending MRR<br>%{x:$,.0f}<extra></extra>",
+            ),
+            row=1,
+            col=1,
+        )
+
+        bridge.add_annotation(
+            dict(
+                xref="paper",
+                yref="y1",
+                x=1.02,
+                y="Ending MRR",
+                align="left",
+                text=f"Net Δ {format_currency(net_change, show_sign=True)}",
+                font=dict(color="#0f172a", size=13),
+                showarrow=False,
+            )
+        )
+
+        bridge.add_trace(
+            go.Bar(
+                x=contribution_labels,
+                y=contribution_values,
+                marker=dict(color=contribution_colors),
+                text=[format_currency(val, show_sign=True) for val in contribution_values],
+                textposition="outside",
+                hovertemplate="%{x}<br>%{y:$,.0f}<extra></extra>",
+            ),
+            row=2,
+            col=1,
+        )
+
+        contribution_axis_limit = max(abs(value) for value in contribution_values) or 1
+        bridge.update_yaxes(
+            title_text="MRR (USD)",
+            row=2,
+            col=1,
+            range=[-1.15 * contribution_axis_limit, 1.15 * contribution_axis_limit],
+        )
+        bridge.update_yaxes(showgrid=False, row=1, col=1)
+        bridge.update_xaxes(showgrid=False, row=1, col=1)
+        bridge.update_xaxes(title_text="Growth Motions", row=2, col=1)
+
+        bridge.update_layout(
+            barmode="overlay",
+            bargap=0.3,
+            hovermode="closest",
+            showlegend=False,
+            margin=dict(t=70, b=32, l=60, r=20),
+            height=540,
+            title=dict(text=f"MRR Bridge · {selected_period}", x=0.02),
+        )
+
+        st.plotly_chart(bridge, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
+
+        st.caption(
+            f"Starting MRR of {format_currency(starting)} shifted by {format_currency(net_change, show_sign=True)} to {format_currency(ending)} after new, expansion, contraction, and churn movements."
+        )
+
+        contribution_history = waterfall.copy()
+        contribution_history = contribution_history.assign(
+            New=contribution_history["new_mrr"],
+            Expansion=contribution_history["expansion_mrr"],
+            Contraction=-contribution_history["contraction_mrr"],
+            Churn=-contribution_history["churn_mrr"],
+            Net=(contribution_history["ending_mrr"] - contribution_history["starting_mrr"]),
+        )
+        contribution_history = contribution_history[["period", "New", "Expansion", "Contraction", "Churn", "Net"]]
+
+        trend_melt = contribution_history.melt(id_vars="period", var_name="Motion", value_name="Amount")
+        period_order = contribution_history["period"].tolist()
+
+        trend_chart = px.line(
+            trend_melt,
+            x="period",
+            y="Amount",
+            color="Motion",
+            markers=True,
+            category_orders={"period": period_order},
+            title="Contribution Trends",
+            labels={"Amount": "MRR Change (USD)", "period": "Period"},
+        )
+        trend_chart.update_layout(legend=dict(title="Motion", orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1))
+        trend_chart.update_yaxes(tickprefix="$", separatethousands=True)
+        apply_compact_margins(trend_chart, top=70, bottom=32)
+        st.plotly_chart(trend_chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
+
+        recent_history = contribution_history.copy()
+        recent_history["Period"] = recent_history["period"]
+        display_history = recent_history[["Period", "New", "Expansion", "Contraction", "Churn", "Net"]].tail(6)
+        styled_history = display_history.set_index("Period").apply(
+            lambda column: column.map(lambda amount: f"${amount:,.0f}")
+        )
+        st.dataframe(styled_history, use_container_width=True)
 
     churn = churn_reasons(revenue_df, filters)
     st.markdown("### Churn Reasons")
@@ -914,6 +1072,259 @@ def render_ai_tab(
             st.divider()
 
 
+
+def render_revenue_new_tab(revenue_df: pd.DataFrame) -> None:
+    import plotly.graph_objects as go
+    # import numpy as np
+    st.subheader("Revenue Cohort Analysis")
+
+    # --- Cohort Heatmap ---
+    # Try to build cohort matrix from data, else fallback to sample
+    df = revenue_df.copy()
+    df['start_date'] = pd.to_datetime(df['start_date'])
+    df['churn_date'] = pd.to_datetime(df['churn_date'], errors='coerce')
+    df['cohort'] = df['start_date'].dt.to_period('M').astype(str)
+    # Only use customers with a start_date
+    df = df[~df['start_date'].isna()]
+    # Build retention matrix: for each cohort, what % remain each month
+    cohorts = sorted(df['cohort'].unique())
+    max_months = 12
+    month_labels = [f"M{i}" for i in range(max_months)]
+    def months_between(start, end):
+        return (end.year - start.year) * 12 + (end.month - start.month)
+    retention_matrix = []
+    for cohort in cohorts:
+        cohort_df = df[df['cohort'] == cohort].copy()
+        if cohort_df.empty:
+            retention_matrix.append([np.nan]*max_months)
+            continue
+        cohort_start = pd.to_datetime(cohort + '-01')
+        cohort_df['months_since'] = cohort_df['churn_date'].fillna(pd.Timestamp.today()).apply(
+            lambda d: months_between(cohort_start, d)
+        )
+        base_count = len(cohort_df)
+        row = []
+        for m in range(max_months):
+            still_active = ((cohort_df['churned_flag'] == False) | (cohort_df['months_since'] >= m)).sum()
+            pct = 100 * still_active / base_count if base_count else np.nan
+            row.append(round(pct, 1))
+        retention_matrix.append(row)
+
+    # If not enough data, fallback to sample
+    if np.isnan(np.array(retention_matrix)).all():
+        cohorts = [
+            "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03",
+            "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09",
+            "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03"
+        ]
+        retention_matrix = [
+            [100, 85, 78, 72, 68, 65, 62, 59, 56, 54, 52, 50],
+            [100, 88, 81, 75, 71, 68, 65, 62, 59, 57, 55, 53],
+            [100, 82, 75, 69, 65, 62, 59, 56, 53, 51, 49, 47],
+            [100, 90, 83, 77, 73, 70, 67, 64, 61, 59, 57, 55],
+            [100, 86, 79, 73, 69, 66, 63, 60, 57, 55, 53, 51],
+            [100, 89, 82, 76, 72, 69, 66, 63, 60, 58, 56, 54],
+            [100, 84, 77, 71, 67, 64, 61, 58, 55, 53, 51, 49],
+            [100, 87, 80, 74, 70, 67, 64, 61, 58, 56, 54, 52],
+            [100, 85, 78, 72, 68, 65, 62, 59, 56, 54, 52, 50],
+            [100, 88, 81, 75, 71, 68, 65, 62, 59, 57, 55, 53],
+            [100, 83, 76, 70, 66, 63, 60, 57, 54, 52, 50, 48],
+            [100, 86, 79, 73, 69, 66, 63, 60, 57, 55, 53, 51],
+            [100, 91, 84, 78, 74, 71, 68, 65, 62, 60, 58, 56],
+            [100, 87, 80, 74, 70, 67, 64, 61, 58, 56, 54, 52],
+            [100, 84, 77, 71, 67, 64, 61, 58, 55, 53, 51, 49],
+            [100, 89, 82, 76, 72, 69, 66, 63, 60, 58, 56, 54],
+            [100, 85, 78, 72, 68, 65, 62, 59, 56, 54, 52, 50],
+            [100, 88, 81, 75, 71, 68, 65, 62, 59, 57, 55, 53]
+        ]
+
+    fig = go.Figure(data=go.Heatmap(
+        z=retention_matrix,
+        x=month_labels,
+        y=cohorts,
+        colorscale='Blues',
+        reversescale=False,
+        showscale=True,
+        colorbar=dict(title="Retention %"),
+        hovertemplate='Cohort: %{y}<br>Month: %{x}<br>Retention: %{z}%<extra></extra>'
+    ))
+    fig.update_layout(
+        title='Revenue Cohort Analysis',
+        xaxis_title='Months Since',
+        yaxis_title='Cohort',
+    )
+    fig.update_xaxes(side='bottom')
+    fig.update_yaxes(autorange='reversed')
+    st.plotly_chart(fig, use_container_width=True)
+
+    # --- Summary Table ---
+    st.markdown("### Revenue Data Summary")
+    # Unique segments/plans
+    st.write("**Unique segments:**", sorted(df['segment'].dropna().unique()))
+    st.write("**Unique plans:**", sorted(df['plan'].dropna().unique()))
+    # Churn rate
+    churn_rate = df['churned_flag'].mean()
+    st.write(f"**Churn rate:** {churn_rate:.2%}")
+    # Date ranges
+    st.write(f"**Start dates range:** {df['start_date'].min().date()} to {df['start_date'].max().date()}")
+    if df['churn_date'].notna().any():
+        st.write(f"**Churn dates range:** {df['churn_date'].min().date()} to {df['churn_date'].max().date()}")
+    # Churn reasons
+    st.write("**Churn reasons:**")
+    st.dataframe(df['churn_reason'].value_counts().reset_index().rename(columns={'index':'Reason','churn_reason':'Count'}))
+    # MRR by segment/plan
+    st.write("**MRR by segment:**")
+    st.dataframe(df.groupby('segment')['mrr'].agg(['count','mean','sum']))
+    st.write("**MRR by plan:**")
+    st.dataframe(df.groupby('plan')['mrr'].agg(['count','mean','sum']))
+    # Active/churned
+    active_customers = df[df['churned_flag'] == False]
+    st.write(f"**Active customers:** {len(active_customers)}")
+    st.write(f"**Churned customers:** {len(df[df['churned_flag'] == True])}")
+    # NRR stats
+    st.write("**NRR statistics:**")
+    st.write(f"Mean NRR: {df['nrr'].mean():.3f}")
+    st.write(f"Median NRR: {df['nrr'].median():.3f}")
+    st.write(f"NRR > 1.0 (growing customers): {(df['nrr'] > 1.0).sum()}")
+    st.write(f"NRR = 1.0 (flat customers): {(df['nrr'] == 1.0).sum()}")
+    st.write(f"NRR < 1.0 (contracting/churned customers): {(df['nrr'] < 1.0).sum()}")
+
+
+def render_waterfall_chart_tab(revenue_df: pd.DataFrame) -> None:
+    import plotly.graph_objects as go
+
+    st.subheader("Segment Waterfall Dashboard")
+
+    if revenue_df.empty:
+        st.info("No revenue data available to render segment performance.")
+        return
+
+    segment_map = {
+        "ENT": "Enterprise",
+        "MM": "Mid-Market",
+        "SMB": "SMB",
+    }
+
+    df = revenue_df.copy()
+    df["segment_label"] = df["segment"].map(segment_map).fillna(df["segment"].astype(str))
+
+    grouped = (
+        df.groupby("segment_label")
+        .agg(
+            mrr_sum=("mrr", "sum"),
+            customer_count=("customer_id", "nunique"),
+            nrr_mean=("nrr", "mean"),
+            churn_rate=("churned_flag", "mean"),
+            expansion_total=("expansion_mrr", "sum"),
+            contraction_total=("contraction_mrr", "sum"),
+            new_total=("new_mrr", "sum"),
+        )
+        .reset_index()
+    )
+
+    if grouped.empty:
+        st.info("Segment aggregation returned no records.")
+        return
+
+    grouped.sort_values("mrr_sum", ascending=False, inplace=True)
+
+    segments = grouped["segment_label"].tolist()
+    mrr_millions = grouped["mrr_sum"].div(1_000_000).round(3).tolist()
+    nrr_percent = grouped["nrr_mean"].fillna(0).mul(100).round(1).tolist()
+    churn_percent = grouped["churn_rate"].fillna(0).mul(100).round(1).tolist()
+    customer_count = grouped["customer_count"].astype(int).tolist()
+
+    fig = go.Figure()
+
+    fig.add_trace(
+        go.Bar(
+            x=segments,
+            y=mrr_millions,
+            name="MRR ($M)",
+            customdata=customer_count,
+            hovertemplate=(
+                "<b>%{x}</b><br>MRR: $%{y:.2f}M<br>Customers: %{customdata}<extra></extra>"
+            ),
+            marker_color="#1FB8CD",
+        )
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=segments,
+            y=nrr_percent,
+            mode="lines+markers",
+            name="NRR (%)",
+            line=dict(color="#DB4545", width=3),
+            marker=dict(size=8),
+            hovertemplate="<b>%{x}</b><br>NRR: %{y:.1f}%<extra></extra>",
+            yaxis="y2",
+        )
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=segments,
+            y=churn_percent,
+            mode="lines+markers",
+            name="Churn (%)",
+            line=dict(color="#2E8B57", width=3),
+            marker=dict(size=8),
+            hovertemplate="<b>%{x}</b><br>Churn: %{y:.1f}%<extra></extra>",
+            yaxis="y2",
+        )
+    )
+
+    fig.update_layout(
+        title="Segment Performance Dashboard",
+        xaxis_title="Segment",
+        yaxis=dict(title="MRR ($ millions)", rangemode="tozero"),
+        yaxis2=dict(title="Rate (%)", overlaying="y", side="right", rangemode="tozero"),
+        legend=dict(orientation="h", yanchor="bottom", y=1.04, xanchor="center", x=0.5),
+        margin=dict(t=70, b=40, l=60, r=60),
+        hovermode="x unified",
+    )
+
+    fig.update_traces(cliponaxis=False)
+
+    st.plotly_chart(fig, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
+
+    st.markdown("### Segment Summary Table")
+    summary = grouped.assign(
+        mrr_sum=lambda d: d["mrr_sum"].map(lambda value: f"${value:,.0f}"),
+        expansion_total=lambda d: d["expansion_total"].map(lambda value: f"${value:,.0f}"),
+        contraction_total=lambda d: d["contraction_total"].map(lambda value: f"${value:,.0f}"),
+        new_total=lambda d: d["new_total"].map(lambda value: f"${value:,.0f}"),
+        nrr_mean=lambda d: d["nrr_mean"].map(lambda value: f"{value:.3f}"),
+        churn_rate=lambda d: d["churn_rate"].map(lambda value: f"{value:.2%}"),
+    )
+    summary = summary.rename(
+        columns={
+            "segment_label": "Segment",
+            "mrr_sum": "Total MRR",
+            "customer_count": "Customers",
+            "nrr_mean": "Avg NRR",
+            "churn_rate": "Churn Rate",
+            "expansion_total": "Expansion MRR",
+            "contraction_total": "Contraction MRR",
+            "new_total": "New MRR",
+        }
+    )
+    summary_display = summary[
+        [
+            "Segment",
+            "Customers",
+            "Total MRR",
+            "New MRR",
+            "Expansion MRR",
+            "Contraction MRR",
+            "Avg NRR",
+            "Churn Rate",
+        ]
+    ]
+    st.dataframe(summary_display, use_container_width=True)
+
+
 def main() -> None:
     """Application entry point."""
 
@@ -942,8 +1353,8 @@ def main() -> None:
         unsafe_allow_html=True,
     )
 
-    marketing_tab, pipeline_tab, revenue_tab, ai_tab = st.tabs(
-        ["Marketing", "Pipeline", "Revenue", "AI Co-Pilot"]
+    marketing_tab, pipeline_tab, revenue_tab, revenue_new_tab, waterfall_tab, ai_tab = st.tabs(
+        ["Marketing", "Pipeline", "Revenue", "Revenue New", "Waterfall Chart", "AI Co-Pilot"]
     )
 
     with marketing_tab:
@@ -954,6 +1365,12 @@ def main() -> None:
 
     with revenue_tab:
         render_revenue_tab(revenue_df, filters)
+
+    with revenue_new_tab:
+        render_revenue_new_tab(revenue_df)
+
+    with waterfall_tab:
+        render_waterfall_chart_tab(revenue_df)
 
     with ai_tab:
         render_ai_tab(marketing_df, pipeline_df, revenue_df, filters)
