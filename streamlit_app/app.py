@@ -12,6 +12,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+import streamlit.components.v1 as components
 
 # Ensure project root and src directory are importable when running via `streamlit run`
 import sys
@@ -267,10 +268,10 @@ def render_marketing_table(df: pd.DataFrame, visible_columns: Optional[Sequence[
             safe_tooltip = escape(tooltip)
             header_html.append(
                 (
-                    "<th class='marketing-th' title='{tooltip}'>"
+                    "<th class='marketing-th'>"
                     "<span class='marketing-th__content'>"
                     "<span class='marketing-th__label'>{label}</span>"
-                    "<span class='tooltip-icon' title='{tooltip}'>{icon}</span>"
+                    "<span class='tooltip-icon' role='img' aria-label='{tooltip}' tabindex='0' data-tooltip='{tooltip}'>{icon}</span>"
                     "</span>"
                     "</th>"
                 ).format(label=safe_label, tooltip=safe_tooltip, icon="&#9432;")
@@ -323,7 +324,8 @@ def render_marketing_table(df: pd.DataFrame, visible_columns: Optional[Sequence[
                 width: 100%;
                 max-width: 100%;
                 margin: 0;
-                overflow: hidden;
+                overflow: visible;
+                position: relative;
             }
             .marketing-table__wrapper {
                 overflow-x: auto;
@@ -336,6 +338,8 @@ def render_marketing_table(df: pd.DataFrame, visible_columns: Optional[Sequence[
                 min-width: 960px;
                 border-collapse: collapse;
                 border-spacing: 0;
+                position: relative;
+                overflow: visible;
             }
             .marketing-th,
             .marketing-td {
@@ -347,6 +351,18 @@ def render_marketing_table(df: pd.DataFrame, visible_columns: Optional[Sequence[
             .marketing-th {
                 font-weight: 600;
                 white-space: nowrap;
+                position: relative;
+                overflow: visible;
+                z-index: 1;
+            }
+            .marketing-table tr {
+                position: relative;
+                overflow: visible;
+            }
+            .marketing-table thead {
+                position: relative;
+                z-index: 2;
+                overflow: visible;
             }
             .marketing-th__content {
                 display: inline-flex;
@@ -364,6 +380,13 @@ def render_marketing_table(df: pd.DataFrame, visible_columns: Optional[Sequence[
                 color: #94a3b8;
                 margin-left: 2px;
                 cursor: help;
+                position: relative;
+                z-index: 2;
+                transition: color 0.18s ease;
+            }
+            .tooltip-icon:hover,
+            .tooltip-icon:focus-visible {
+                color: #6366f1;
             }
             .marketing-td {
                 white-space: nowrap;
@@ -383,6 +406,236 @@ def render_marketing_table(df: pd.DataFrame, visible_columns: Optional[Sequence[
     )
 
     st.markdown(table_html, unsafe_allow_html=True)
+
+    components.html(
+        dedent(
+            """
+            <script>
+            (function() {
+                const parentWindow = window.parent;
+                if (!parentWindow || !parentWindow.document) {
+                    return;
+                }
+                const parentDoc = parentWindow.document;
+                const state = parentWindow.__marketingTooltipState || (parentWindow.__marketingTooltipState = {});
+
+                const ensureStyle = () => {
+                    const styleId = "marketing-tooltip-style";
+                    if (!parentDoc.getElementById(styleId)) {
+                        const styleTag = parentDoc.createElement("style");
+                        styleTag.id = styleId;
+                        styleTag.textContent = `
+                        .marketing-tooltip-shell {
+                            position: fixed;
+                            z-index: 99999;
+                            pointer-events: none;
+                            opacity: 0;
+                            transform: translate(-50%, -8px) scale(0.98);
+                            transition: opacity 0.18s ease, transform 0.18s ease;
+                            max-width: min(320px, 72vw);
+                            padding: 10px 14px;
+                            border-radius: 10px;
+                            background: rgba(15, 23, 42, 0.96);
+                            color: #f8fafc;
+                            font-size: 0.75rem;
+                            line-height: 1.4;
+                            box-shadow: 0 18px 32px rgba(15, 23, 42, 0.45);
+                            backdrop-filter: blur(8px);
+                            border: 1px solid rgba(148, 163, 184, 0.35);
+                        }
+                        .marketing-tooltip-shell[data-visible="true"] {
+                            opacity: 1;
+                            transform: translate(-50%, -12px) scale(1);
+                        }
+                        .marketing-tooltip-shell[data-position="bottom"] {
+                            transform: translate(-50%, 12px) scale(0.98);
+                        }
+                        .marketing-tooltip-shell[data-position="bottom"][data-visible="true"] {
+                            transform: translate(-50%, 8px) scale(1);
+                        }
+                        .marketing-tooltip-shell::after {
+                            content: "";
+                            position: absolute;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            border-style: solid;
+                        }
+                        .marketing-tooltip-shell[data-position="top"]::after {
+                            bottom: -10px;
+                            border-width: 10px 8px 0 8px;
+                            border-color: rgba(15, 23, 42, 0.96) transparent transparent transparent;
+                        }
+                        .marketing-tooltip-shell[data-position="bottom"]::after {
+                            top: -10px;
+                            border-width: 0 8px 10px 8px;
+                            border-color: transparent transparent rgba(15, 23, 42, 0.96) transparent;
+                        }
+                        `;
+                        parentDoc.head.appendChild(styleTag);
+                    }
+                };
+
+                const ensureTooltipElement = () => {
+                    if (!state.tooltipEl) {
+                        const tooltipEl = parentDoc.createElement("div");
+                        tooltipEl.className = "marketing-tooltip-shell";
+                        tooltipEl.setAttribute("role", "tooltip");
+                        tooltipEl.setAttribute("data-visible", "false");
+                        tooltipEl.style.left = "50%";
+                        tooltipEl.style.top = "0";
+                        parentDoc.body.appendChild(tooltipEl);
+                        state.tooltipEl = tooltipEl;
+                    }
+                    return state.tooltipEl;
+                };
+
+                const setPosition = (icon) => {
+                    const tooltipEl = ensureTooltipElement();
+                    if (!icon || !tooltipEl) {
+                        return;
+                    }
+                    const rect = icon.getBoundingClientRect();
+                    const tooltipRect = tooltipEl.getBoundingClientRect();
+                    let left = rect.left + rect.width / 2;
+                    left = Math.max(16, Math.min(left, parentWindow.innerWidth - 16));
+                    let top = rect.top - tooltipRect.height - 12;
+                    let position = "top";
+                    if (top < 12) {
+                        top = rect.bottom + 12;
+                        position = "bottom";
+                    }
+                    tooltipEl.setAttribute("data-position", position);
+                    tooltipEl.style.left = `${left}px`;
+                    tooltipEl.style.top = `${top}px`;
+                };
+
+                const hideTooltip = () => {
+                    const tooltipEl = ensureTooltipElement();
+                    tooltipEl.setAttribute("data-visible", "false");
+                    if (state.activeIcon) {
+                        delete state.activeIcon.dataset.tooltipActive;
+                    }
+                    state.activeIcon = null;
+                };
+
+                const showTooltip = (icon) => {
+                    if (!icon) {
+                        return;
+                    }
+                    const tooltipEl = ensureTooltipElement();
+                    const text = icon.getAttribute("data-tooltip");
+                    if (!text) {
+                        return;
+                    }
+                    tooltipEl.textContent = text;
+                    tooltipEl.setAttribute("data-visible", "true");
+                    icon.dataset.tooltipActive = "true";
+                    state.activeIcon = icon;
+                    setPosition(icon);
+                };
+
+                if (!parentWindow.__marketingTooltipSetup) {
+                    parentWindow.__marketingTooltipSetup = true;
+                    ensureStyle();
+                    ensureTooltipElement();
+
+                    const getIconFromEvent = (event) => {
+                        const target = event.target;
+                        if (!target) {
+                            return null;
+                        }
+                        return target.closest('.tooltip-icon[data-tooltip]');
+                    };
+
+                    parentDoc.addEventListener("pointerenter", (event) => {
+                        const icon = getIconFromEvent(event);
+                        if (!icon) {
+                            return;
+                        }
+                        showTooltip(icon);
+                    }, true);
+
+                    parentDoc.addEventListener("focusin", (event) => {
+                        const icon = getIconFromEvent(event);
+                        if (!icon) {
+                            return;
+                        }
+                        showTooltip(icon);
+                    }, true);
+
+                    parentDoc.addEventListener("pointermove", () => {
+                        if (state.activeIcon) {
+                            setPosition(state.activeIcon);
+                        }
+                    }, true);
+
+                    parentDoc.addEventListener("pointerleave", (event) => {
+                        if (!state.activeIcon) {
+                            return;
+                        }
+                        const nextTarget = event.relatedTarget && event.relatedTarget.closest?.('.tooltip-icon[data-tooltip]');
+                        if (nextTarget === state.activeIcon) {
+                            return;
+                        }
+                        hideTooltip();
+                    }, true);
+
+                    parentDoc.addEventListener("focusout", (event) => {
+                        if (!state.activeIcon) {
+                            return;
+                        }
+                        const nextTarget = event.relatedTarget && event.relatedTarget.closest?.('.tooltip-icon[data-tooltip]');
+                        if (nextTarget === state.activeIcon) {
+                            return;
+                        }
+                        hideTooltip();
+                    }, true);
+
+                    parentDoc.addEventListener("keydown", (event) => {
+                        if (event.key === "Escape") {
+                            hideTooltip();
+                        }
+                    }, true);
+
+                    parentWindow.addEventListener("scroll", () => {
+                        if (state.activeIcon) {
+                            setPosition(state.activeIcon);
+                        }
+                    }, true);
+
+                    parentWindow.addEventListener("resize", () => {
+                        if (state.activeIcon) {
+                            setPosition(state.activeIcon);
+                        }
+                    });
+
+                    const ObserverCtor = parentWindow.MutationObserver || window.MutationObserver;
+                    if (ObserverCtor) {
+                        const observer = new ObserverCtor(() => {
+                            if (state.activeIcon && !parentDoc.contains(state.activeIcon)) {
+                                hideTooltip();
+                            }
+                        });
+                        observer.observe(parentDoc.body, { childList: true, subtree: true });
+                        state.observer = observer;
+                    }
+                } else {
+                    ensureStyle();
+                    ensureTooltipElement();
+                }
+
+                const pendingIcons = parentDoc.querySelectorAll('.tooltip-icon[data-tooltip]:not([data-tooltip-enhanced="true"])');
+                pendingIcons.forEach((icon) => {
+                    icon.dataset.tooltipEnhanced = "true";
+                    icon.setAttribute("tabindex", icon.getAttribute("tabindex") || "0");
+                });
+            })();
+            </script>
+            """
+        ),
+        height=0,
+        width=0,
+    )
 
 def render_marketing_tab(marketing_df: pd.DataFrame, filters: FilterSet) -> None:
     """Display marketing KPIs, charts, and tabular insights."""
