@@ -318,9 +318,21 @@ def inject_global_styles(theme: BrandTheme) -> None:
                 background: var(--brand-surface);
                 border: 1px solid var(--brand-border);
                 border-radius: {theme.border_radius};
-                padding: 1rem;
+                padding: 0.9rem;
                 box-shadow: var(--brand-shadow);
                 backdrop-filter: blur(18px);
+                box-sizing: border-box;
+                max-width: 100%;
+                overflow: hidden;
+            }}
+
+            div[data-testid="stPlotlyChart"] > div:first-child {{
+                width: 100% !important;
+                margin: 0 auto;
+            }}
+
+            div[data-testid="column"] {{
+                min-width: 0 !important;
             }}
 
             div[data-testid="stDataFrame"] {{
