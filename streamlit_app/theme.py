@@ -318,7 +318,7 @@ def inject_global_styles(theme: BrandTheme) -> None:
                 background: var(--brand-surface);
                 border: 1px solid var(--brand-border);
                 border-radius: {theme.border_radius};
-                padding: 0.9rem;
+                padding: 0.25rem 0.35rem 0.3rem;
                 box-shadow: var(--brand-shadow);
                 backdrop-filter: blur(18px);
                 box-sizing: border-box;

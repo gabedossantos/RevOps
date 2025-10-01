@@ -151,6 +151,23 @@ def render_metric_grid(metrics: Sequence[tuple[str, str]], columns: int = 3) -> 
                 column.empty()
 
 
+def apply_compact_margins(
+    figure,
+    *,
+    top: int = 60,
+    bottom: int = 32,
+    left: int = 24,
+    right: int = 18,
+) -> None:
+    """Tighten Plotly layout margins and enforce transparent backgrounds."""
+
+    figure.update_layout(
+        margin=dict(t=top, b=bottom, l=left, r=right),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+    )
+
+
 
 # --- Marketing Table with Tooltips and Extra Columns ---
 MARKETING_COLUMN_TOOLTIPS = {
@@ -402,10 +419,12 @@ def render_marketing_tab(marketing_df: pd.DataFrame, filters: FilterSet) -> None
         coloraxis_colorbar=dict(title="ROI %"),
     )
     channel_chart.update_traces(marker=dict(line=dict(color="rgba(255,255,255,0.12)", width=1)))
+    apply_compact_margins(channel_chart, top=70)
     left.plotly_chart(channel_chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
 
     funnel_chart = px.funnel(funnel_data, x="count", y="stage", title="Funnel Breakdown")
-    funnel_chart.update_layout(xaxis_title="Volume", yaxis_title="", margin=dict(t=70, l=60, r=30))
+    funnel_chart.update_layout(xaxis_title="Volume", yaxis_title="")
+    apply_compact_margins(funnel_chart, top=70, left=28, right=18, bottom=28)
     right.plotly_chart(funnel_chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
 
     trend_chart = px.area(
@@ -415,6 +434,7 @@ def render_marketing_tab(marketing_df: pd.DataFrame, filters: FilterSet) -> None
         title="Weekly Performance Trends",
     )
     trend_chart.update_layout(yaxis_title="Volume", xaxis_title="Week")
+    apply_compact_margins(trend_chart, top=64, bottom=32)
     st.plotly_chart(trend_chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
 
     st.markdown("### Channel Performance Table")
@@ -458,6 +478,7 @@ def render_pipeline_tab(pipeline_df: pd.DataFrame, filters: FilterSet) -> None:
     )
     stage_chart.update_layout(xaxis_title="", yaxis_title="Pipeline Amount (USD)")
     stage_chart.update_traces(marker=dict(line=dict(color="rgba(255,255,255,0.1)", width=1)))
+    apply_compact_margins(stage_chart, top=68)
     st.plotly_chart(stage_chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
 
     owners = owner_performance(pipeline_df, filters)
@@ -470,6 +491,7 @@ def render_pipeline_tab(pipeline_df: pd.DataFrame, filters: FilterSet) -> None:
         labels={"total_amount": "Total Amount", "win_rate": "Win Rate %"},
     )
     owner_chart.update_layout(xaxis_title="", yaxis_title="Total Closed (USD)", legend=dict(title="Win Rate %"))
+    apply_compact_margins(owner_chart, top=68)
     st.plotly_chart(owner_chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
 
     stuck = stuck_deals(pipeline_df, filters=filters)
@@ -503,7 +525,7 @@ def render_revenue_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
         color="expansion",
         title="MRR by Segment",
     )
-    segment_chart.update_layout(margin=dict(t=70, l=0, r=0, b=0))
+    apply_compact_margins(segment_chart, top=70, left=8, right=8, bottom=16)
     st.plotly_chart(segment_chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
 
     waterfall = mrr_waterfall(revenue_df, filters)
@@ -514,6 +536,7 @@ def render_revenue_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
         title="MRR Waterfall",
     )
     waterfall_chart.update_layout(barmode="relative", xaxis_title="", yaxis_title="MRR (USD)")
+    apply_compact_margins(waterfall_chart, top=70)
     st.plotly_chart(waterfall_chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
 
     churn = churn_reasons(revenue_df, filters)
