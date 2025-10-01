@@ -1,0 +1,1501 @@
+customer_id,account,segment,plan,start_date,mrr,new_mrr,expansion_mrr,contraction_mrr,churned_flag,churn_date,churn_reason,arpa,nrr
+CUST_0001,Account_001,ENT,Enterprise,2023-06-16,49970.13,0.0,3769.21,0.0,False,,,49970.13,1.082
+CUST_0002,Account_002,SMB,Professional,2024-12-27,2648.63,0.0,288.61,0.0,False,,,2648.63,1.122
+CUST_0003,Account_003,ENT,Business,2025-01-24,29941.06,0.0,0.0,0.0,False,,,29941.06,1.0
+CUST_0004,Account_004,SMB,Starter,2024-12-01,0.0,0.0,0.0,0.0,True,2025-03-20,Feature Gap,0.0,0.0
+CUST_0005,Account_005,SMB,Business,2024-03-11,0.0,0.0,0.0,0.0,True,2024-09-16,Business Closure,0.0,0.0
+CUST_0006,Account_006,SMB,Professional,2024-01-31,0.0,0.0,0.0,0.0,True,2024-12-05,Price,0.0,0.0
+CUST_0007,Account_007,SMB,Business,2024-03-31,0.0,0.0,0.0,0.0,True,2024-08-26,Competition,0.0,0.0
+CUST_0008,Account_008,MM,Professional,2025-02-06,6599.13,0.0,0.0,1357.37,False,,,6599.13,0.829
+CUST_0009,Account_009,MM,Professional,2023-12-18,3956.91,0.0,0.0,0.0,False,,,3956.91,1.0
+CUST_0010,Account_010,SMB,Business,2022-10-10,0.0,0.0,0.0,0.0,True,2022-11-24,Budget Cut,0.0,0.0
+CUST_0011,Account_011,MM,Business,2025-02-02,9755.01,0.0,0.0,0.0,False,,,9755.01,1.0
+CUST_0012,Account_012,MM,Enterprise,2025-07-09,45235.23,0.0,0.0,0.0,False,,,45235.23,1.0
+CUST_0013,Account_013,SMB,Business,2025-08-26,4386.39,0.0,0.0,0.0,False,,,4386.39,1.0
+CUST_0014,Account_014,ENT,Enterprise,2023-11-26,0.0,0.0,0.0,0.0,True,2024-03-14,Business Closure,0.0,0.0
+CUST_0015,Account_015,MM,Professional,2022-11-20,7751.84,0.0,1274.35,0.0,False,,,7751.84,1.197
+CUST_0016,Account_016,ENT,Enterprise,2023-03-15,0.0,0.0,0.0,0.0,True,2025-01-16,Competition,0.0,0.0
+CUST_0017,Account_017,ENT,Business,2024-10-07,0.0,0.0,0.0,0.0,True,2025-07-25,Merger,0.0,0.0
+CUST_0018,Account_018,ENT,Custom,2024-06-30,0.0,0.0,0.0,0.0,True,2024-11-20,Budget Cut,0.0,0.0
+CUST_0019,Account_019,MM,Business,2025-08-10,16169.51,0.0,0.0,0.0,False,,,16169.51,1.0
+CUST_0020,Account_020,SMB,Business,2024-12-06,0.0,0.0,0.0,0.0,True,2025-08-20,Feature Gap,0.0,0.0
+CUST_0021,Account_021,SMB,Business,2023-06-29,0.0,0.0,0.0,0.0,True,2023-08-12,Feature Gap,0.0,0.0
+CUST_0022,Account_022,MM,Enterprise,2023-12-09,45043.75,0.0,0.0,0.0,False,,,45043.75,1.0
+CUST_0023,Account_023,ENT,Custom,2024-01-13,506561.31,0.0,94007.8,0.0,False,,,506561.31,1.228
+CUST_0024,Account_024,ENT,Business,2023-05-26,39478.69,0.0,0.0,0.0,False,,,39478.69,1.0
+CUST_0025,Account_025,ENT,Enterprise,2023-09-26,85468.3,0.0,0.0,0.0,False,,,85468.3,1.0
+CUST_0026,Account_026,MM,Professional,2023-08-20,0.0,0.0,0.0,0.0,True,2023-11-07,Support,0.0,0.0
+CUST_0027,Account_027,MM,Business,2023-03-04,0.0,0.0,0.0,0.0,True,2024-07-09,Budget Cut,0.0,0.0
+CUST_0028,Account_028,MM,Business,2023-04-05,12997.97,0.0,1133.14,0.0,False,,,12997.97,1.096
+CUST_0029,Account_029,SMB,Starter,2023-05-28,0.0,0.0,0.0,0.0,True,2023-09-05,Feature Gap,0.0,0.0
+CUST_0030,Account_030,ENT,Custom,2025-06-03,236613.89,0.0,0.0,14055.16,False,,,236613.89,0.944
+CUST_0031,Account_031,MM,Enterprise,2023-07-07,34076.03,0.0,5292.22,0.0,False,,,34076.03,1.184
+CUST_0032,Account_032,MM,Business,2023-03-04,10870.59,0.0,0.0,0.0,False,,,10870.59,1.0
+CUST_0033,Account_033,MM,Professional,2022-10-08,0.0,0.0,0.0,0.0,True,2023-11-19,Competition,0.0,0.0
+CUST_0034,Account_034,ENT,Business,2024-05-05,0.0,0.0,0.0,0.0,True,2024-11-05,Business Closure,0.0,0.0
+CUST_0035,Account_035,SMB,Starter,2024-03-19,0.0,0.0,0.0,0.0,True,2024-08-25,Feature Gap,0.0,0.0
+CUST_0036,Account_036,SMB,Business,2023-11-23,0.0,0.0,0.0,0.0,True,2025-02-02,Business Closure,0.0,0.0
+CUST_0037,Account_037,SMB,Professional,2022-10-02,0.0,0.0,0.0,0.0,True,2025-05-28,Feature Gap,0.0,0.0
+CUST_0038,Account_038,ENT,Business,2023-08-06,0.0,0.0,0.0,0.0,True,2025-01-27,Business Closure,0.0,0.0
+CUST_0039,Account_039,MM,Professional,2024-11-02,0.0,0.0,0.0,0.0,True,2025-06-08,Support,0.0,0.0
+CUST_0040,Account_040,SMB,Starter,2024-07-21,0.0,0.0,0.0,0.0,True,2024-11-01,Business Closure,0.0,0.0
+CUST_0041,Account_041,MM,Enterprise,2024-02-12,0.0,0.0,0.0,0.0,True,2024-10-26,Budget Cut,0.0,0.0
+CUST_0042,Account_042,SMB,Professional,2024-12-19,1909.53,0.0,0.0,0.0,False,,,1909.53,1.0
+CUST_0043,Account_043,SMB,Business,2023-04-23,0.0,0.0,0.0,0.0,True,2025-04-28,Business Closure,0.0,0.0
+CUST_0044,Account_044,ENT,Business,2023-04-08,0.0,0.0,0.0,0.0,True,2024-09-16,Feature Gap,0.0,0.0
+CUST_0045,Account_045,SMB,Business,2024-12-20,7071.55,0.0,179.9,0.0,False,,,7071.55,1.026
+CUST_0046,Account_046,SMB,Starter,2023-09-26,0.0,0.0,0.0,0.0,True,2025-06-21,Competition,0.0,0.0
+CUST_0047,Account_047,MM,Business,2024-07-28,10980.81,0.0,0.0,508.5,False,,,10980.81,0.956
+CUST_0048,Account_048,SMB,Professional,2025-07-25,1957.19,0.0,0.0,0.0,False,,,1957.19,1.0
+CUST_0049,Account_049,SMB,Business,2025-06-30,5772.19,0.0,0.0,0.0,False,,,5772.19,1.0
+CUST_0050,Account_050,SMB,Starter,2024-11-25,0.0,0.0,0.0,0.0,True,2025-02-11,Merger,0.0,0.0
+CUST_0051,Account_051,ENT,Business,2025-02-25,30769.93,0.0,0.0,0.0,False,,,30769.93,1.0
+CUST_0052,Account_052,ENT,Business,2023-01-02,40300.72,0.0,736.64,172.29,False,,,40300.72,1.014
+CUST_0053,Account_053,ENT,Custom,2023-11-01,116470.56,0.0,0.0,0.0,False,,,116470.56,1.0
+CUST_0054,Account_054,MM,Business,2024-03-04,12250.24,0.0,2225.4,0.0,False,,,12250.24,1.222
+CUST_0055,Account_055,ENT,Enterprise,2025-09-25,50746.45,50746.45,0.0,0.0,False,,,50746.45,1.0
+CUST_0056,Account_056,SMB,Starter,2025-09-30,947.07,947.07,0.0,0.0,False,,,947.07,1.0
+CUST_0057,Account_057,SMB,Starter,2024-06-08,0.0,0.0,0.0,0.0,True,2025-01-21,Merger,0.0,0.0
+CUST_0058,Account_058,ENT,Enterprise,2023-02-20,64099.75,0.0,0.0,4551.55,False,,,64099.75,0.934
+CUST_0059,Account_059,MM,Business,2024-02-19,19147.1,0.0,0.0,0.0,False,,,19147.1,1.0
+CUST_0060,Account_060,SMB,Business,2024-02-03,3057.82,0.0,0.0,0.0,False,,,3057.82,1.0
+CUST_0061,Account_061,ENT,Business,2025-04-19,24123.47,0.0,0.0,0.0,False,,,24123.47,1.0
+CUST_0062,Account_062,MM,Enterprise,2023-05-08,0.0,0.0,0.0,0.0,True,2024-05-24,Competition,0.0,0.0
+CUST_0063,Account_063,ENT,Enterprise,2023-05-28,0.0,0.0,0.0,0.0,True,2023-07-24,Budget Cut,0.0,0.0
+CUST_0064,Account_064,ENT,Business,2025-04-06,16938.98,0.0,0.0,0.0,False,,,16938.98,1.0
+CUST_0065,Account_065,SMB,Professional,2025-05-02,2446.17,0.0,0.0,0.0,False,,,2446.17,1.0
+CUST_0066,Account_066,SMB,Starter,2025-02-09,509.95,0.0,0.0,0.0,False,,,509.95,1.0
+CUST_0067,Account_067,MM,Professional,2023-08-01,7008.85,0.0,0.0,0.0,False,,,7008.85,1.0
+CUST_0068,Account_068,MM,Professional,2024-12-27,0.0,0.0,0.0,0.0,True,2025-07-20,Support,0.0,0.0
+CUST_0069,Account_069,SMB,Business,2023-10-03,0.0,0.0,0.0,0.0,True,2024-01-14,Budget Cut,0.0,0.0
+CUST_0070,Account_070,SMB,Professional,2022-11-07,0.0,0.0,0.0,0.0,True,2024-12-28,Support,0.0,0.0
+CUST_0071,Account_071,SMB,Professional,2025-04-12,0.0,0.0,0.0,0.0,True,2025-06-19,Business Closure,0.0,0.0
+CUST_0072,Account_072,MM,Professional,2025-08-17,0.0,0.0,0.0,0.0,True,2025-09-27,Competition,0.0,0.0
+CUST_0073,Account_073,MM,Business,2024-05-15,10107.47,0.0,0.0,0.0,False,,,10107.47,1.0
+CUST_0074,Account_074,SMB,Starter,2025-05-04,0.0,0.0,0.0,0.0,True,2025-07-06,Support,0.0,0.0
+CUST_0075,Account_075,MM,Enterprise,2022-12-07,41173.41,0.0,0.0,0.0,False,,,41173.41,1.0
+CUST_0076,Account_076,MM,Enterprise,2024-04-20,0.0,0.0,0.0,0.0,True,2025-04-22,Business Closure,0.0,0.0
+CUST_0077,Account_077,SMB,Business,2022-12-18,0.0,0.0,0.0,0.0,True,2024-08-22,Price,0.0,0.0
+CUST_0078,Account_078,MM,Professional,2022-10-24,0.0,0.0,0.0,0.0,True,2023-06-04,Price,0.0,0.0
+CUST_0079,Account_079,MM,Enterprise,2025-07-30,49931.75,0.0,0.0,0.0,False,,,49931.75,1.0
+CUST_0080,Account_080,MM,Business,2024-02-09,0.0,0.0,0.0,0.0,True,2025-06-08,Budget Cut,0.0,0.0
+CUST_0081,Account_081,SMB,Professional,2025-05-23,2797.28,0.0,0.0,0.0,False,,,2797.28,1.0
+CUST_0082,Account_082,MM,Business,2024-07-06,13357.31,0.0,0.0,0.0,False,,,13357.31,1.0
+CUST_0083,Account_083,MM,Enterprise,2023-07-20,0.0,0.0,0.0,0.0,True,2025-09-26,Support,0.0,0.0
+CUST_0084,Account_084,ENT,Enterprise,2023-06-12,0.0,0.0,0.0,0.0,True,2024-10-05,Business Closure,0.0,0.0
+CUST_0085,Account_085,MM,Enterprise,2023-05-12,0.0,0.0,0.0,0.0,True,2024-03-22,Budget Cut,0.0,0.0
+CUST_0086,Account_086,ENT,Enterprise,2023-09-09,102102.46,0.0,11105.2,0.0,False,,,102102.46,1.122
+CUST_0087,Account_087,SMB,Professional,2025-01-08,2728.95,0.0,0.0,0.0,False,,,2728.95,1.0
+CUST_0088,Account_088,MM,Professional,2024-12-12,5099.9,0.0,572.73,0.0,False,,,5099.9,1.127
+CUST_0089,Account_089,MM,Business,2022-12-27,0.0,0.0,0.0,0.0,True,2025-09-19,Competition,0.0,0.0
+CUST_0090,Account_090,ENT,Enterprise,2025-08-17,62961.98,0.0,0.0,0.0,False,,,62961.98,1.0
+CUST_0091,Account_091,ENT,Enterprise,2024-12-21,0.0,0.0,0.0,0.0,True,2025-06-16,Price,0.0,0.0
+CUST_0092,Account_092,MM,Business,2023-09-01,10277.06,0.0,1963.81,0.0,False,,,10277.06,1.236
+CUST_0093,Account_093,MM,Business,2025-09-18,8651.08,8651.08,0.0,0.0,False,,,8651.08,1.0
+CUST_0094,Account_094,ENT,Enterprise,2024-12-24,75644.33,0.0,0.0,0.0,False,,,75644.33,1.0
+CUST_0095,Account_095,ENT,Business,2023-03-06,0.0,0.0,0.0,0.0,True,2023-11-26,Merger,0.0,0.0
+CUST_0096,Account_096,ENT,Custom,2024-12-30,0.0,0.0,0.0,0.0,True,2025-05-24,Business Closure,0.0,0.0
+CUST_0097,Account_097,ENT,Business,2024-05-21,0.0,0.0,0.0,0.0,True,2025-05-16,Merger,0.0,0.0
+CUST_0098,Account_098,SMB,Business,2025-06-08,3606.59,0.0,0.0,0.0,False,,,3606.59,1.0
+CUST_0099,Account_099,SMB,Business,2023-07-15,0.0,0.0,0.0,0.0,True,2025-08-30,Support,0.0,0.0
+CUST_0100,Account_100,SMB,Professional,2024-08-23,0.0,0.0,0.0,0.0,True,2025-01-12,Merger,0.0,0.0
+CUST_0101,Account_101,SMB,Business,2023-05-11,0.0,0.0,0.0,0.0,True,2023-10-03,Price,0.0,0.0
+CUST_0102,Account_102,SMB,Starter,2025-08-06,714.73,0.0,0.0,0.0,False,,,714.73,1.0
+CUST_0103,Account_103,ENT,Custom,2022-11-05,0.0,0.0,0.0,0.0,True,2024-06-06,Competition,0.0,0.0
+CUST_0104,Account_104,MM,Business,2024-08-10,0.0,0.0,0.0,0.0,True,2025-09-29,Competition,0.0,0.0
+CUST_0105,Account_105,MM,Business,2023-08-12,0.0,0.0,0.0,0.0,True,2025-02-13,Competition,0.0,0.0
+CUST_0106,Account_106,ENT,Custom,2023-06-23,308555.71,0.0,0.0,13315.52,False,,,308555.71,0.959
+CUST_0107,Account_107,SMB,Professional,2024-04-30,2924.85,0.0,0.0,0.0,False,,,2924.85,1.0
+CUST_0108,Account_108,ENT,Business,2025-08-12,16345.95,0.0,0.0,0.0,False,,,16345.95,1.0
+CUST_0109,Account_109,ENT,Custom,2025-06-16,404179.41,0.0,0.0,0.0,False,,,404179.41,1.0
+CUST_0110,Account_110,MM,Professional,2024-07-17,4162.53,0.0,0.0,0.0,False,,,4162.53,1.0
+CUST_0111,Account_111,SMB,Starter,2025-02-21,873.68,0.0,0.0,0.0,False,,,873.68,1.0
+CUST_0112,Account_112,MM,Enterprise,2025-05-31,29153.46,0.0,6474.72,0.0,False,,,29153.46,1.285
+CUST_0113,Account_113,ENT,Custom,2025-07-19,278250.71,0.0,0.0,0.0,False,,,278250.71,1.0
+CUST_0114,Account_114,SMB,Professional,2024-05-23,0.0,0.0,0.0,0.0,True,2025-01-15,Support,0.0,0.0
+CUST_0115,Account_115,ENT,Enterprise,2025-04-28,45924.42,0.0,0.0,0.0,False,,,45924.42,1.0
+CUST_0116,Account_116,ENT,Custom,2025-03-03,210241.44,0.0,0.0,0.0,False,,,210241.44,1.0
+CUST_0117,Account_117,MM,Business,2023-10-10,0.0,0.0,0.0,0.0,True,2024-05-28,Price,0.0,0.0
+CUST_0118,Account_118,ENT,Custom,2025-09-06,141559.68,141559.68,0.0,0.0,False,,,141559.68,1.0
+CUST_0119,Account_119,MM,Business,2023-03-29,0.0,0.0,0.0,0.0,True,2025-09-04,Budget Cut,0.0,0.0
+CUST_0120,Account_120,MM,Enterprise,2024-04-11,0.0,0.0,0.0,0.0,True,2025-09-15,Business Closure,0.0,0.0
+CUST_0121,Account_121,SMB,Starter,2023-02-26,0.0,0.0,0.0,0.0,True,2025-01-28,Price,0.0,0.0
+CUST_0122,Account_122,MM,Enterprise,2022-10-17,37516.89,0.0,0.0,0.0,False,,,37516.89,1.0
+CUST_0123,Account_123,ENT,Business,2023-04-22,0.0,0.0,0.0,0.0,True,2024-05-30,Business Closure,0.0,0.0
+CUST_0124,Account_124,MM,Business,2022-11-06,13053.21,0.0,1902.58,0.0,False,,,13053.21,1.171
+CUST_0125,Account_125,MM,Business,2023-10-02,15861.9,0.0,0.0,0.0,False,,,15861.9,1.0
+CUST_0126,Account_126,SMB,Starter,2023-06-06,0.0,0.0,0.0,0.0,True,2023-08-17,Merger,0.0,0.0
+CUST_0127,Account_127,MM,Professional,2023-11-19,7853.88,0.0,0.0,0.0,False,,,7853.88,1.0
+CUST_0128,Account_128,MM,Business,2025-05-16,19618.15,0.0,0.0,0.0,False,,,19618.15,1.0
+CUST_0129,Account_129,SMB,Business,2023-09-05,0.0,0.0,0.0,0.0,True,2024-06-06,Competition,0.0,0.0
+CUST_0130,Account_130,ENT,Custom,2022-11-23,0.0,0.0,0.0,0.0,True,2023-06-04,Support,0.0,0.0
+CUST_0131,Account_131,MM,Enterprise,2024-12-14,0.0,0.0,0.0,0.0,True,2025-09-16,Feature Gap,0.0,0.0
+CUST_0132,Account_132,ENT,Business,2025-05-17,36316.83,0.0,0.0,0.0,False,,,36316.83,1.0
+CUST_0133,Account_133,MM,Business,2023-01-11,0.0,0.0,0.0,0.0,True,2023-09-11,Price,0.0,0.0
+CUST_0134,Account_134,SMB,Starter,2024-11-24,1204.36,0.0,0.0,0.0,False,,,1204.36,1.0
+CUST_0135,Account_135,MM,Professional,2023-01-24,4398.06,0.0,0.0,0.0,False,,,4398.06,1.0
+CUST_0136,Account_136,ENT,Business,2024-04-26,35833.72,0.0,0.0,0.0,False,,,35833.72,1.0
+CUST_0137,Account_137,ENT,Business,2024-10-28,29485.51,0.0,0.0,0.0,False,,,29485.51,1.0
+CUST_0138,Account_138,MM,Business,2025-02-24,15544.61,0.0,2182.22,0.0,False,,,15544.61,1.163
+CUST_0139,Account_139,SMB,Business,2023-02-07,0.0,0.0,0.0,0.0,True,2025-03-17,Budget Cut,0.0,0.0
+CUST_0140,Account_140,SMB,Business,2023-03-10,0.0,0.0,0.0,0.0,True,2023-11-24,Business Closure,0.0,0.0
+CUST_0141,Account_141,ENT,Business,2023-01-14,31348.15,0.0,0.0,0.0,False,,,31348.15,1.0
+CUST_0142,Account_142,SMB,Starter,2022-12-09,0.0,0.0,0.0,0.0,True,2023-11-30,Competition,0.0,0.0
+CUST_0143,Account_143,ENT,Custom,2023-01-20,337095.12,0.0,0.0,0.0,False,,,337095.12,1.0
+CUST_0144,Account_144,ENT,Business,2025-09-13,16013.66,16013.66,0.0,0.0,False,,,16013.66,1.0
+CUST_0145,Account_145,SMB,Business,2024-03-09,0.0,0.0,0.0,0.0,True,2025-02-04,Merger,0.0,0.0
+CUST_0146,Account_146,MM,Business,2024-07-14,14677.9,0.0,0.0,0.0,False,,,14677.9,1.0
+CUST_0147,Account_147,ENT,Enterprise,2023-03-30,82481.95,0.0,12918.79,0.0,False,,,82481.95,1.186
+CUST_0148,Account_148,ENT,Enterprise,2025-01-27,90844.62,0.0,0.0,0.0,False,,,90844.62,1.0
+CUST_0149,Account_149,MM,Business,2023-04-25,0.0,0.0,0.0,0.0,True,2024-07-06,Support,0.0,0.0
+CUST_0150,Account_150,MM,Business,2024-02-02,0.0,0.0,0.0,0.0,True,2025-03-24,Business Closure,0.0,0.0
+CUST_0151,Account_151,SMB,Starter,2024-02-20,1070.15,0.0,166.69,0.0,False,,,1070.15,1.184
+CUST_0152,Account_152,SMB,Professional,2024-12-21,2541.79,0.0,0.0,0.0,False,,,2541.79,1.0
+CUST_0153,Account_153,SMB,Professional,2024-08-16,2039.78,0.0,409.7,0.0,False,,,2039.78,1.251
+CUST_0154,Account_154,MM,Professional,2025-09-03,4000.77,4000.77,0.0,0.0,False,,,4000.77,1.0
+CUST_0155,Account_155,ENT,Business,2023-05-22,0.0,0.0,0.0,0.0,True,2023-10-15,Feature Gap,0.0,0.0
+CUST_0156,Account_156,MM,Enterprise,2025-02-08,0.0,0.0,0.0,0.0,True,2025-06-02,Price,0.0,0.0
+CUST_0157,Account_157,ENT,Custom,2025-03-18,0.0,0.0,0.0,0.0,True,2025-07-27,Merger,0.0,0.0
+CUST_0158,Account_158,SMB,Professional,2025-09-12,1785.94,1785.94,0.0,0.0,False,,,1785.94,1.0
+CUST_0159,Account_159,ENT,Custom,2024-07-30,460521.59,0.0,0.0,0.0,False,,,460521.59,1.0
+CUST_0160,Account_160,ENT,Enterprise,2024-08-10,0.0,0.0,0.0,0.0,True,2025-02-03,Business Closure,0.0,0.0
+CUST_0161,Account_161,ENT,Custom,2024-08-03,325830.15,0.0,0.0,0.0,False,,,325830.15,1.0
+CUST_0162,Account_162,SMB,Professional,2023-06-28,0.0,0.0,0.0,0.0,True,2023-10-29,Budget Cut,0.0,0.0
+CUST_0163,Account_163,MM,Business,2024-05-22,12382.63,0.0,0.0,0.0,False,,,12382.63,1.0
+CUST_0164,Account_164,ENT,Enterprise,2024-02-28,49373.13,0.0,0.0,0.0,False,,,49373.13,1.0
+CUST_0165,Account_165,SMB,Starter,2022-12-22,0.0,0.0,0.0,0.0,True,2025-05-06,Merger,0.0,0.0
+CUST_0166,Account_166,MM,Business,2023-09-14,0.0,0.0,0.0,0.0,True,2025-03-27,Competition,0.0,0.0
+CUST_0167,Account_167,MM,Business,2023-11-18,0.0,0.0,0.0,0.0,True,2025-08-15,Competition,0.0,0.0
+CUST_0168,Account_168,ENT,Enterprise,2025-01-10,93652.84,0.0,956.15,0.0,False,,,93652.84,1.01
+CUST_0169,Account_169,ENT,Custom,2024-12-15,0.0,0.0,0.0,0.0,True,2025-08-02,Merger,0.0,0.0
+CUST_0170,Account_170,SMB,Starter,2024-01-17,720.74,0.0,0.0,12.62,False,,,720.74,0.983
+CUST_0171,Account_171,SMB,Business,2023-11-08,0.0,0.0,0.0,0.0,True,2024-05-02,Support,0.0,0.0
+CUST_0172,Account_172,SMB,Professional,2024-08-11,2770.63,0.0,0.0,0.0,False,,,2770.63,1.0
+CUST_0173,Account_173,SMB,Starter,2023-12-15,645.86,0.0,0.0,0.0,False,,,645.86,1.0
+CUST_0174,Account_174,MM,Enterprise,2024-08-15,39495.58,0.0,677.9,0.0,False,,,39495.58,1.017
+CUST_0175,Account_175,ENT,Business,2022-10-19,13968.04,0.0,0.0,1359.11,False,,,13968.04,0.911
+CUST_0176,Account_176,SMB,Business,2025-09-23,4228.35,4228.35,0.0,0.0,False,,,4228.35,1.0
+CUST_0177,Account_177,SMB,Starter,2022-10-18,0.0,0.0,0.0,0.0,True,2024-03-03,Feature Gap,0.0,0.0
+CUST_0178,Account_178,ENT,Enterprise,2025-05-21,67384.72,0.0,0.0,0.0,False,,,67384.72,1.0
+CUST_0179,Account_179,SMB,Business,2025-06-19,5467.75,0.0,0.0,0.0,False,,,5467.75,1.0
+CUST_0180,Account_180,ENT,Business,2023-04-06,0.0,0.0,0.0,0.0,True,2023-08-04,Competition,0.0,0.0
+CUST_0181,Account_181,MM,Business,2024-10-17,10815.03,0.0,0.0,0.0,False,,,10815.03,1.0
+CUST_0182,Account_182,SMB,Starter,2024-12-24,647.59,0.0,0.0,133.21,False,,,647.59,0.829
+CUST_0183,Account_183,ENT,Enterprise,2023-03-06,81067.49,0.0,0.0,0.0,False,,,81067.49,1.0
+CUST_0184,Account_184,SMB,Professional,2024-07-06,0.0,0.0,0.0,0.0,True,2024-09-19,Price,0.0,0.0
+CUST_0185,Account_185,MM,Enterprise,2024-07-23,17932.47,0.0,0.0,2505.13,False,,,17932.47,0.877
+CUST_0186,Account_186,MM,Professional,2023-03-28,6351.64,0.0,0.0,0.0,False,,,6351.64,1.0
+CUST_0187,Account_187,ENT,Custom,2025-01-18,348036.82,0.0,0.0,0.0,False,,,348036.82,1.0
+CUST_0188,Account_188,SMB,Professional,2023-06-18,0.0,0.0,0.0,0.0,True,2024-07-16,Merger,0.0,0.0
+CUST_0189,Account_189,SMB,Business,2025-03-02,6737.6,0.0,0.0,0.0,False,,,6737.6,1.0
+CUST_0190,Account_190,SMB,Business,2022-12-21,0.0,0.0,0.0,0.0,True,2025-06-28,Competition,0.0,0.0
+CUST_0191,Account_191,ENT,Custom,2024-07-14,181898.91,0.0,0.0,0.0,False,,,181898.91,1.0
+CUST_0192,Account_192,ENT,Custom,2023-09-29,0.0,0.0,0.0,0.0,True,2025-08-29,Support,0.0,0.0
+CUST_0193,Account_193,ENT,Business,2023-03-04,31311.29,0.0,1424.82,0.0,False,,,31311.29,1.048
+CUST_0194,Account_194,MM,Business,2022-11-11,19041.42,0.0,0.0,0.0,False,,,19041.42,1.0
+CUST_0195,Account_195,ENT,Business,2023-03-29,37531.46,0.0,3977.85,0.0,False,,,37531.46,1.119
+CUST_0196,Account_196,SMB,Starter,2025-09-29,801.92,801.92,0.0,0.0,False,,,801.92,1.0
+CUST_0197,Account_197,MM,Enterprise,2025-02-25,0.0,0.0,0.0,0.0,True,2025-06-22,Business Closure,0.0,0.0
+CUST_0198,Account_198,MM,Business,2023-02-21,0.0,0.0,0.0,0.0,True,2024-02-16,Business Closure,0.0,0.0
+CUST_0199,Account_199,MM,Business,2024-02-02,0.0,0.0,0.0,0.0,True,2024-09-11,Business Closure,0.0,0.0
+CUST_0200,Account_200,MM,Enterprise,2022-10-07,0.0,0.0,0.0,0.0,True,2023-01-05,Price,0.0,0.0
+CUST_0201,Account_201,ENT,Enterprise,2025-01-18,56153.9,0.0,12426.03,0.0,False,,,56153.9,1.284
+CUST_0202,Account_202,MM,Enterprise,2024-09-10,41355.94,0.0,0.0,0.0,False,,,41355.94,1.0
+CUST_0203,Account_203,MM,Business,2023-10-13,16670.98,0.0,0.0,0.0,False,,,16670.98,1.0
+CUST_0204,Account_204,ENT,Business,2024-01-08,24517.16,0.0,5088.57,0.0,False,,,24517.16,1.262
+CUST_0205,Account_205,SMB,Starter,2024-09-19,0.0,0.0,0.0,0.0,True,2025-08-19,Merger,0.0,0.0
+CUST_0206,Account_206,ENT,Business,2022-10-26,21973.09,0.0,0.0,0.0,False,,,21973.09,1.0
+CUST_0207,Account_207,MM,Enterprise,2023-02-25,27818.51,0.0,0.0,0.0,False,,,27818.51,1.0
+CUST_0208,Account_208,SMB,Business,2024-08-25,0.0,0.0,0.0,0.0,True,2024-11-15,Merger,0.0,0.0
+CUST_0209,Account_209,SMB,Professional,2025-09-03,2280.59,2280.59,0.0,0.0,False,,,2280.59,1.0
+CUST_0210,Account_210,SMB,Professional,2024-03-16,0.0,0.0,0.0,0.0,True,2024-05-08,Support,0.0,0.0
+CUST_0211,Account_211,ENT,Custom,2023-10-26,0.0,0.0,0.0,0.0,True,2024-05-28,Competition,0.0,0.0
+CUST_0212,Account_212,SMB,Starter,2023-06-18,0.0,0.0,0.0,0.0,True,2023-11-16,Merger,0.0,0.0
+CUST_0213,Account_213,ENT,Business,2023-08-05,0.0,0.0,0.0,0.0,True,2023-10-16,Price,0.0,0.0
+CUST_0214,Account_214,MM,Enterprise,2024-08-26,0.0,0.0,0.0,0.0,True,2024-12-03,Budget Cut,0.0,0.0
+CUST_0215,Account_215,MM,Professional,2023-08-04,6985.46,0.0,0.0,0.0,False,,,6985.46,1.0
+CUST_0216,Account_216,ENT,Enterprise,2023-09-17,0.0,0.0,0.0,0.0,True,2025-07-28,Feature Gap,0.0,0.0
+CUST_0217,Account_217,SMB,Business,2023-12-02,0.0,0.0,0.0,0.0,True,2024-04-04,Budget Cut,0.0,0.0
+CUST_0218,Account_218,ENT,Enterprise,2024-01-15,51897.71,0.0,0.0,0.0,False,,,51897.71,1.0
+CUST_0219,Account_219,MM,Enterprise,2022-12-20,0.0,0.0,0.0,0.0,True,2025-01-25,Support,0.0,0.0
+CUST_0220,Account_220,ENT,Enterprise,2024-07-31,73532.28,0.0,0.0,0.0,False,,,73532.28,1.0
+CUST_0221,Account_221,SMB,Professional,2023-11-24,1569.02,0.0,0.0,0.0,False,,,1569.02,1.0
+CUST_0222,Account_222,ENT,Custom,2023-05-27,0.0,0.0,0.0,0.0,True,2024-12-03,Competition,0.0,0.0
+CUST_0223,Account_223,ENT,Custom,2024-03-31,239602.39,0.0,0.0,0.0,False,,,239602.39,1.0
+CUST_0224,Account_224,SMB,Business,2023-10-08,0.0,0.0,0.0,0.0,True,2025-01-19,Merger,0.0,0.0
+CUST_0225,Account_225,SMB,Professional,2022-12-23,0.0,0.0,0.0,0.0,True,2024-02-27,Budget Cut,0.0,0.0
+CUST_0226,Account_226,MM,Enterprise,2023-12-29,0.0,0.0,0.0,0.0,True,2024-02-27,Budget Cut,0.0,0.0
+CUST_0227,Account_227,ENT,Enterprise,2023-02-05,0.0,0.0,0.0,0.0,True,2024-07-01,Price,0.0,0.0
+CUST_0228,Account_228,ENT,Custom,2024-02-13,0.0,0.0,0.0,0.0,True,2025-05-06,Budget Cut,0.0,0.0
+CUST_0229,Account_229,ENT,Custom,2024-07-10,320907.91,0.0,0.0,0.0,False,,,320907.91,1.0
+CUST_0230,Account_230,ENT,Enterprise,2023-11-10,78063.69,0.0,552.94,0.0,False,,,78063.69,1.007
+CUST_0231,Account_231,MM,Business,2025-05-31,18322.67,0.0,0.0,0.0,False,,,18322.67,1.0
+CUST_0232,Account_232,ENT,Enterprise,2023-07-02,62741.5,0.0,0.0,6324.9,False,,,62741.5,0.908
+CUST_0233,Account_233,MM,Professional,2024-08-25,6228.48,0.0,0.0,0.0,False,,,6228.48,1.0
+CUST_0234,Account_234,ENT,Enterprise,2024-12-14,43264.53,0.0,0.0,0.0,False,,,43264.53,1.0
+CUST_0235,Account_235,MM,Enterprise,2025-09-21,46835.69,46835.69,0.0,0.0,False,,,46835.69,1.0
+CUST_0236,Account_236,SMB,Professional,2023-10-12,0.0,0.0,0.0,0.0,True,2023-12-20,Merger,0.0,0.0
+CUST_0237,Account_237,SMB,Business,2025-09-21,6161.11,6161.11,0.0,0.0,False,,,6161.11,1.0
+CUST_0238,Account_238,ENT,Business,2024-01-01,0.0,0.0,0.0,0.0,True,2024-09-19,Price,0.0,0.0
+CUST_0239,Account_239,SMB,Professional,2024-04-06,2715.79,0.0,0.0,0.0,False,,,2715.79,1.0
+CUST_0240,Account_240,SMB,Professional,2023-11-23,0.0,0.0,0.0,0.0,True,2024-04-03,Price,0.0,0.0
+CUST_0241,Account_241,SMB,Starter,2023-10-09,0.0,0.0,0.0,0.0,True,2024-08-15,Budget Cut,0.0,0.0
+CUST_0242,Account_242,SMB,Professional,2023-09-28,0.0,0.0,0.0,0.0,True,2025-02-10,Budget Cut,0.0,0.0
+CUST_0243,Account_243,MM,Professional,2023-04-25,7060.47,0.0,0.0,0.0,False,,,7060.47,1.0
+CUST_0244,Account_244,ENT,Enterprise,2025-02-15,76591.54,0.0,0.0,0.0,False,,,76591.54,1.0
+CUST_0245,Account_245,ENT,Business,2023-10-15,0.0,0.0,0.0,0.0,True,2024-10-29,Price,0.0,0.0
+CUST_0246,Account_246,MM,Enterprise,2023-05-01,24418.05,0.0,0.0,0.0,False,,,24418.05,1.0
+CUST_0247,Account_247,ENT,Business,2024-06-12,32096.17,0.0,5341.97,0.0,False,,,32096.17,1.2
+CUST_0248,Account_248,MM,Business,2023-12-30,11611.97,0.0,0.0,0.0,False,,,11611.97,1.0
+CUST_0249,Account_249,SMB,Professional,2024-12-27,2147.96,0.0,0.0,0.0,False,,,2147.96,1.0
+CUST_0250,Account_250,MM,Professional,2024-05-12,6311.23,0.0,0.0,0.0,False,,,6311.23,1.0
+CUST_0251,Account_251,SMB,Starter,2023-12-20,649.15,0.0,0.0,0.0,False,,,649.15,1.0
+CUST_0252,Account_252,ENT,Custom,2024-10-24,106950.39,0.0,0.0,0.0,False,,,106950.39,1.0
+CUST_0253,Account_253,MM,Professional,2022-11-13,0.0,0.0,0.0,0.0,True,2023-04-13,Business Closure,0.0,0.0
+CUST_0254,Account_254,ENT,Enterprise,2023-07-20,0.0,0.0,0.0,0.0,True,2025-04-13,Business Closure,0.0,0.0
+CUST_0255,Account_255,SMB,Professional,2024-06-08,0.0,0.0,0.0,0.0,True,2025-09-07,Support,0.0,0.0
+CUST_0256,Account_256,SMB,Starter,2024-06-06,1431.22,0.0,0.0,0.0,False,,,1431.22,1.0
+CUST_0257,Account_257,MM,Enterprise,2022-12-24,38493.07,0.0,0.0,2719.45,False,,,38493.07,0.934
+CUST_0258,Account_258,ENT,Custom,2024-12-12,277908.71,0.0,46925.2,0.0,False,,,277908.71,1.203
+CUST_0259,Account_259,MM,Professional,2025-03-10,3896.39,0.0,0.0,0.0,False,,,3896.39,1.0
+CUST_0260,Account_260,SMB,Business,2022-10-10,6092.39,0.0,0.0,0.0,False,,,6092.39,1.0
+CUST_0261,Account_261,SMB,Business,2024-02-11,6984.51,0.0,696.63,0.0,False,,,6984.51,1.111
+CUST_0262,Account_262,MM,Business,2023-09-11,0.0,0.0,0.0,0.0,True,2025-09-05,Competition,0.0,0.0
+CUST_0263,Account_263,ENT,Business,2024-06-01,0.0,0.0,0.0,0.0,True,2024-11-08,Competition,0.0,0.0
+CUST_0264,Account_264,MM,Business,2023-09-02,0.0,0.0,0.0,0.0,True,2025-01-21,Competition,0.0,0.0
+CUST_0265,Account_265,ENT,Custom,2025-05-23,206264.28,0.0,0.0,0.0,False,,,206264.28,1.0
+CUST_0266,Account_266,ENT,Enterprise,2024-04-19,0.0,0.0,0.0,0.0,True,2024-07-01,Business Closure,0.0,0.0
+CUST_0267,Account_267,ENT,Business,2024-01-27,0.0,0.0,0.0,0.0,True,2025-03-13,Competition,0.0,0.0
+CUST_0268,Account_268,SMB,Starter,2024-11-13,1353.75,0.0,0.0,0.0,False,,,1353.75,1.0
+CUST_0269,Account_269,ENT,Custom,2025-02-23,265173.82,0.0,0.0,0.0,False,,,265173.82,1.0
+CUST_0270,Account_270,SMB,Business,2023-02-16,0.0,0.0,0.0,0.0,True,2024-04-20,Budget Cut,0.0,0.0
+CUST_0271,Account_271,MM,Professional,2023-03-20,0.0,0.0,0.0,0.0,True,2023-10-01,Business Closure,0.0,0.0
+CUST_0272,Account_272,SMB,Professional,2024-12-15,2616.3,0.0,41.39,0.0,False,,,2616.3,1.016
+CUST_0273,Account_273,SMB,Business,2024-11-16,0.0,0.0,0.0,0.0,True,2025-09-23,Competition,0.0,0.0
+CUST_0274,Account_274,MM,Enterprise,2025-04-29,47286.1,0.0,0.0,0.0,False,,,47286.1,1.0
+CUST_0275,Account_275,MM,Business,2025-02-09,12057.73,0.0,0.0,0.0,False,,,12057.73,1.0
+CUST_0276,Account_276,ENT,Enterprise,2023-01-06,0.0,0.0,0.0,0.0,True,2024-11-24,Feature Gap,0.0,0.0
+CUST_0277,Account_277,MM,Enterprise,2025-04-18,49609.32,0.0,0.0,0.0,False,,,49609.32,1.0
+CUST_0278,Account_278,MM,Professional,2025-09-09,5452.34,5452.34,0.0,0.0,False,,,5452.34,1.0
+CUST_0279,Account_279,ENT,Enterprise,2022-10-30,0.0,0.0,0.0,0.0,True,2025-09-06,Business Closure,0.0,0.0
+CUST_0280,Account_280,ENT,Business,2024-07-21,35312.28,0.0,0.0,0.0,False,,,35312.28,1.0
+CUST_0281,Account_281,SMB,Starter,2023-12-23,0.0,0.0,0.0,0.0,True,2025-04-29,Budget Cut,0.0,0.0
+CUST_0282,Account_282,MM,Professional,2024-06-01,5720.93,0.0,14.57,0.0,False,,,5720.93,1.003
+CUST_0283,Account_283,SMB,Professional,2023-06-18,0.0,0.0,0.0,0.0,True,2024-10-30,Merger,0.0,0.0
+CUST_0284,Account_284,MM,Business,2025-05-13,10642.59,0.0,0.0,0.0,False,,,10642.59,1.0
+CUST_0285,Account_285,MM,Enterprise,2022-12-01,0.0,0.0,0.0,0.0,True,2023-03-18,Competition,0.0,0.0
+CUST_0286,Account_286,ENT,Custom,2025-01-03,400406.2,0.0,82977.27,0.0,False,,,400406.2,1.261
+CUST_0287,Account_287,SMB,Starter,2024-03-04,0.0,0.0,0.0,0.0,True,2024-07-14,Business Closure,0.0,0.0
+CUST_0288,Account_288,MM,Professional,2024-11-30,0.0,0.0,0.0,0.0,True,2025-04-29,Business Closure,0.0,0.0
+CUST_0289,Account_289,ENT,Custom,2024-10-19,155239.62,0.0,0.0,19193.71,False,,,155239.62,0.89
+CUST_0290,Account_290,SMB,Business,2025-04-26,6534.58,0.0,0.0,0.0,False,,,6534.58,1.0
+CUST_0291,Account_291,ENT,Custom,2023-06-12,0.0,0.0,0.0,0.0,True,2023-07-21,Competition,0.0,0.0
+CUST_0292,Account_292,ENT,Custom,2025-04-07,331165.84,0.0,0.0,0.0,False,,,331165.84,1.0
+CUST_0293,Account_293,ENT,Enterprise,2025-09-05,64609.35,64609.35,0.0,0.0,False,,,64609.35,1.0
+CUST_0294,Account_294,ENT,Enterprise,2023-05-07,100491.2,0.0,692.64,0.0,False,,,100491.2,1.007
+CUST_0295,Account_295,MM,Enterprise,2025-03-10,20636.27,0.0,0.0,0.0,False,,,20636.27,1.0
+CUST_0296,Account_296,MM,Professional,2023-04-26,0.0,0.0,0.0,0.0,True,2024-12-20,Feature Gap,0.0,0.0
+CUST_0297,Account_297,SMB,Business,2022-10-05,0.0,0.0,0.0,0.0,True,2024-08-21,Price,0.0,0.0
+CUST_0298,Account_298,SMB,Starter,2023-03-06,0.0,0.0,0.0,0.0,True,2024-04-19,Price,0.0,0.0
+CUST_0299,Account_299,SMB,Business,2025-04-19,4152.98,0.0,0.0,0.0,False,,,4152.98,1.0
+CUST_0300,Account_300,MM,Business,2023-05-24,12496.37,0.0,1325.22,0.0,False,,,12496.37,1.119
+CUST_0301,Account_301,SMB,Business,2024-09-14,0.0,0.0,0.0,0.0,True,2025-06-26,Price,0.0,0.0
+CUST_0302,Account_302,SMB,Professional,2023-04-01,0.0,0.0,0.0,0.0,True,2025-08-08,Price,0.0,0.0
+CUST_0303,Account_303,ENT,Custom,2022-12-09,256422.11,0.0,0.0,0.0,False,,,256422.11,1.0
+CUST_0304,Account_304,SMB,Business,2023-10-06,0.0,0.0,0.0,0.0,True,2024-03-21,Merger,0.0,0.0
+CUST_0305,Account_305,MM,Business,2023-04-12,0.0,0.0,0.0,0.0,True,2023-06-06,Feature Gap,0.0,0.0
+CUST_0306,Account_306,MM,Business,2024-08-02,12790.3,0.0,2589.24,0.0,False,,,12790.3,1.254
+CUST_0307,Account_307,ENT,Enterprise,2025-06-27,88602.7,0.0,0.0,0.0,False,,,88602.7,1.0
+CUST_0308,Account_308,ENT,Enterprise,2023-08-13,68331.71,0.0,0.0,0.0,False,,,68331.71,1.0
+CUST_0309,Account_309,MM,Professional,2022-12-23,0.0,0.0,0.0,0.0,True,2025-02-04,Competition,0.0,0.0
+CUST_0310,Account_310,SMB,Professional,2025-02-16,0.0,0.0,0.0,0.0,True,2025-07-13,Support,0.0,0.0
+CUST_0311,Account_311,SMB,Business,2024-01-29,0.0,0.0,0.0,0.0,True,2024-06-11,Feature Gap,0.0,0.0
+CUST_0312,Account_312,SMB,Professional,2022-11-18,0.0,0.0,0.0,0.0,True,2024-08-24,Support,0.0,0.0
+CUST_0313,Account_313,ENT,Custom,2023-05-21,0.0,0.0,0.0,0.0,True,2024-08-18,Feature Gap,0.0,0.0
+CUST_0314,Account_314,MM,Professional,2024-05-06,0.0,0.0,0.0,0.0,True,2024-12-15,Business Closure,0.0,0.0
+CUST_0315,Account_315,ENT,Enterprise,2022-11-20,67631.32,0.0,0.0,0.0,False,,,67631.32,1.0
+CUST_0316,Account_316,ENT,Custom,2024-06-14,0.0,0.0,0.0,0.0,True,2024-12-03,Business Closure,0.0,0.0
+CUST_0317,Account_317,SMB,Professional,2024-06-21,0.0,0.0,0.0,0.0,True,2024-11-14,Merger,0.0,0.0
+CUST_0318,Account_318,SMB,Professional,2024-09-25,3002.4,0.0,668.6,0.0,False,,,3002.4,1.286
+CUST_0319,Account_319,ENT,Business,2024-10-22,24087.19,0.0,2168.81,0.0,False,,,24087.19,1.099
+CUST_0320,Account_320,SMB,Starter,2024-04-07,0.0,0.0,0.0,0.0,True,2024-10-02,Business Closure,0.0,0.0
+CUST_0321,Account_321,SMB,Starter,2023-03-20,0.0,0.0,0.0,0.0,True,2024-09-25,Competition,0.0,0.0
+CUST_0322,Account_322,MM,Business,2025-01-19,18345.36,0.0,2543.23,0.0,False,,,18345.36,1.161
+CUST_0323,Account_323,ENT,Enterprise,2025-06-13,49626.22,0.0,0.0,0.0,False,,,49626.22,1.0
+CUST_0324,Account_324,ENT,Custom,2022-10-30,292615.82,0.0,0.0,0.0,False,,,292615.82,1.0
+CUST_0325,Account_325,MM,Enterprise,2023-03-26,42950.26,0.0,1981.61,0.0,False,,,42950.26,1.048
+CUST_0326,Account_326,SMB,Professional,2025-01-19,0.0,0.0,0.0,0.0,True,2025-07-07,Budget Cut,0.0,0.0
+CUST_0327,Account_327,MM,Business,2023-05-29,0.0,0.0,0.0,0.0,True,2025-07-22,Price,0.0,0.0
+CUST_0328,Account_328,ENT,Custom,2022-10-02,332428.82,0.0,0.0,0.0,False,,,332428.82,1.0
+CUST_0329,Account_329,SMB,Professional,2025-04-26,2158.41,0.0,0.0,0.0,False,,,2158.41,1.0
+CUST_0330,Account_330,ENT,Enterprise,2023-06-21,105318.26,0.0,11483.53,0.0,False,,,105318.26,1.122
+CUST_0331,Account_331,SMB,Business,2023-03-01,6460.29,0.0,0.0,0.0,False,,,6460.29,1.0
+CUST_0332,Account_332,SMB,Business,2023-06-05,0.0,0.0,0.0,0.0,True,2025-03-07,Feature Gap,0.0,0.0
+CUST_0333,Account_333,ENT,Enterprise,2024-07-11,78124.83,0.0,0.0,10131.05,False,,,78124.83,0.885
+CUST_0334,Account_334,SMB,Business,2025-06-13,6690.51,0.0,0.0,0.0,False,,,6690.51,1.0
+CUST_0335,Account_335,SMB,Starter,2024-08-02,1321.47,0.0,29.78,0.0,False,,,1321.47,1.023
+CUST_0336,Account_336,MM,Professional,2024-10-14,0.0,0.0,0.0,0.0,True,2025-03-06,Budget Cut,0.0,0.0
+CUST_0337,Account_337,ENT,Business,2023-05-21,24484.27,0.0,0.0,0.0,False,,,24484.27,1.0
+CUST_0338,Account_338,MM,Enterprise,2022-10-17,0.0,0.0,0.0,0.0,True,2023-01-30,Budget Cut,0.0,0.0
+CUST_0339,Account_339,SMB,Professional,2025-06-07,2481.23,0.0,0.0,0.0,False,,,2481.23,1.0
+CUST_0340,Account_340,ENT,Enterprise,2023-09-01,47854.0,0.0,0.0,0.0,False,,,47854.0,1.0
+CUST_0341,Account_341,ENT,Enterprise,2024-06-07,89194.86,0.0,0.0,0.0,False,,,89194.86,1.0
+CUST_0342,Account_342,SMB,Starter,2023-01-18,870.34,0.0,0.0,0.0,False,,,870.34,1.0
+CUST_0343,Account_343,ENT,Business,2024-12-07,30759.3,0.0,0.0,0.0,False,,,30759.3,1.0
+CUST_0344,Account_344,SMB,Professional,2024-03-22,0.0,0.0,0.0,0.0,True,2024-10-26,Feature Gap,0.0,0.0
+CUST_0345,Account_345,ENT,Business,2024-04-28,27983.16,0.0,0.0,0.0,False,,,27983.16,1.0
+CUST_0346,Account_346,SMB,Business,2024-09-22,5758.49,0.0,0.0,931.54,False,,,5758.49,0.861
+CUST_0347,Account_347,MM,Professional,2024-04-14,0.0,0.0,0.0,0.0,True,2024-07-03,Budget Cut,0.0,0.0
+CUST_0348,Account_348,SMB,Business,2024-05-03,0.0,0.0,0.0,0.0,True,2024-07-20,Feature Gap,0.0,0.0
+CUST_0349,Account_349,MM,Professional,2025-06-15,4151.69,0.0,780.56,0.0,False,,,4151.69,1.232
+CUST_0350,Account_350,MM,Enterprise,2023-11-09,45207.02,0.0,0.0,0.0,False,,,45207.02,1.0
+CUST_0351,Account_351,MM,Enterprise,2024-01-13,0.0,0.0,0.0,0.0,True,2025-09-27,Business Closure,0.0,0.0
+CUST_0352,Account_352,MM,Professional,2024-03-11,4952.34,0.0,1129.85,0.0,False,,,4952.34,1.296
+CUST_0353,Account_353,SMB,Business,2025-02-22,4547.39,0.0,0.0,0.0,False,,,4547.39,1.0
+CUST_0354,Account_354,MM,Enterprise,2025-03-24,28470.27,0.0,0.0,0.0,False,,,28470.27,1.0
+CUST_0355,Account_355,SMB,Starter,2023-02-10,0.0,0.0,0.0,0.0,True,2024-05-24,Support,0.0,0.0
+CUST_0356,Account_356,SMB,Professional,2024-12-26,0.0,0.0,0.0,0.0,True,2025-07-12,Competition,0.0,0.0
+CUST_0357,Account_357,ENT,Enterprise,2025-09-08,49992.35,49992.35,0.0,0.0,False,,,49992.35,1.0
+CUST_0358,Account_358,SMB,Business,2024-10-16,3427.01,0.0,0.0,482.18,False,,,3427.01,0.877
+CUST_0359,Account_359,ENT,Business,2025-05-28,33246.73,0.0,0.0,0.0,False,,,33246.73,1.0
+CUST_0360,Account_360,SMB,Professional,2023-12-30,0.0,0.0,0.0,0.0,True,2024-02-12,Price,0.0,0.0
+CUST_0361,Account_361,ENT,Business,2024-01-05,0.0,0.0,0.0,0.0,True,2024-07-25,Feature Gap,0.0,0.0
+CUST_0362,Account_362,ENT,Enterprise,2024-11-16,48164.79,0.0,0.0,0.0,False,,,48164.79,1.0
+CUST_0363,Account_363,MM,Professional,2023-09-08,0.0,0.0,0.0,0.0,True,2025-06-14,Feature Gap,0.0,0.0
+CUST_0364,Account_364,MM,Business,2023-10-13,10519.22,0.0,0.0,0.0,False,,,10519.22,1.0
+CUST_0365,Account_365,ENT,Custom,2023-05-12,125660.58,0.0,0.0,0.0,False,,,125660.58,1.0
+CUST_0366,Account_366,MM,Professional,2024-02-25,0.0,0.0,0.0,0.0,True,2025-08-14,Feature Gap,0.0,0.0
+CUST_0367,Account_367,SMB,Business,2025-05-20,7354.21,0.0,0.0,0.0,False,,,7354.21,1.0
+CUST_0368,Account_368,ENT,Business,2024-01-25,39397.75,0.0,0.0,0.0,False,,,39397.75,1.0
+CUST_0369,Account_369,ENT,Business,2022-11-24,33778.08,0.0,6927.96,0.0,False,,,33778.08,1.258
+CUST_0370,Account_370,SMB,Starter,2024-08-18,0.0,0.0,0.0,0.0,True,2025-02-27,Business Closure,0.0,0.0
+CUST_0371,Account_371,MM,Professional,2024-10-06,0.0,0.0,0.0,0.0,True,2025-02-02,Competition,0.0,0.0
+CUST_0372,Account_372,MM,Business,2023-08-11,0.0,0.0,0.0,0.0,True,2025-07-20,Support,0.0,0.0
+CUST_0373,Account_373,ENT,Business,2024-10-22,21082.3,0.0,0.0,0.0,False,,,21082.3,1.0
+CUST_0374,Account_374,SMB,Business,2024-05-06,0.0,0.0,0.0,0.0,True,2024-07-08,Merger,0.0,0.0
+CUST_0375,Account_375,ENT,Business,2025-08-28,38790.49,0.0,0.0,0.0,False,,,38790.49,1.0
+CUST_0376,Account_376,MM,Professional,2024-03-05,6649.11,0.0,0.0,0.0,False,,,6649.11,1.0
+CUST_0377,Account_377,MM,Business,2024-10-02,10785.99,0.0,1181.65,0.0,False,,,10785.99,1.123
+CUST_0378,Account_378,MM,Enterprise,2022-11-06,0.0,0.0,0.0,0.0,True,2024-03-21,Competition,0.0,0.0
+CUST_0379,Account_379,MM,Professional,2023-02-06,0.0,0.0,0.0,0.0,True,2025-04-01,Business Closure,0.0,0.0
+CUST_0380,Account_380,MM,Business,2024-04-27,17627.29,0.0,0.0,0.0,False,,,17627.29,1.0
+CUST_0381,Account_381,MM,Business,2024-10-06,0.0,0.0,0.0,0.0,True,2025-08-19,Competition,0.0,0.0
+CUST_0382,Account_382,MM,Enterprise,2024-12-31,25883.02,0.0,0.0,0.0,False,,,25883.02,1.0
+CUST_0383,Account_383,SMB,Professional,2025-08-17,2220.43,0.0,0.0,0.0,False,,,2220.43,1.0
+CUST_0384,Account_384,ENT,Custom,2022-10-25,341090.38,0.0,0.0,0.0,False,,,341090.38,1.0
+CUST_0385,Account_385,MM,Enterprise,2025-09-14,47964.13,47964.13,0.0,0.0,False,,,47964.13,1.0
+CUST_0386,Account_386,MM,Business,2023-12-01,0.0,0.0,0.0,0.0,True,2025-09-06,Price,0.0,0.0
+CUST_0387,Account_387,MM,Business,2023-11-28,0.0,0.0,0.0,0.0,True,2025-04-09,Price,0.0,0.0
+CUST_0388,Account_388,ENT,Custom,2024-08-14,0.0,0.0,0.0,0.0,True,2025-07-13,Budget Cut,0.0,0.0
+CUST_0389,Account_389,ENT,Enterprise,2024-03-18,0.0,0.0,0.0,0.0,True,2025-09-19,Support,0.0,0.0
+CUST_0390,Account_390,SMB,Professional,2024-02-25,1800.2,0.0,0.0,0.0,False,,,1800.2,1.0
+CUST_0391,Account_391,MM,Enterprise,2023-04-26,0.0,0.0,0.0,0.0,True,2025-01-18,Business Closure,0.0,0.0
+CUST_0392,Account_392,ENT,Custom,2024-04-20,201894.51,0.0,0.0,0.0,False,,,201894.51,1.0
+CUST_0393,Account_393,ENT,Custom,2025-08-16,266841.89,0.0,0.0,0.0,False,,,266841.89,1.0
+CUST_0394,Account_394,SMB,Starter,2024-04-14,732.88,0.0,0.0,174.91,False,,,732.88,0.807
+CUST_0395,Account_395,SMB,Business,2024-04-15,7331.47,0.0,0.0,0.0,False,,,7331.47,1.0
+CUST_0396,Account_396,MM,Professional,2023-11-11,0.0,0.0,0.0,0.0,True,2024-12-12,Support,0.0,0.0
+CUST_0397,Account_397,MM,Enterprise,2023-12-03,0.0,0.0,0.0,0.0,True,2024-12-13,Price,0.0,0.0
+CUST_0398,Account_398,ENT,Custom,2022-12-01,0.0,0.0,0.0,0.0,True,2023-01-20,Merger,0.0,0.0
+CUST_0399,Account_399,SMB,Professional,2022-12-29,0.0,0.0,0.0,0.0,True,2023-10-22,Business Closure,0.0,0.0
+CUST_0400,Account_400,ENT,Custom,2024-09-25,0.0,0.0,0.0,0.0,True,2025-02-08,Feature Gap,0.0,0.0
+CUST_0401,Account_401,ENT,Custom,2023-04-24,210233.69,0.0,0.0,0.0,False,,,210233.69,1.0
+CUST_0402,Account_402,MM,Business,2025-08-27,17511.45,0.0,0.0,0.0,False,,,17511.45,1.0
+CUST_0403,Account_403,ENT,Custom,2024-06-18,151454.07,0.0,0.0,0.0,False,,,151454.07,1.0
+CUST_0404,Account_404,ENT,Custom,2024-04-07,489622.77,0.0,0.0,0.0,False,,,489622.77,1.0
+CUST_0405,Account_405,MM,Enterprise,2024-10-22,20723.08,0.0,0.0,0.0,False,,,20723.08,1.0
+CUST_0406,Account_406,SMB,Starter,2023-11-24,0.0,0.0,0.0,0.0,True,2024-08-26,Business Closure,0.0,0.0
+CUST_0407,Account_407,MM,Enterprise,2022-12-31,0.0,0.0,0.0,0.0,True,2023-07-25,Budget Cut,0.0,0.0
+CUST_0408,Account_408,MM,Business,2022-11-12,15850.68,0.0,1740.89,0.0,False,,,15850.68,1.123
+CUST_0409,Account_409,ENT,Custom,2024-02-20,186454.46,0.0,0.0,0.0,False,,,186454.46,1.0
+CUST_0410,Account_410,ENT,Business,2023-08-03,0.0,0.0,0.0,0.0,True,2025-02-07,Feature Gap,0.0,0.0
+CUST_0411,Account_411,SMB,Starter,2025-04-10,0.0,0.0,0.0,0.0,True,2025-05-30,Budget Cut,0.0,0.0
+CUST_0412,Account_412,SMB,Professional,2023-08-20,0.0,0.0,0.0,0.0,True,2023-12-14,Budget Cut,0.0,0.0
+CUST_0413,Account_413,ENT,Custom,2024-07-31,0.0,0.0,0.0,0.0,True,2025-01-27,Merger,0.0,0.0
+CUST_0414,Account_414,ENT,Enterprise,2024-12-03,96631.94,0.0,0.0,0.0,False,,,96631.94,1.0
+CUST_0415,Account_415,MM,Enterprise,2023-08-22,41058.11,0.0,2501.2,0.0,False,,,41058.11,1.065
+CUST_0416,Account_416,SMB,Starter,2024-08-29,1306.54,0.0,0.0,0.0,False,,,1306.54,1.0
+CUST_0417,Account_417,MM,Professional,2024-04-20,0.0,0.0,0.0,0.0,True,2025-06-23,Business Closure,0.0,0.0
+CUST_0418,Account_418,MM,Enterprise,2024-05-18,0.0,0.0,0.0,0.0,True,2025-03-19,Price,0.0,0.0
+CUST_0419,Account_419,ENT,Business,2024-08-25,0.0,0.0,0.0,0.0,True,2025-05-07,Merger,0.0,0.0
+CUST_0420,Account_420,MM,Professional,2023-01-28,6425.94,0.0,0.0,1377.83,False,,,6425.94,0.823
+CUST_0421,Account_421,SMB,Professional,2024-01-22,0.0,0.0,0.0,0.0,True,2025-02-20,Support,0.0,0.0
+CUST_0422,Account_422,MM,Business,2024-10-11,8088.96,0.0,0.0,0.0,False,,,8088.96,1.0
+CUST_0423,Account_423,MM,Business,2023-12-29,12562.23,0.0,0.0,0.0,False,,,12562.23,1.0
+CUST_0424,Account_424,ENT,Custom,2023-01-04,103100.24,0.0,0.0,0.0,False,,,103100.24,1.0
+CUST_0425,Account_425,MM,Enterprise,2024-03-21,27134.17,0.0,0.0,0.0,False,,,27134.17,1.0
+CUST_0426,Account_426,ENT,Custom,2023-11-16,0.0,0.0,0.0,0.0,True,2024-12-12,Budget Cut,0.0,0.0
+CUST_0427,Account_427,SMB,Professional,2023-03-04,0.0,0.0,0.0,0.0,True,2025-09-18,Budget Cut,0.0,0.0
+CUST_0428,Account_428,SMB,Starter,2023-01-29,0.0,0.0,0.0,0.0,True,2024-05-02,Business Closure,0.0,0.0
+CUST_0429,Account_429,MM,Business,2025-08-10,9396.03,0.0,0.0,0.0,False,,,9396.03,1.0
+CUST_0430,Account_430,MM,Business,2023-02-17,0.0,0.0,0.0,0.0,True,2024-01-28,Business Closure,0.0,0.0
+CUST_0431,Account_431,MM,Business,2024-08-17,0.0,0.0,0.0,0.0,True,2024-10-24,Feature Gap,0.0,0.0
+CUST_0432,Account_432,MM,Professional,2024-08-01,0.0,0.0,0.0,0.0,True,2025-06-28,Price,0.0,0.0
+CUST_0433,Account_433,SMB,Business,2025-06-27,6657.41,0.0,0.0,0.0,False,,,6657.41,1.0
+CUST_0434,Account_434,MM,Business,2023-07-08,0.0,0.0,0.0,0.0,True,2025-01-06,Competition,0.0,0.0
+CUST_0435,Account_435,SMB,Business,2024-02-14,3610.29,0.0,0.0,0.0,False,,,3610.29,1.0
+CUST_0436,Account_436,MM,Enterprise,2023-05-19,0.0,0.0,0.0,0.0,True,2024-06-02,Competition,0.0,0.0
+CUST_0437,Account_437,SMB,Business,2025-01-07,4054.08,0.0,0.0,641.99,False,,,4054.08,0.863
+CUST_0438,Account_438,ENT,Business,2025-07-17,33544.49,0.0,7738.3,0.0,False,,,33544.49,1.3
+CUST_0439,Account_439,SMB,Starter,2024-05-16,1447.58,0.0,0.0,0.0,False,,,1447.58,1.0
+CUST_0440,Account_440,MM,Business,2025-04-24,0.0,0.0,0.0,0.0,True,2025-09-29,Business Closure,0.0,0.0
+CUST_0441,Account_441,ENT,Custom,2023-07-06,99331.57,0.0,0.0,2064.47,False,,,99331.57,0.98
+CUST_0442,Account_442,MM,Enterprise,2024-07-17,48139.16,0.0,0.0,0.0,False,,,48139.16,1.0
+CUST_0443,Account_443,MM,Business,2025-04-27,8169.42,0.0,0.0,0.0,False,,,8169.42,1.0
+CUST_0444,Account_444,SMB,Business,2023-06-17,0.0,0.0,0.0,0.0,True,2025-05-31,Price,0.0,0.0
+CUST_0445,Account_445,MM,Enterprise,2023-02-28,29686.73,0.0,0.0,0.0,False,,,29686.73,1.0
+CUST_0446,Account_446,MM,Enterprise,2024-12-03,37927.43,0.0,3815.71,0.0,False,,,37927.43,1.112
+CUST_0447,Account_447,MM,Business,2023-08-25,0.0,0.0,0.0,0.0,True,2025-07-12,Business Closure,0.0,0.0
+CUST_0448,Account_448,SMB,Professional,2024-10-29,2036.43,0.0,0.0,76.26,False,,,2036.43,0.964
+CUST_0449,Account_449,ENT,Business,2022-12-19,0.0,0.0,0.0,0.0,True,2023-11-06,Budget Cut,0.0,0.0
+CUST_0450,Account_450,SMB,Professional,2024-03-10,2896.06,0.0,0.0,0.0,False,,,2896.06,1.0
+CUST_0451,Account_451,MM,Professional,2024-11-16,0.0,0.0,0.0,0.0,True,2025-01-13,Feature Gap,0.0,0.0
+CUST_0452,Account_452,SMB,Starter,2025-04-03,1300.25,0.0,0.0,0.0,False,,,1300.25,1.0
+CUST_0453,Account_453,MM,Business,2024-05-20,0.0,0.0,0.0,0.0,True,2025-04-17,Budget Cut,0.0,0.0
+CUST_0454,Account_454,SMB,Professional,2023-03-16,0.0,0.0,0.0,0.0,True,2024-09-08,Feature Gap,0.0,0.0
+CUST_0455,Account_455,SMB,Professional,2023-03-13,0.0,0.0,0.0,0.0,True,2024-02-15,Budget Cut,0.0,0.0
+CUST_0456,Account_456,SMB,Starter,2024-09-11,0.0,0.0,0.0,0.0,True,2025-02-22,Feature Gap,0.0,0.0
+CUST_0457,Account_457,SMB,Starter,2024-10-25,652.6,0.0,0.0,0.0,False,,,652.6,1.0
+CUST_0458,Account_458,ENT,Business,2023-09-30,29248.93,0.0,0.0,0.0,False,,,29248.93,1.0
+CUST_0459,Account_459,ENT,Enterprise,2023-06-06,0.0,0.0,0.0,0.0,True,2024-11-25,Support,0.0,0.0
+CUST_0460,Account_460,MM,Professional,2024-08-09,0.0,0.0,0.0,0.0,True,2024-12-21,Feature Gap,0.0,0.0
+CUST_0461,Account_461,SMB,Business,2024-09-11,0.0,0.0,0.0,0.0,True,2025-04-10,Business Closure,0.0,0.0
+CUST_0462,Account_462,MM,Professional,2024-04-01,7346.35,0.0,0.0,0.0,False,,,7346.35,1.0
+CUST_0463,Account_463,ENT,Business,2023-10-16,0.0,0.0,0.0,0.0,True,2025-08-12,Business Closure,0.0,0.0
+CUST_0464,Account_464,ENT,Enterprise,2024-10-22,52848.44,0.0,0.0,0.0,False,,,52848.44,1.0
+CUST_0465,Account_465,MM,Enterprise,2025-06-04,22888.12,0.0,0.0,0.0,False,,,22888.12,1.0
+CUST_0466,Account_466,ENT,Business,2024-10-16,17427.44,0.0,0.0,0.0,False,,,17427.44,1.0
+CUST_0467,Account_467,MM,Enterprise,2025-02-16,48373.32,0.0,0.0,0.0,False,,,48373.32,1.0
+CUST_0468,Account_468,SMB,Business,2024-08-06,8188.1,0.0,507.69,0.0,False,,,8188.1,1.066
+CUST_0469,Account_469,ENT,Business,2025-07-08,33732.7,0.0,0.0,0.0,False,,,33732.7,1.0
+CUST_0470,Account_470,SMB,Professional,2023-08-04,0.0,0.0,0.0,0.0,True,2024-01-11,Merger,0.0,0.0
+CUST_0471,Account_471,ENT,Business,2024-01-01,42804.9,0.0,6605.64,0.0,False,,,42804.9,1.182
+CUST_0472,Account_472,MM,Enterprise,2024-05-23,21752.26,0.0,0.0,0.0,False,,,21752.26,1.0
+CUST_0473,Account_473,ENT,Business,2024-10-10,0.0,0.0,0.0,0.0,True,2025-04-18,Competition,0.0,0.0
+CUST_0474,Account_474,MM,Professional,2024-02-04,0.0,0.0,0.0,0.0,True,2024-06-02,Feature Gap,0.0,0.0
+CUST_0475,Account_475,ENT,Enterprise,2025-04-03,113767.84,0.0,23818.29,0.0,False,,,113767.84,1.265
+CUST_0476,Account_476,SMB,Starter,2025-05-25,989.41,0.0,17.18,0.0,False,,,989.41,1.018
+CUST_0477,Account_477,SMB,Professional,2023-04-11,0.0,0.0,0.0,0.0,True,2025-03-28,Merger,0.0,0.0
+CUST_0478,Account_478,SMB,Starter,2023-06-19,0.0,0.0,0.0,0.0,True,2025-01-31,Feature Gap,0.0,0.0
+CUST_0479,Account_479,ENT,Enterprise,2023-12-16,78903.25,0.0,0.0,0.0,False,,,78903.25,1.0
+CUST_0480,Account_480,SMB,Business,2024-01-14,0.0,0.0,0.0,0.0,True,2024-12-19,Price,0.0,0.0
+CUST_0481,Account_481,ENT,Custom,2024-09-19,260082.02,0.0,28276.33,0.0,False,,,260082.02,1.122
+CUST_0482,Account_482,ENT,Enterprise,2023-11-02,0.0,0.0,0.0,0.0,True,2025-01-31,Feature Gap,0.0,0.0
+CUST_0483,Account_483,ENT,Business,2025-03-04,0.0,0.0,0.0,0.0,True,2025-04-29,Merger,0.0,0.0
+CUST_0484,Account_484,ENT,Enterprise,2023-08-13,89109.69,0.0,1546.54,0.0,False,,,89109.69,1.018
+CUST_0485,Account_485,ENT,Custom,2022-10-18,311737.8,0.0,21753.9,0.0,False,,,311737.8,1.075
+CUST_0486,Account_486,SMB,Professional,2024-12-15,2009.2,0.0,0.0,0.0,False,,,2009.2,1.0
+CUST_0487,Account_487,ENT,Business,2022-12-13,0.0,0.0,0.0,0.0,True,2024-10-26,Support,0.0,0.0
+CUST_0488,Account_488,SMB,Business,2023-08-12,3456.14,0.0,0.0,0.0,False,,,3456.14,1.0
+CUST_0489,Account_489,SMB,Starter,2022-10-13,0.0,0.0,0.0,0.0,True,2024-05-19,Support,0.0,0.0
+CUST_0490,Account_490,ENT,Custom,2025-04-07,565671.53,0.0,82443.91,0.0,False,,,565671.53,1.171
+CUST_0491,Account_491,ENT,Custom,2023-10-11,290965.67,0.0,0.0,0.0,False,,,290965.67,1.0
+CUST_0492,Account_492,MM,Professional,2024-08-14,0.0,0.0,0.0,0.0,True,2024-09-28,Price,0.0,0.0
+CUST_0493,Account_493,ENT,Custom,2023-02-25,365862.48,0.0,0.0,0.0,False,,,365862.48,1.0
+CUST_0494,Account_494,MM,Enterprise,2025-01-10,33571.44,0.0,0.0,0.0,False,,,33571.44,1.0
+CUST_0495,Account_495,SMB,Starter,2023-10-15,0.0,0.0,0.0,0.0,True,2024-10-21,Competition,0.0,0.0
+CUST_0496,Account_496,ENT,Business,2023-11-22,15960.83,0.0,0.0,0.0,False,,,15960.83,1.0
+CUST_0497,Account_497,ENT,Business,2024-12-03,37242.61,0.0,0.0,0.0,False,,,37242.61,1.0
+CUST_0498,Account_498,MM,Professional,2024-02-19,8943.23,0.0,1959.55,0.0,False,,,8943.23,1.281
+CUST_0499,Account_499,SMB,Professional,2023-09-27,2743.51,0.0,0.0,0.0,False,,,2743.51,1.0
+CUST_0500,Account_500,MM,Enterprise,2023-11-02,0.0,0.0,0.0,0.0,True,2025-07-17,Price,0.0,0.0
+CUST_0501,Account_501,MM,Professional,2022-12-06,6766.28,0.0,0.0,0.0,False,,,6766.28,1.0
+CUST_0502,Account_502,MM,Enterprise,2024-04-17,0.0,0.0,0.0,0.0,True,2024-07-04,Support,0.0,0.0
+CUST_0503,Account_503,MM,Enterprise,2023-10-06,0.0,0.0,0.0,0.0,True,2024-03-21,Competition,0.0,0.0
+CUST_0504,Account_504,ENT,Custom,2022-12-28,437096.84,0.0,0.0,0.0,False,,,437096.84,1.0
+CUST_0505,Account_505,MM,Business,2023-05-13,19985.09,0.0,0.0,0.0,False,,,19985.09,1.0
+CUST_0506,Account_506,SMB,Starter,2024-08-05,0.0,0.0,0.0,0.0,True,2024-09-30,Support,0.0,0.0
+CUST_0507,Account_507,ENT,Business,2024-12-22,35314.99,0.0,910.19,0.0,False,,,35314.99,1.026
+CUST_0508,Account_508,ENT,Business,2023-08-10,0.0,0.0,0.0,0.0,True,2024-06-21,Support,0.0,0.0
+CUST_0509,Account_509,ENT,Enterprise,2023-03-30,84659.55,0.0,13687.39,8042.77,False,,,84659.55,1.071
+CUST_0510,Account_510,SMB,Professional,2025-01-25,2780.43,0.0,0.0,0.0,False,,,2780.43,1.0
+CUST_0511,Account_511,ENT,Custom,2023-12-10,297232.5,0.0,0.0,0.0,False,,,297232.5,1.0
+CUST_0512,Account_512,ENT,Enterprise,2024-01-09,0.0,0.0,0.0,0.0,True,2024-06-11,Feature Gap,0.0,0.0
+CUST_0513,Account_513,MM,Enterprise,2025-06-25,43041.49,0.0,0.0,0.0,False,,,43041.49,1.0
+CUST_0514,Account_514,ENT,Business,2023-09-27,37987.66,0.0,0.0,0.0,False,,,37987.66,1.0
+CUST_0515,Account_515,SMB,Business,2025-06-07,4706.76,0.0,0.0,0.0,False,,,4706.76,1.0
+CUST_0516,Account_516,ENT,Custom,2023-07-17,413193.32,0.0,0.0,0.0,False,,,413193.32,1.0
+CUST_0517,Account_517,ENT,Custom,2023-06-26,209489.08,0.0,0.0,0.0,False,,,209489.08,1.0
+CUST_0518,Account_518,MM,Business,2024-11-29,23796.99,0.0,4485.79,0.0,False,,,23796.99,1.232
+CUST_0519,Account_519,ENT,Custom,2024-09-15,474896.4,0.0,101512.0,0.0,False,,,474896.4,1.272
+CUST_0520,Account_520,SMB,Starter,2022-10-17,0.0,0.0,0.0,0.0,True,2024-04-01,Feature Gap,0.0,0.0
+CUST_0521,Account_521,SMB,Starter,2023-04-20,1279.87,0.0,0.0,0.0,False,,,1279.87,1.0
+CUST_0522,Account_522,ENT,Enterprise,2023-05-19,88793.87,0.0,0.0,0.0,False,,,88793.87,1.0
+CUST_0523,Account_523,SMB,Business,2023-07-06,0.0,0.0,0.0,0.0,True,2025-02-19,Competition,0.0,0.0
+CUST_0524,Account_524,MM,Business,2024-03-05,18813.43,0.0,0.0,0.0,False,,,18813.43,1.0
+CUST_0525,Account_525,SMB,Starter,2024-06-14,0.0,0.0,0.0,0.0,True,2024-10-24,Price,0.0,0.0
+CUST_0526,Account_526,MM,Business,2023-10-26,9474.89,0.0,0.0,0.0,False,,,9474.89,1.0
+CUST_0527,Account_527,SMB,Business,2023-01-04,0.0,0.0,0.0,0.0,True,2025-01-28,Support,0.0,0.0
+CUST_0528,Account_528,MM,Professional,2025-05-22,7730.26,0.0,0.0,0.0,False,,,7730.26,1.0
+CUST_0529,Account_529,ENT,Business,2023-05-07,22691.8,0.0,0.0,0.0,False,,,22691.8,1.0
+CUST_0530,Account_530,ENT,Business,2022-12-26,0.0,0.0,0.0,0.0,True,2024-01-02,Competition,0.0,0.0
+CUST_0531,Account_531,MM,Enterprise,2023-06-21,0.0,0.0,0.0,0.0,True,2024-06-10,Price,0.0,0.0
+CUST_0532,Account_532,MM,Enterprise,2023-04-22,0.0,0.0,0.0,0.0,True,2023-09-13,Business Closure,0.0,0.0
+CUST_0533,Account_533,MM,Business,2022-10-12,0.0,0.0,0.0,0.0,True,2024-03-11,Merger,0.0,0.0
+CUST_0534,Account_534,SMB,Starter,2024-08-03,0.0,0.0,0.0,0.0,True,2025-05-18,Budget Cut,0.0,0.0
+CUST_0535,Account_535,SMB,Starter,2025-02-17,604.52,0.0,0.0,108.12,False,,,604.52,0.848
+CUST_0536,Account_536,MM,Enterprise,2023-01-31,59768.71,0.0,12949.66,0.0,False,,,59768.71,1.277
+CUST_0537,Account_537,ENT,Enterprise,2024-07-17,49289.22,0.0,0.0,0.0,False,,,49289.22,1.0
+CUST_0538,Account_538,MM,Business,2025-06-23,17110.97,0.0,0.0,0.0,False,,,17110.97,1.0
+CUST_0539,Account_539,ENT,Custom,2025-06-22,244524.17,0.0,0.0,0.0,False,,,244524.17,1.0
+CUST_0540,Account_540,SMB,Professional,2025-09-14,2493.99,2493.99,0.0,0.0,False,,,2493.99,1.0
+CUST_0541,Account_541,SMB,Starter,2023-11-17,573.85,0.0,0.0,0.0,False,,,573.85,1.0
+CUST_0542,Account_542,ENT,Enterprise,2023-07-04,57193.48,0.0,0.0,0.0,False,,,57193.48,1.0
+CUST_0543,Account_543,MM,Business,2024-03-21,0.0,0.0,0.0,0.0,True,2024-05-06,Feature Gap,0.0,0.0
+CUST_0544,Account_544,SMB,Business,2024-11-19,9232.6,0.0,1946.54,0.0,False,,,9232.6,1.267
+CUST_0545,Account_545,MM,Enterprise,2023-06-28,38410.96,0.0,1506.08,0.0,False,,,38410.96,1.041
+CUST_0546,Account_546,ENT,Business,2023-07-14,16130.63,0.0,0.0,0.0,False,,,16130.63,1.0
+CUST_0547,Account_547,ENT,Business,2025-02-23,35046.66,0.0,0.0,0.0,False,,,35046.66,1.0
+CUST_0548,Account_548,MM,Business,2023-04-04,8654.26,0.0,0.0,0.0,False,,,8654.26,1.0
+CUST_0549,Account_549,ENT,Enterprise,2025-07-05,96061.99,0.0,0.0,0.0,False,,,96061.99,1.0
+CUST_0550,Account_550,MM,Business,2024-07-12,10540.61,0.0,0.0,0.0,False,,,10540.61,1.0
+CUST_0551,Account_551,MM,Business,2023-12-15,14514.82,0.0,659.7,0.0,False,,,14514.82,1.048
+CUST_0552,Account_552,MM,Professional,2023-09-02,0.0,0.0,0.0,0.0,True,2025-07-19,Business Closure,0.0,0.0
+CUST_0553,Account_553,MM,Business,2023-07-14,0.0,0.0,0.0,0.0,True,2025-03-09,Business Closure,0.0,0.0
+CUST_0554,Account_554,SMB,Professional,2023-10-28,0.0,0.0,0.0,0.0,True,2025-06-25,Merger,0.0,0.0
+CUST_0555,Account_555,ENT,Business,2022-12-02,0.0,0.0,0.0,0.0,True,2024-05-09,Feature Gap,0.0,0.0
+CUST_0556,Account_556,MM,Professional,2024-11-21,3177.86,0.0,0.0,0.0,False,,,3177.86,1.0
+CUST_0557,Account_557,MM,Enterprise,2024-10-27,46368.09,0.0,0.0,0.0,False,,,46368.09,1.0
+CUST_0558,Account_558,MM,Enterprise,2024-10-01,44079.1,0.0,0.0,0.0,False,,,44079.1,1.0
+CUST_0559,Account_559,ENT,Enterprise,2023-01-30,0.0,0.0,0.0,0.0,True,2024-05-29,Support,0.0,0.0
+CUST_0560,Account_560,MM,Business,2023-12-17,14950.35,0.0,83.59,0.0,False,,,14950.35,1.006
+CUST_0561,Account_561,ENT,Custom,2024-04-09,377978.57,0.0,0.0,0.0,False,,,377978.57,1.0
+CUST_0562,Account_562,MM,Professional,2023-04-30,0.0,0.0,0.0,0.0,True,2025-04-02,Support,0.0,0.0
+CUST_0563,Account_563,SMB,Professional,2023-06-13,2683.88,0.0,122.51,337.59,False,,,2683.88,0.926
+CUST_0564,Account_564,ENT,Business,2023-01-07,0.0,0.0,0.0,0.0,True,2025-01-16,Competition,0.0,0.0
+CUST_0565,Account_565,MM,Professional,2023-10-23,0.0,0.0,0.0,0.0,True,2025-07-21,Support,0.0,0.0
+CUST_0566,Account_566,MM,Professional,2025-06-18,6033.78,0.0,0.0,0.0,False,,,6033.78,1.0
+CUST_0567,Account_567,ENT,Enterprise,2023-02-27,0.0,0.0,0.0,0.0,True,2023-11-18,Budget Cut,0.0,0.0
+CUST_0568,Account_568,MM,Enterprise,2024-04-10,0.0,0.0,0.0,0.0,True,2024-06-15,Budget Cut,0.0,0.0
+CUST_0569,Account_569,ENT,Enterprise,2023-01-14,0.0,0.0,0.0,0.0,True,2024-02-08,Feature Gap,0.0,0.0
+CUST_0570,Account_570,MM,Enterprise,2023-11-11,0.0,0.0,0.0,0.0,True,2024-03-26,Competition,0.0,0.0
+CUST_0571,Account_571,MM,Business,2023-01-05,0.0,0.0,0.0,0.0,True,2024-03-12,Business Closure,0.0,0.0
+CUST_0572,Account_572,MM,Enterprise,2023-08-26,0.0,0.0,0.0,0.0,True,2025-06-20,Merger,0.0,0.0
+CUST_0573,Account_573,MM,Professional,2024-06-01,5070.77,0.0,0.0,0.0,False,,,5070.77,1.0
+CUST_0574,Account_574,MM,Enterprise,2025-08-25,45138.55,0.0,0.0,0.0,False,,,45138.55,1.0
+CUST_0575,Account_575,MM,Business,2024-01-22,11784.17,0.0,0.0,0.0,False,,,11784.17,1.0
+CUST_0576,Account_576,ENT,Enterprise,2023-06-29,0.0,0.0,0.0,0.0,True,2025-01-22,Budget Cut,0.0,0.0
+CUST_0577,Account_577,MM,Enterprise,2025-02-02,34659.16,0.0,0.0,0.0,False,,,34659.16,1.0
+CUST_0578,Account_578,ENT,Custom,2024-01-21,347203.95,0.0,0.0,0.0,False,,,347203.95,1.0
+CUST_0579,Account_579,MM,Business,2023-04-04,22680.81,0.0,4072.59,0.0,False,,,22680.81,1.219
+CUST_0580,Account_580,ENT,Enterprise,2024-05-16,55695.05,0.0,5282.7,0.0,False,,,55695.05,1.105
+CUST_0581,Account_581,MM,Professional,2022-11-04,5523.08,0.0,0.0,0.0,False,,,5523.08,1.0
+CUST_0582,Account_582,ENT,Enterprise,2025-07-17,77404.7,0.0,11948.67,0.0,False,,,77404.7,1.183
+CUST_0583,Account_583,SMB,Starter,2023-03-03,0.0,0.0,0.0,0.0,True,2025-02-24,Price,0.0,0.0
+CUST_0584,Account_584,ENT,Business,2025-02-28,42357.76,0.0,4367.55,0.0,False,,,42357.76,1.115
+CUST_0585,Account_585,ENT,Enterprise,2025-07-24,40490.27,0.0,0.0,0.0,False,,,40490.27,1.0
+CUST_0586,Account_586,ENT,Enterprise,2023-12-28,47326.29,0.0,0.0,0.0,False,,,47326.29,1.0
+CUST_0587,Account_587,SMB,Business,2023-09-14,0.0,0.0,0.0,0.0,True,2024-06-12,Merger,0.0,0.0
+CUST_0588,Account_588,ENT,Custom,2023-05-16,205376.64,0.0,0.0,0.0,False,,,205376.64,1.0
+CUST_0589,Account_589,SMB,Professional,2023-01-08,2584.77,0.0,0.0,0.0,False,,,2584.77,1.0
+CUST_0590,Account_590,MM,Enterprise,2022-10-17,0.0,0.0,0.0,0.0,True,2023-02-17,Support,0.0,0.0
+CUST_0591,Account_591,SMB,Professional,2025-01-11,0.0,0.0,0.0,0.0,True,2025-06-27,Competition,0.0,0.0
+CUST_0592,Account_592,MM,Professional,2024-07-20,0.0,0.0,0.0,0.0,True,2025-02-11,Budget Cut,0.0,0.0
+CUST_0593,Account_593,SMB,Starter,2025-09-16,645.3,645.3,0.0,0.0,False,,,645.3,1.0
+CUST_0594,Account_594,MM,Professional,2022-12-27,0.0,0.0,0.0,0.0,True,2024-10-16,Competition,0.0,0.0
+CUST_0595,Account_595,MM,Business,2024-06-27,0.0,0.0,0.0,0.0,True,2025-07-26,Budget Cut,0.0,0.0
+CUST_0596,Account_596,ENT,Custom,2023-06-06,385341.82,0.0,0.0,62158.11,False,,,385341.82,0.861
+CUST_0597,Account_597,ENT,Business,2024-08-25,34250.11,0.0,0.0,0.0,False,,,34250.11,1.0
+CUST_0598,Account_598,SMB,Business,2025-06-17,3009.22,0.0,0.0,0.0,False,,,3009.22,1.0
+CUST_0599,Account_599,MM,Enterprise,2023-04-20,46223.57,0.0,0.0,0.0,False,,,46223.57,1.0
+CUST_0600,Account_600,SMB,Business,2024-10-09,3394.06,0.0,0.0,0.0,False,,,3394.06,1.0
+CUST_0601,Account_601,ENT,Enterprise,2024-06-02,79315.94,0.0,0.0,0.0,False,,,79315.94,1.0
+CUST_0602,Account_602,MM,Enterprise,2025-05-14,24544.24,0.0,0.0,0.0,False,,,24544.24,1.0
+CUST_0603,Account_603,MM,Business,2025-03-02,0.0,0.0,0.0,0.0,True,2025-05-03,Merger,0.0,0.0
+CUST_0604,Account_604,SMB,Starter,2024-10-25,0.0,0.0,0.0,0.0,True,2025-02-17,Feature Gap,0.0,0.0
+CUST_0605,Account_605,SMB,Professional,2025-04-14,2200.8,0.0,0.0,0.0,False,,,2200.8,1.0
+CUST_0606,Account_606,ENT,Custom,2024-12-04,339625.01,0.0,0.0,0.0,False,,,339625.01,1.0
+CUST_0607,Account_607,MM,Business,2023-03-21,13104.24,0.0,0.0,0.0,False,,,13104.24,1.0
+CUST_0608,Account_608,MM,Enterprise,2024-07-18,0.0,0.0,0.0,0.0,True,2025-08-03,Budget Cut,0.0,0.0
+CUST_0609,Account_609,MM,Business,2024-02-22,17369.31,0.0,493.89,0.0,False,,,17369.31,1.029
+CUST_0610,Account_610,ENT,Custom,2023-10-30,0.0,0.0,0.0,0.0,True,2024-12-24,Support,0.0,0.0
+CUST_0611,Account_611,SMB,Business,2025-08-24,3207.1,0.0,0.0,0.0,False,,,3207.1,1.0
+CUST_0612,Account_612,ENT,Custom,2025-03-09,250286.88,0.0,0.0,0.0,False,,,250286.88,1.0
+CUST_0613,Account_613,ENT,Enterprise,2022-11-15,0.0,0.0,0.0,0.0,True,2023-03-27,Business Closure,0.0,0.0
+CUST_0614,Account_614,MM,Business,2025-04-19,15262.2,0.0,0.0,0.0,False,,,15262.2,1.0
+CUST_0615,Account_615,SMB,Professional,2022-10-27,0.0,0.0,0.0,0.0,True,2024-04-06,Feature Gap,0.0,0.0
+CUST_0616,Account_616,MM,Professional,2025-03-15,0.0,0.0,0.0,0.0,True,2025-08-05,Competition,0.0,0.0
+CUST_0617,Account_617,ENT,Business,2023-07-26,0.0,0.0,0.0,0.0,True,2023-08-26,Business Closure,0.0,0.0
+CUST_0618,Account_618,MM,Business,2024-02-12,12687.04,0.0,0.0,0.0,False,,,12687.04,1.0
+CUST_0619,Account_619,SMB,Professional,2023-01-15,0.0,0.0,0.0,0.0,True,2024-08-23,Competition,0.0,0.0
+CUST_0620,Account_620,MM,Business,2024-12-09,16388.94,0.0,0.0,0.0,False,,,16388.94,1.0
+CUST_0621,Account_621,ENT,Enterprise,2025-05-19,75545.43,0.0,0.0,0.0,False,,,75545.43,1.0
+CUST_0622,Account_622,SMB,Starter,2024-03-02,0.0,0.0,0.0,0.0,True,2025-09-11,Support,0.0,0.0
+CUST_0623,Account_623,ENT,Business,2024-01-26,0.0,0.0,0.0,0.0,True,2025-03-30,Budget Cut,0.0,0.0
+CUST_0624,Account_624,ENT,Business,2025-07-01,31252.79,0.0,0.0,0.0,False,,,31252.79,1.0
+CUST_0625,Account_625,MM,Enterprise,2023-11-28,37549.05,0.0,0.0,0.0,False,,,37549.05,1.0
+CUST_0626,Account_626,MM,Professional,2025-04-13,4025.55,0.0,0.0,0.0,False,,,4025.55,1.0
+CUST_0627,Account_627,SMB,Business,2025-08-20,5529.91,0.0,0.0,0.0,False,,,5529.91,1.0
+CUST_0628,Account_628,ENT,Business,2023-01-08,37108.92,0.0,0.0,0.0,False,,,37108.92,1.0
+CUST_0629,Account_629,ENT,Business,2023-03-23,37476.72,0.0,761.67,0.0,False,,,37476.72,1.021
+CUST_0630,Account_630,ENT,Custom,2025-03-10,400315.17,0.0,0.0,0.0,False,,,400315.17,1.0
+CUST_0631,Account_631,MM,Business,2025-09-08,16366.35,16366.35,0.0,0.0,False,,,16366.35,1.0
+CUST_0632,Account_632,SMB,Starter,2024-05-09,653.28,0.0,0.0,0.0,False,,,653.28,1.0
+CUST_0633,Account_633,MM,Professional,2023-07-01,5477.03,0.0,179.71,0.0,False,,,5477.03,1.034
+CUST_0634,Account_634,SMB,Business,2022-11-21,0.0,0.0,0.0,0.0,True,2025-03-11,Feature Gap,0.0,0.0
+CUST_0635,Account_635,ENT,Business,2024-12-15,35432.11,0.0,0.0,0.0,False,,,35432.11,1.0
+CUST_0636,Account_636,MM,Enterprise,2024-06-15,28731.3,0.0,0.0,0.0,False,,,28731.3,1.0
+CUST_0637,Account_637,ENT,Custom,2025-04-14,0.0,0.0,0.0,0.0,True,2025-08-14,Support,0.0,0.0
+CUST_0638,Account_638,SMB,Professional,2025-04-11,2721.87,0.0,0.0,0.0,False,,,2721.87,1.0
+CUST_0639,Account_639,ENT,Business,2023-10-25,0.0,0.0,0.0,0.0,True,2024-05-08,Merger,0.0,0.0
+CUST_0640,Account_640,SMB,Professional,2025-06-26,2630.75,0.0,0.0,0.0,False,,,2630.75,1.0
+CUST_0641,Account_641,ENT,Business,2024-09-08,0.0,0.0,0.0,0.0,True,2025-03-26,Feature Gap,0.0,0.0
+CUST_0642,Account_642,ENT,Custom,2023-01-17,361721.73,0.0,22447.76,0.0,False,,,361721.73,1.066
+CUST_0643,Account_643,ENT,Enterprise,2025-03-10,59234.94,0.0,0.0,0.0,False,,,59234.94,1.0
+CUST_0644,Account_644,ENT,Business,2024-09-02,0.0,0.0,0.0,0.0,True,2025-04-30,Business Closure,0.0,0.0
+CUST_0645,Account_645,MM,Professional,2024-01-18,0.0,0.0,0.0,0.0,True,2024-11-02,Merger,0.0,0.0
+CUST_0646,Account_646,MM,Professional,2023-11-25,0.0,0.0,0.0,0.0,True,2025-01-29,Feature Gap,0.0,0.0
+CUST_0647,Account_647,ENT,Business,2023-12-14,0.0,0.0,0.0,0.0,True,2025-04-15,Support,0.0,0.0
+CUST_0648,Account_648,ENT,Enterprise,2025-02-06,49866.0,0.0,0.0,0.0,False,,,49866.0,1.0
+CUST_0649,Account_649,MM,Business,2023-04-22,18085.45,0.0,1400.6,0.0,False,,,18085.45,1.084
+CUST_0650,Account_650,ENT,Custom,2023-03-14,173851.42,0.0,0.0,0.0,False,,,173851.42,1.0
+CUST_0651,Account_651,SMB,Business,2023-02-06,0.0,0.0,0.0,0.0,True,2023-04-22,Competition,0.0,0.0
+CUST_0652,Account_652,SMB,Starter,2024-04-07,0.0,0.0,0.0,0.0,True,2025-07-11,Merger,0.0,0.0
+CUST_0653,Account_653,ENT,Custom,2023-03-21,0.0,0.0,0.0,0.0,True,2025-06-01,Support,0.0,0.0
+CUST_0654,Account_654,MM,Business,2025-02-04,12854.14,0.0,0.0,0.0,False,,,12854.14,1.0
+CUST_0655,Account_655,ENT,Business,2024-01-18,35411.48,0.0,0.0,0.0,False,,,35411.48,1.0
+CUST_0656,Account_656,SMB,Starter,2025-03-25,718.29,0.0,0.0,0.0,False,,,718.29,1.0
+CUST_0657,Account_657,MM,Professional,2023-01-14,0.0,0.0,0.0,0.0,True,2024-10-13,Budget Cut,0.0,0.0
+CUST_0658,Account_658,ENT,Enterprise,2024-01-27,79423.53,0.0,0.0,0.0,False,,,79423.53,1.0
+CUST_0659,Account_659,SMB,Starter,2023-01-13,720.28,0.0,0.0,0.0,False,,,720.28,1.0
+CUST_0660,Account_660,MM,Business,2024-02-15,8784.89,0.0,0.0,0.0,False,,,8784.89,1.0
+CUST_0661,Account_661,SMB,Business,2023-03-12,0.0,0.0,0.0,0.0,True,2024-05-11,Merger,0.0,0.0
+CUST_0662,Account_662,ENT,Business,2024-02-02,20474.08,0.0,0.0,0.0,False,,,20474.08,1.0
+CUST_0663,Account_663,SMB,Starter,2025-09-09,1389.07,1389.07,0.0,0.0,False,,,1389.07,1.0
+CUST_0664,Account_664,ENT,Enterprise,2023-05-31,0.0,0.0,0.0,0.0,True,2024-09-16,Support,0.0,0.0
+CUST_0665,Account_665,ENT,Custom,2024-09-23,346545.83,0.0,0.0,0.0,False,,,346545.83,1.0
+CUST_0666,Account_666,MM,Professional,2024-07-10,6460.84,0.0,0.0,0.0,False,,,6460.84,1.0
+CUST_0667,Account_667,MM,Professional,2023-04-08,6288.51,0.0,0.0,0.0,False,,,6288.51,1.0
+CUST_0668,Account_668,MM,Business,2025-07-09,11792.36,0.0,0.0,0.0,False,,,11792.36,1.0
+CUST_0669,Account_669,MM,Professional,2023-08-22,0.0,0.0,0.0,0.0,True,2025-01-12,Business Closure,0.0,0.0
+CUST_0670,Account_670,SMB,Business,2023-04-05,0.0,0.0,0.0,0.0,True,2025-07-17,Price,0.0,0.0
+CUST_0671,Account_671,SMB,Professional,2024-05-30,2641.74,0.0,376.43,0.0,False,,,2641.74,1.166
+CUST_0672,Account_672,SMB,Business,2025-07-26,6016.47,0.0,0.0,0.0,False,,,6016.47,1.0
+CUST_0673,Account_673,SMB,Professional,2024-08-13,0.0,0.0,0.0,0.0,True,2024-12-19,Merger,0.0,0.0
+CUST_0674,Account_674,SMB,Starter,2024-12-11,0.0,0.0,0.0,0.0,True,2025-05-07,Feature Gap,0.0,0.0
+CUST_0675,Account_675,MM,Business,2025-08-15,18756.96,0.0,0.0,0.0,False,,,18756.96,1.0
+CUST_0676,Account_676,MM,Enterprise,2024-04-19,23752.32,0.0,0.0,3312.59,False,,,23752.32,0.878
+CUST_0677,Account_677,ENT,Business,2024-09-05,21568.99,0.0,0.0,0.0,False,,,21568.99,1.0
+CUST_0678,Account_678,SMB,Business,2024-01-14,0.0,0.0,0.0,0.0,True,2025-07-14,Feature Gap,0.0,0.0
+CUST_0679,Account_679,SMB,Professional,2025-06-23,0.0,0.0,0.0,0.0,True,2025-09-09,Budget Cut,0.0,0.0
+CUST_0680,Account_680,MM,Business,2022-10-09,19441.75,0.0,0.0,0.0,False,,,19441.75,1.0
+CUST_0681,Account_681,MM,Business,2024-05-16,0.0,0.0,0.0,0.0,True,2025-04-07,Merger,0.0,0.0
+CUST_0682,Account_682,ENT,Business,2024-04-24,0.0,0.0,0.0,0.0,True,2024-11-19,Feature Gap,0.0,0.0
+CUST_0683,Account_683,SMB,Business,2025-09-17,4678.64,4678.64,0.0,0.0,False,,,4678.64,1.0
+CUST_0684,Account_684,MM,Professional,2023-09-14,0.0,0.0,0.0,0.0,True,2023-11-13,Support,0.0,0.0
+CUST_0685,Account_685,ENT,Enterprise,2022-10-11,89985.57,0.0,0.0,0.0,False,,,89985.57,1.0
+CUST_0686,Account_686,ENT,Business,2025-07-06,23214.64,0.0,0.0,0.0,False,,,23214.64,1.0
+CUST_0687,Account_687,SMB,Starter,2025-04-30,1029.27,0.0,218.69,0.0,False,,,1029.27,1.27
+CUST_0688,Account_688,ENT,Enterprise,2023-07-02,95215.8,0.0,0.0,0.0,False,,,95215.8,1.0
+CUST_0689,Account_689,ENT,Custom,2025-01-04,131613.74,0.0,0.0,0.0,False,,,131613.74,1.0
+CUST_0690,Account_690,MM,Professional,2022-11-02,0.0,0.0,0.0,0.0,True,2023-05-07,Feature Gap,0.0,0.0
+CUST_0691,Account_691,SMB,Professional,2023-09-20,2809.69,0.0,553.33,0.0,False,,,2809.69,1.245
+CUST_0692,Account_692,ENT,Custom,2023-07-20,0.0,0.0,0.0,0.0,True,2023-12-14,Support,0.0,0.0
+CUST_0693,Account_693,SMB,Starter,2024-08-28,587.76,0.0,0.0,0.0,False,,,587.76,1.0
+CUST_0694,Account_694,MM,Professional,2025-08-22,4909.84,0.0,0.0,0.0,False,,,4909.84,1.0
+CUST_0695,Account_695,MM,Business,2023-11-07,9671.06,0.0,61.13,0.0,False,,,9671.06,1.006
+CUST_0696,Account_696,ENT,Custom,2025-09-23,291228.76,291228.76,0.0,0.0,False,,,291228.76,1.0
+CUST_0697,Account_697,MM,Business,2025-05-17,15306.67,0.0,0.0,0.0,False,,,15306.67,1.0
+CUST_0698,Account_698,ENT,Custom,2025-05-14,0.0,0.0,0.0,0.0,True,2025-07-17,Support,0.0,0.0
+CUST_0699,Account_699,MM,Professional,2023-02-18,0.0,0.0,0.0,0.0,True,2025-04-15,Price,0.0,0.0
+CUST_0700,Account_700,SMB,Professional,2024-10-15,0.0,0.0,0.0,0.0,True,2025-09-02,Support,0.0,0.0
+CUST_0701,Account_701,MM,Business,2024-10-16,9557.1,0.0,0.0,0.0,False,,,9557.1,1.0
+CUST_0702,Account_702,SMB,Professional,2022-10-02,1871.23,0.0,0.0,0.0,False,,,1871.23,1.0
+CUST_0703,Account_703,SMB,Starter,2025-09-03,919.42,919.42,0.0,0.0,False,,,919.42,1.0
+CUST_0704,Account_704,SMB,Starter,2024-07-15,0.0,0.0,0.0,0.0,True,2025-08-11,Merger,0.0,0.0
+CUST_0705,Account_705,SMB,Professional,2025-06-22,1803.9,0.0,0.0,0.0,False,,,1803.9,1.0
+CUST_0706,Account_706,ENT,Business,2024-06-18,0.0,0.0,0.0,0.0,True,2025-03-23,Price,0.0,0.0
+CUST_0707,Account_707,MM,Enterprise,2022-10-08,0.0,0.0,0.0,0.0,True,2023-05-30,Business Closure,0.0,0.0
+CUST_0708,Account_708,ENT,Enterprise,2025-09-16,82312.2,82312.2,0.0,0.0,False,,,82312.2,1.0
+CUST_0709,Account_709,MM,Business,2023-01-15,19833.89,0.0,758.76,511.99,False,,,19833.89,1.013
+CUST_0710,Account_710,SMB,Business,2024-11-18,3954.51,0.0,0.0,0.0,False,,,3954.51,1.0
+CUST_0711,Account_711,SMB,Business,2024-11-29,2916.97,0.0,0.0,165.63,False,,,2916.97,0.946
+CUST_0712,Account_712,ENT,Business,2023-01-28,23058.08,0.0,0.0,0.0,False,,,23058.08,1.0
+CUST_0713,Account_713,SMB,Professional,2023-08-31,1434.02,0.0,0.0,290.52,False,,,1434.02,0.832
+CUST_0714,Account_714,ENT,Custom,2023-04-06,0.0,0.0,0.0,0.0,True,2025-01-10,Competition,0.0,0.0
+CUST_0715,Account_715,SMB,Professional,2023-11-16,2848.17,0.0,0.0,0.0,False,,,2848.17,1.0
+CUST_0716,Account_716,SMB,Professional,2024-09-20,0.0,0.0,0.0,0.0,True,2025-06-16,Budget Cut,0.0,0.0
+CUST_0717,Account_717,SMB,Business,2023-06-10,0.0,0.0,0.0,0.0,True,2023-11-20,Feature Gap,0.0,0.0
+CUST_0718,Account_718,ENT,Business,2022-11-06,16826.76,0.0,0.0,1075.49,False,,,16826.76,0.94
+CUST_0719,Account_719,ENT,Enterprise,2023-03-25,0.0,0.0,0.0,0.0,True,2025-02-13,Support,0.0,0.0
+CUST_0720,Account_720,ENT,Enterprise,2023-01-21,0.0,0.0,0.0,0.0,True,2025-03-30,Feature Gap,0.0,0.0
+CUST_0721,Account_721,MM,Professional,2024-01-13,0.0,0.0,0.0,0.0,True,2025-01-27,Budget Cut,0.0,0.0
+CUST_0722,Account_722,MM,Enterprise,2023-02-26,0.0,0.0,0.0,0.0,True,2023-09-12,Business Closure,0.0,0.0
+CUST_0723,Account_723,MM,Business,2023-01-29,0.0,0.0,0.0,0.0,True,2025-09-10,Support,0.0,0.0
+CUST_0724,Account_724,ENT,Enterprise,2024-07-01,92273.66,0.0,0.0,0.0,False,,,92273.66,1.0
+CUST_0725,Account_725,SMB,Business,2025-06-26,5071.06,0.0,0.0,0.0,False,,,5071.06,1.0
+CUST_0726,Account_726,ENT,Business,2024-02-01,0.0,0.0,0.0,0.0,True,2025-06-27,Business Closure,0.0,0.0
+CUST_0727,Account_727,MM,Professional,2025-07-30,5285.64,0.0,0.0,70.5,False,,,5285.64,0.987
+CUST_0728,Account_728,ENT,Enterprise,2023-01-15,0.0,0.0,0.0,0.0,True,2024-04-14,Competition,0.0,0.0
+CUST_0729,Account_729,MM,Professional,2023-06-23,0.0,0.0,0.0,0.0,True,2025-09-27,Merger,0.0,0.0
+CUST_0730,Account_730,SMB,Starter,2023-09-12,0.0,0.0,0.0,0.0,True,2024-03-17,Price,0.0,0.0
+CUST_0731,Account_731,SMB,Professional,2024-06-15,0.0,0.0,0.0,0.0,True,2025-08-08,Price,0.0,0.0
+CUST_0732,Account_732,ENT,Enterprise,2025-06-02,50665.98,0.0,0.0,0.0,False,,,50665.98,1.0
+CUST_0733,Account_733,SMB,Starter,2025-02-10,1000.61,0.0,0.0,0.0,False,,,1000.61,1.0
+CUST_0734,Account_734,MM,Professional,2024-04-19,7769.61,0.0,0.0,0.0,False,,,7769.61,1.0
+CUST_0735,Account_735,SMB,Starter,2025-05-19,1077.69,0.0,0.0,0.0,False,,,1077.69,1.0
+CUST_0736,Account_736,SMB,Starter,2023-11-25,0.0,0.0,0.0,0.0,True,2024-09-29,Support,0.0,0.0
+CUST_0737,Account_737,MM,Professional,2024-11-11,4213.5,0.0,0.0,0.0,False,,,4213.5,1.0
+CUST_0738,Account_738,ENT,Enterprise,2023-05-30,51754.08,0.0,0.0,0.0,False,,,51754.08,1.0
+CUST_0739,Account_739,MM,Professional,2023-10-09,0.0,0.0,0.0,0.0,True,2025-07-09,Price,0.0,0.0
+CUST_0740,Account_740,SMB,Starter,2023-05-01,0.0,0.0,0.0,0.0,True,2023-11-14,Merger,0.0,0.0
+CUST_0741,Account_741,MM,Business,2024-06-04,15546.97,0.0,2760.69,0.0,False,,,15546.97,1.216
+CUST_0742,Account_742,ENT,Business,2025-07-15,28766.48,0.0,0.0,0.0,False,,,28766.48,1.0
+CUST_0743,Account_743,MM,Business,2025-05-15,16480.72,0.0,0.0,0.0,False,,,16480.72,1.0
+CUST_0744,Account_744,MM,Enterprise,2023-01-03,0.0,0.0,0.0,0.0,True,2025-02-26,Merger,0.0,0.0
+CUST_0745,Account_745,MM,Business,2024-04-16,15584.88,0.0,3374.12,0.0,False,,,15584.88,1.276
+CUST_0746,Account_746,SMB,Starter,2023-07-03,0.0,0.0,0.0,0.0,True,2025-04-06,Competition,0.0,0.0
+CUST_0747,Account_747,ENT,Custom,2025-05-28,373847.61,0.0,0.0,0.0,False,,,373847.61,1.0
+CUST_0748,Account_748,MM,Enterprise,2024-06-27,21600.43,0.0,0.0,0.0,False,,,21600.43,1.0
+CUST_0749,Account_749,ENT,Enterprise,2025-08-22,54269.11,0.0,0.0,0.0,False,,,54269.11,1.0
+CUST_0750,Account_750,ENT,Custom,2024-09-20,371982.89,0.0,0.0,0.0,False,,,371982.89,1.0
+CUST_0751,Account_751,MM,Enterprise,2024-07-02,0.0,0.0,0.0,0.0,True,2024-11-10,Competition,0.0,0.0
+CUST_0752,Account_752,ENT,Business,2024-07-04,0.0,0.0,0.0,0.0,True,2025-04-06,Competition,0.0,0.0
+CUST_0753,Account_753,MM,Business,2024-05-09,8354.06,0.0,0.0,0.0,False,,,8354.06,1.0
+CUST_0754,Account_754,SMB,Starter,2023-05-18,0.0,0.0,0.0,0.0,True,2023-12-17,Competition,0.0,0.0
+CUST_0755,Account_755,MM,Business,2024-04-29,0.0,0.0,0.0,0.0,True,2025-03-16,Business Closure,0.0,0.0
+CUST_0756,Account_756,MM,Professional,2023-03-06,0.0,0.0,0.0,0.0,True,2023-12-08,Competition,0.0,0.0
+CUST_0757,Account_757,MM,Professional,2023-12-07,6981.59,0.0,0.0,0.0,False,,,6981.59,1.0
+CUST_0758,Account_758,SMB,Professional,2025-03-18,2826.22,0.0,0.0,0.0,False,,,2826.22,1.0
+CUST_0759,Account_759,MM,Business,2022-10-02,15628.39,0.0,2342.64,0.0,False,,,15628.39,1.176
+CUST_0760,Account_760,ENT,Custom,2025-06-15,429024.84,0.0,0.0,0.0,False,,,429024.84,1.0
+CUST_0761,Account_761,ENT,Custom,2024-01-27,388983.14,0.0,0.0,52414.29,False,,,388983.14,0.881
+CUST_0762,Account_762,SMB,Professional,2023-08-30,2246.45,0.0,146.51,0.0,False,,,2246.45,1.07
+CUST_0763,Account_763,SMB,Professional,2022-11-07,0.0,0.0,0.0,0.0,True,2023-06-11,Budget Cut,0.0,0.0
+CUST_0764,Account_764,SMB,Business,2023-10-24,7256.19,0.0,0.0,0.0,False,,,7256.19,1.0
+CUST_0765,Account_765,ENT,Custom,2024-01-04,489638.79,0.0,0.0,0.0,False,,,489638.79,1.0
+CUST_0766,Account_766,SMB,Business,2023-02-10,0.0,0.0,0.0,0.0,True,2025-02-17,Support,0.0,0.0
+CUST_0767,Account_767,MM,Business,2022-12-19,17314.44,0.0,0.0,0.0,False,,,17314.44,1.0
+CUST_0768,Account_768,SMB,Starter,2022-11-11,0.0,0.0,0.0,0.0,True,2023-09-06,Feature Gap,0.0,0.0
+CUST_0769,Account_769,MM,Professional,2025-08-26,5099.1,0.0,0.0,0.0,False,,,5099.1,1.0
+CUST_0770,Account_770,SMB,Starter,2023-09-15,1283.33,0.0,0.0,0.0,False,,,1283.33,1.0
+CUST_0771,Account_771,SMB,Starter,2025-09-29,712.89,712.89,0.0,0.0,False,,,712.89,1.0
+CUST_0772,Account_772,MM,Professional,2025-06-10,6663.97,0.0,0.0,0.0,False,,,6663.97,1.0
+CUST_0773,Account_773,MM,Enterprise,2023-05-24,41906.62,0.0,0.0,1653.97,False,,,41906.62,0.962
+CUST_0774,Account_774,SMB,Business,2023-05-19,0.0,0.0,0.0,0.0,True,2024-11-16,Price,0.0,0.0
+CUST_0775,Account_775,ENT,Custom,2025-07-15,439925.23,0.0,0.0,0.0,False,,,439925.23,1.0
+CUST_0776,Account_776,MM,Enterprise,2025-03-18,32400.06,0.0,0.0,0.0,False,,,32400.06,1.0
+CUST_0777,Account_777,MM,Enterprise,2022-10-22,0.0,0.0,0.0,0.0,True,2023-06-10,Business Closure,0.0,0.0
+CUST_0778,Account_778,ENT,Business,2025-07-14,15266.69,0.0,0.0,0.0,False,,,15266.69,1.0
+CUST_0779,Account_779,SMB,Professional,2024-05-21,0.0,0.0,0.0,0.0,True,2024-08-17,Support,0.0,0.0
+CUST_0780,Account_780,ENT,Enterprise,2023-10-10,0.0,0.0,0.0,0.0,True,2024-11-04,Support,0.0,0.0
+CUST_0781,Account_781,ENT,Business,2023-10-14,29057.93,0.0,0.0,0.0,False,,,29057.93,1.0
+CUST_0782,Account_782,MM,Enterprise,2024-11-06,26186.5,0.0,266.52,0.0,False,,,26186.5,1.01
+CUST_0783,Account_783,SMB,Business,2023-01-05,0.0,0.0,0.0,0.0,True,2023-02-05,Merger,0.0,0.0
+CUST_0784,Account_784,ENT,Custom,2025-02-13,237632.88,0.0,0.0,0.0,False,,,237632.88,1.0
+CUST_0785,Account_785,SMB,Business,2024-08-31,0.0,0.0,0.0,0.0,True,2025-03-29,Support,0.0,0.0
+CUST_0786,Account_786,MM,Professional,2023-02-19,0.0,0.0,0.0,0.0,True,2025-04-03,Merger,0.0,0.0
+CUST_0787,Account_787,ENT,Business,2022-10-04,0.0,0.0,0.0,0.0,True,2025-01-30,Business Closure,0.0,0.0
+CUST_0788,Account_788,MM,Enterprise,2023-09-01,0.0,0.0,0.0,0.0,True,2024-06-18,Feature Gap,0.0,0.0
+CUST_0789,Account_789,MM,Enterprise,2024-08-08,27879.79,0.0,0.0,0.0,False,,,27879.79,1.0
+CUST_0790,Account_790,MM,Business,2025-07-20,16061.12,0.0,0.0,0.0,False,,,16061.12,1.0
+CUST_0791,Account_791,MM,Business,2023-08-29,0.0,0.0,0.0,0.0,True,2025-04-24,Feature Gap,0.0,0.0
+CUST_0792,Account_792,MM,Professional,2025-04-11,6920.86,0.0,0.0,1068.75,False,,,6920.86,0.866
+CUST_0793,Account_793,MM,Business,2024-08-02,8964.02,0.0,0.0,0.0,False,,,8964.02,1.0
+CUST_0794,Account_794,ENT,Business,2023-04-16,0.0,0.0,0.0,0.0,True,2023-10-13,Price,0.0,0.0
+CUST_0795,Account_795,ENT,Business,2024-12-29,28533.26,0.0,0.0,0.0,False,,,28533.26,1.0
+CUST_0796,Account_796,MM,Professional,2024-05-27,3429.7,0.0,0.0,0.0,False,,,3429.7,1.0
+CUST_0797,Account_797,SMB,Starter,2024-08-17,0.0,0.0,0.0,0.0,True,2025-05-27,Merger,0.0,0.0
+CUST_0798,Account_798,ENT,Enterprise,2025-02-21,61759.94,0.0,0.0,0.0,False,,,61759.94,1.0
+CUST_0799,Account_799,MM,Business,2023-01-20,18173.98,0.0,547.29,0.0,False,,,18173.98,1.031
+CUST_0800,Account_800,SMB,Starter,2023-08-25,541.15,0.0,0.0,0.0,False,,,541.15,1.0
+CUST_0801,Account_801,ENT,Business,2023-10-31,0.0,0.0,0.0,0.0,True,2024-01-01,Business Closure,0.0,0.0
+CUST_0802,Account_802,ENT,Custom,2025-07-18,362150.51,0.0,0.0,0.0,False,,,362150.51,1.0
+CUST_0803,Account_803,SMB,Business,2022-12-20,0.0,0.0,0.0,0.0,True,2024-05-02,Competition,0.0,0.0
+CUST_0804,Account_804,ENT,Custom,2023-01-25,0.0,0.0,0.0,0.0,True,2024-03-16,Price,0.0,0.0
+CUST_0805,Account_805,MM,Professional,2025-09-03,7576.61,7576.61,0.0,0.0,False,,,7576.61,1.0
+CUST_0806,Account_806,ENT,Business,2025-06-01,0.0,0.0,0.0,0.0,True,2025-09-13,Price,0.0,0.0
+CUST_0807,Account_807,MM,Professional,2023-12-30,0.0,0.0,0.0,0.0,True,2024-12-08,Business Closure,0.0,0.0
+CUST_0808,Account_808,SMB,Starter,2022-12-28,0.0,0.0,0.0,0.0,True,2025-01-27,Feature Gap,0.0,0.0
+CUST_0809,Account_809,SMB,Professional,2023-06-08,0.0,0.0,0.0,0.0,True,2024-04-10,Support,0.0,0.0
+CUST_0810,Account_810,MM,Professional,2022-11-17,0.0,0.0,0.0,0.0,True,2024-11-25,Competition,0.0,0.0
+CUST_0811,Account_811,MM,Professional,2022-10-28,0.0,0.0,0.0,0.0,True,2025-01-08,Competition,0.0,0.0
+CUST_0812,Account_812,SMB,Professional,2024-11-17,2989.48,0.0,0.0,0.0,False,,,2989.48,1.0
+CUST_0813,Account_813,SMB,Starter,2025-01-13,0.0,0.0,0.0,0.0,True,2025-03-17,Competition,0.0,0.0
+CUST_0814,Account_814,MM,Professional,2023-08-30,0.0,0.0,0.0,0.0,True,2025-01-20,Support,0.0,0.0
+CUST_0815,Account_815,SMB,Starter,2023-09-25,0.0,0.0,0.0,0.0,True,2024-11-05,Business Closure,0.0,0.0
+CUST_0816,Account_816,ENT,Custom,2025-07-03,239141.02,0.0,0.0,0.0,False,,,239141.02,1.0
+CUST_0817,Account_817,ENT,Business,2022-11-27,38653.21,0.0,788.9,0.0,False,,,38653.21,1.021
+CUST_0818,Account_818,SMB,Business,2025-02-07,4647.33,0.0,0.0,0.0,False,,,4647.33,1.0
+CUST_0819,Account_819,ENT,Custom,2024-02-07,272802.22,0.0,0.0,0.0,False,,,272802.22,1.0
+CUST_0820,Account_820,ENT,Custom,2023-08-11,131244.17,0.0,0.0,0.0,False,,,131244.17,1.0
+CUST_0821,Account_821,MM,Business,2023-12-09,19465.55,0.0,0.0,0.0,False,,,19465.55,1.0
+CUST_0822,Account_822,MM,Business,2024-01-19,0.0,0.0,0.0,0.0,True,2024-07-15,Competition,0.0,0.0
+CUST_0823,Account_823,MM,Enterprise,2024-11-29,0.0,0.0,0.0,0.0,True,2025-07-18,Competition,0.0,0.0
+CUST_0824,Account_824,ENT,Business,2024-05-18,26376.08,0.0,0.0,2089.31,False,,,26376.08,0.927
+CUST_0825,Account_825,SMB,Starter,2025-02-17,587.09,0.0,25.68,0.0,False,,,587.09,1.046
+CUST_0826,Account_826,ENT,Custom,2025-01-24,100681.53,0.0,0.0,0.0,False,,,100681.53,1.0
+CUST_0827,Account_827,SMB,Business,2023-06-16,0.0,0.0,0.0,0.0,True,2023-10-11,Price,0.0,0.0
+CUST_0828,Account_828,MM,Business,2025-03-25,16906.08,0.0,0.0,0.0,False,,,16906.08,1.0
+CUST_0829,Account_829,SMB,Business,2025-01-17,6432.18,0.0,0.0,0.0,False,,,6432.18,1.0
+CUST_0830,Account_830,ENT,Custom,2024-12-12,275422.61,0.0,0.0,0.0,False,,,275422.61,1.0
+CUST_0831,Account_831,ENT,Custom,2024-07-25,195445.51,0.0,0.0,0.0,False,,,195445.51,1.0
+CUST_0832,Account_832,SMB,Professional,2025-03-24,0.0,0.0,0.0,0.0,True,2025-05-10,Business Closure,0.0,0.0
+CUST_0833,Account_833,SMB,Starter,2025-03-02,1108.3,0.0,0.0,0.0,False,,,1108.3,1.0
+CUST_0834,Account_834,SMB,Business,2024-06-13,0.0,0.0,0.0,0.0,True,2025-06-03,Price,0.0,0.0
+CUST_0835,Account_835,MM,Enterprise,2025-09-26,30973.78,30973.78,0.0,0.0,False,,,30973.78,1.0
+CUST_0836,Account_836,MM,Professional,2024-03-17,7934.62,0.0,0.0,0.0,False,,,7934.62,1.0
+CUST_0837,Account_837,MM,Professional,2024-02-02,3335.04,0.0,0.0,0.0,False,,,3335.04,1.0
+CUST_0838,Account_838,SMB,Starter,2024-08-21,0.0,0.0,0.0,0.0,True,2025-03-20,Budget Cut,0.0,0.0
+CUST_0839,Account_839,MM,Business,2023-12-26,0.0,0.0,0.0,0.0,True,2024-06-29,Support,0.0,0.0
+CUST_0840,Account_840,MM,Enterprise,2023-02-06,0.0,0.0,0.0,0.0,True,2025-05-25,Price,0.0,0.0
+CUST_0841,Account_841,MM,Enterprise,2024-03-31,0.0,0.0,0.0,0.0,True,2024-12-05,Budget Cut,0.0,0.0
+CUST_0842,Account_842,MM,Business,2024-04-20,17143.43,0.0,0.0,0.0,False,,,17143.43,1.0
+CUST_0843,Account_843,ENT,Enterprise,2025-09-23,67166.4,67166.4,0.0,0.0,False,,,67166.4,1.0
+CUST_0844,Account_844,ENT,Business,2023-07-18,15528.04,0.0,0.0,0.0,False,,,15528.04,1.0
+CUST_0845,Account_845,SMB,Business,2023-06-25,7609.66,0.0,1564.11,209.97,False,,,7609.66,1.216
+CUST_0846,Account_846,MM,Business,2024-06-09,10917.34,0.0,0.0,0.0,False,,,10917.34,1.0
+CUST_0847,Account_847,MM,Business,2023-07-11,0.0,0.0,0.0,0.0,True,2025-07-11,Budget Cut,0.0,0.0
+CUST_0848,Account_848,SMB,Starter,2025-08-07,725.27,0.0,0.0,0.0,False,,,725.27,1.0
+CUST_0849,Account_849,MM,Business,2025-03-21,0.0,0.0,0.0,0.0,True,2025-06-16,Support,0.0,0.0
+CUST_0850,Account_850,SMB,Professional,2024-02-17,0.0,0.0,0.0,0.0,True,2024-12-30,Support,0.0,0.0
+CUST_0851,Account_851,MM,Enterprise,2023-07-04,0.0,0.0,0.0,0.0,True,2024-06-05,Business Closure,0.0,0.0
+CUST_0852,Account_852,MM,Enterprise,2022-11-03,0.0,0.0,0.0,0.0,True,2024-05-02,Business Closure,0.0,0.0
+CUST_0853,Account_853,SMB,Professional,2025-09-06,1939.49,1939.49,0.0,0.0,False,,,1939.49,1.0
+CUST_0854,Account_854,SMB,Starter,2023-03-12,1212.58,0.0,25.57,0.0,False,,,1212.58,1.022
+CUST_0855,Account_855,SMB,Business,2023-01-20,0.0,0.0,0.0,0.0,True,2025-09-05,Feature Gap,0.0,0.0
+CUST_0856,Account_856,ENT,Business,2024-08-13,30348.12,0.0,0.0,0.0,False,,,30348.12,1.0
+CUST_0857,Account_857,SMB,Starter,2025-05-02,702.49,0.0,0.0,0.0,False,,,702.49,1.0
+CUST_0858,Account_858,SMB,Starter,2024-03-10,0.0,0.0,0.0,0.0,True,2024-09-30,Price,0.0,0.0
+CUST_0859,Account_859,MM,Business,2024-02-07,0.0,0.0,0.0,0.0,True,2025-03-08,Feature Gap,0.0,0.0
+CUST_0860,Account_860,ENT,Enterprise,2023-03-29,0.0,0.0,0.0,0.0,True,2023-12-21,Competition,0.0,0.0
+CUST_0861,Account_861,ENT,Custom,2022-11-03,0.0,0.0,0.0,0.0,True,2025-03-15,Merger,0.0,0.0
+CUST_0862,Account_862,MM,Business,2024-11-03,0.0,0.0,0.0,0.0,True,2025-01-27,Support,0.0,0.0
+CUST_0863,Account_863,ENT,Business,2024-07-25,18822.13,0.0,0.0,0.0,False,,,18822.13,1.0
+CUST_0864,Account_864,SMB,Professional,2024-09-27,0.0,0.0,0.0,0.0,True,2025-05-21,Feature Gap,0.0,0.0
+CUST_0865,Account_865,SMB,Business,2023-08-02,0.0,0.0,0.0,0.0,True,2025-09-27,Business Closure,0.0,0.0
+CUST_0866,Account_866,MM,Enterprise,2023-03-11,0.0,0.0,0.0,0.0,True,2024-07-18,Competition,0.0,0.0
+CUST_0867,Account_867,ENT,Enterprise,2023-05-09,103714.1,0.0,13682.16,0.0,False,,,103714.1,1.152
+CUST_0868,Account_868,SMB,Starter,2023-10-17,970.54,0.0,0.0,0.0,False,,,970.54,1.0
+CUST_0869,Account_869,ENT,Business,2024-11-20,34712.16,0.0,0.0,0.0,False,,,34712.16,1.0
+CUST_0870,Account_870,MM,Enterprise,2025-03-25,50332.99,0.0,10936.98,0.0,False,,,50332.99,1.278
+CUST_0871,Account_871,ENT,Business,2025-01-19,15716.12,0.0,0.0,0.0,False,,,15716.12,1.0
+CUST_0872,Account_872,MM,Professional,2023-05-03,0.0,0.0,0.0,0.0,True,2024-06-08,Business Closure,0.0,0.0
+CUST_0873,Account_873,ENT,Business,2023-01-26,36522.99,0.0,0.0,0.0,False,,,36522.99,1.0
+CUST_0874,Account_874,SMB,Starter,2025-01-25,1453.41,0.0,0.0,0.0,False,,,1453.41,1.0
+CUST_0875,Account_875,ENT,Custom,2024-09-11,392546.37,0.0,0.0,0.0,False,,,392546.37,1.0
+CUST_0876,Account_876,MM,Business,2024-07-30,12944.73,0.0,0.0,0.0,False,,,12944.73,1.0
+CUST_0877,Account_877,SMB,Starter,2024-02-02,706.99,0.0,0.0,0.0,False,,,706.99,1.0
+CUST_0878,Account_878,MM,Professional,2024-06-15,3899.98,0.0,0.0,0.0,False,,,3899.98,1.0
+CUST_0879,Account_879,MM,Enterprise,2025-03-12,24347.49,0.0,0.0,0.0,False,,,24347.49,1.0
+CUST_0880,Account_880,ENT,Custom,2024-11-25,235328.41,0.0,47084.55,0.0,False,,,235328.41,1.25
+CUST_0881,Account_881,MM,Professional,2024-10-10,4733.08,0.0,82.69,1102.79,False,,,4733.08,0.823
+CUST_0882,Account_882,SMB,Business,2025-06-09,0.0,0.0,0.0,0.0,True,2025-08-19,Support,0.0,0.0
+CUST_0883,Account_883,SMB,Professional,2025-05-09,1971.08,0.0,0.0,0.0,False,,,1971.08,1.0
+CUST_0884,Account_884,MM,Enterprise,2022-11-12,0.0,0.0,0.0,0.0,True,2023-06-09,Budget Cut,0.0,0.0
+CUST_0885,Account_885,SMB,Starter,2025-06-26,841.25,0.0,0.0,0.0,False,,,841.25,1.0
+CUST_0886,Account_886,SMB,Business,2024-01-19,6482.55,0.0,0.0,0.0,False,,,6482.55,1.0
+CUST_0887,Account_887,SMB,Business,2023-06-24,0.0,0.0,0.0,0.0,True,2024-02-10,Merger,0.0,0.0
+CUST_0888,Account_888,SMB,Starter,2025-05-28,1189.02,0.0,0.0,0.0,False,,,1189.02,1.0
+CUST_0889,Account_889,ENT,Enterprise,2024-05-17,43541.83,0.0,0.0,0.0,False,,,43541.83,1.0
+CUST_0890,Account_890,MM,Business,2023-05-26,0.0,0.0,0.0,0.0,True,2023-11-13,Competition,0.0,0.0
+CUST_0891,Account_891,SMB,Business,2024-12-26,7290.44,0.0,438.5,0.0,False,,,7290.44,1.064
+CUST_0892,Account_892,ENT,Enterprise,2024-02-20,0.0,0.0,0.0,0.0,True,2025-04-18,Price,0.0,0.0
+CUST_0893,Account_893,ENT,Custom,2024-06-30,540016.19,0.0,59590.98,0.0,False,,,540016.19,1.124
+CUST_0894,Account_894,ENT,Custom,2023-04-21,121908.67,0.0,0.0,0.0,False,,,121908.67,1.0
+CUST_0895,Account_895,ENT,Custom,2025-05-18,216462.22,0.0,0.0,0.0,False,,,216462.22,1.0
+CUST_0896,Account_896,SMB,Starter,2024-06-26,720.72,0.0,0.0,0.0,False,,,720.72,1.0
+CUST_0897,Account_897,ENT,Business,2024-09-28,43418.92,0.0,9228.37,0.0,False,,,43418.92,1.27
+CUST_0898,Account_898,ENT,Enterprise,2023-03-15,90457.25,0.0,19029.67,0.0,False,,,90457.25,1.266
+CUST_0899,Account_899,ENT,Enterprise,2023-12-13,51003.08,0.0,2702.42,0.0,False,,,51003.08,1.056
+CUST_0900,Account_900,ENT,Enterprise,2024-04-22,0.0,0.0,0.0,0.0,True,2025-05-07,Business Closure,0.0,0.0
+CUST_0901,Account_901,MM,Professional,2023-05-05,5613.3,0.0,0.0,0.0,False,,,5613.3,1.0
+CUST_0902,Account_902,SMB,Starter,2025-05-01,1496.13,0.0,0.0,0.0,False,,,1496.13,1.0
+CUST_0903,Account_903,MM,Business,2025-08-12,12371.51,0.0,0.0,0.0,False,,,12371.51,1.0
+CUST_0904,Account_904,MM,Business,2025-04-09,9881.91,0.0,0.0,0.0,False,,,9881.91,1.0
+CUST_0905,Account_905,ENT,Custom,2025-06-08,298826.61,0.0,0.0,0.0,False,,,298826.61,1.0
+CUST_0906,Account_906,SMB,Professional,2022-10-10,0.0,0.0,0.0,0.0,True,2023-02-23,Competition,0.0,0.0
+CUST_0907,Account_907,MM,Enterprise,2025-03-14,45074.47,0.0,8095.47,0.0,False,,,45074.47,1.219
+CUST_0908,Account_908,SMB,Professional,2024-10-21,0.0,0.0,0.0,0.0,True,2025-02-19,Merger,0.0,0.0
+CUST_0909,Account_909,MM,Business,2025-08-15,16273.88,0.0,0.0,0.0,False,,,16273.88,1.0
+CUST_0910,Account_910,SMB,Business,2025-09-17,7571.45,7571.45,0.0,0.0,False,,,7571.45,1.0
+CUST_0911,Account_911,ENT,Custom,2023-01-02,0.0,0.0,0.0,0.0,True,2023-09-21,Merger,0.0,0.0
+CUST_0912,Account_912,MM,Enterprise,2024-08-26,44635.4,0.0,0.0,0.0,False,,,44635.4,1.0
+CUST_0913,Account_913,ENT,Enterprise,2023-10-22,0.0,0.0,0.0,0.0,True,2025-09-09,Budget Cut,0.0,0.0
+CUST_0914,Account_914,SMB,Professional,2023-03-21,0.0,0.0,0.0,0.0,True,2023-07-16,Price,0.0,0.0
+CUST_0915,Account_915,SMB,Professional,2024-07-14,1670.49,0.0,0.0,0.0,False,,,1670.49,1.0
+CUST_0916,Account_916,SMB,Business,2022-10-16,0.0,0.0,0.0,0.0,True,2024-11-11,Support,0.0,0.0
+CUST_0917,Account_917,ENT,Enterprise,2023-05-02,0.0,0.0,0.0,0.0,True,2023-11-12,Feature Gap,0.0,0.0
+CUST_0918,Account_918,ENT,Enterprise,2024-11-06,48791.79,0.0,228.15,4199.1,False,,,48791.79,0.925
+CUST_0919,Account_919,SMB,Starter,2022-11-25,0.0,0.0,0.0,0.0,True,2024-08-07,Competition,0.0,0.0
+CUST_0920,Account_920,ENT,Enterprise,2024-12-19,74679.53,0.0,0.0,0.0,False,,,74679.53,1.0
+CUST_0921,Account_921,SMB,Starter,2025-07-12,669.85,0.0,0.0,0.0,False,,,669.85,1.0
+CUST_0922,Account_922,SMB,Starter,2024-10-14,1214.91,0.0,0.0,0.0,False,,,1214.91,1.0
+CUST_0923,Account_923,MM,Business,2023-10-17,0.0,0.0,0.0,0.0,True,2023-11-18,Support,0.0,0.0
+CUST_0924,Account_924,SMB,Starter,2025-05-22,1387.13,0.0,0.0,0.0,False,,,1387.13,1.0
+CUST_0925,Account_925,SMB,Business,2023-02-11,0.0,0.0,0.0,0.0,True,2025-01-30,Price,0.0,0.0
+CUST_0926,Account_926,MM,Enterprise,2024-11-06,37229.39,0.0,0.0,0.0,False,,,37229.39,1.0
+CUST_0927,Account_927,SMB,Business,2023-07-13,0.0,0.0,0.0,0.0,True,2024-01-19,Business Closure,0.0,0.0
+CUST_0928,Account_928,ENT,Custom,2023-11-30,0.0,0.0,0.0,0.0,True,2024-04-01,Merger,0.0,0.0
+CUST_0929,Account_929,ENT,Business,2025-08-24,33965.15,0.0,0.0,0.0,False,,,33965.15,1.0
+CUST_0930,Account_930,SMB,Business,2024-01-18,6312.5,0.0,0.0,0.0,False,,,6312.5,1.0
+CUST_0931,Account_931,SMB,Professional,2024-10-11,0.0,0.0,0.0,0.0,True,2024-12-04,Price,0.0,0.0
+CUST_0932,Account_932,SMB,Professional,2025-09-09,2652.88,2652.88,0.0,0.0,False,,,2652.88,1.0
+CUST_0933,Account_933,SMB,Starter,2022-10-13,0.0,0.0,0.0,0.0,True,2023-12-06,Merger,0.0,0.0
+CUST_0934,Account_934,MM,Enterprise,2024-12-13,24826.76,0.0,0.0,0.0,False,,,24826.76,1.0
+CUST_0935,Account_935,MM,Business,2024-08-07,19029.77,0.0,0.0,0.0,False,,,19029.77,1.0
+CUST_0936,Account_936,SMB,Business,2025-07-31,4836.06,0.0,0.0,0.0,False,,,4836.06,1.0
+CUST_0937,Account_937,MM,Professional,2025-01-20,7821.49,0.0,0.0,0.0,False,,,7821.49,1.0
+CUST_0938,Account_938,MM,Enterprise,2023-02-08,32056.12,0.0,0.0,0.0,False,,,32056.12,1.0
+CUST_0939,Account_939,SMB,Professional,2023-08-27,0.0,0.0,0.0,0.0,True,2024-06-10,Price,0.0,0.0
+CUST_0940,Account_940,SMB,Professional,2025-03-11,2827.26,0.0,0.0,0.0,False,,,2827.26,1.0
+CUST_0941,Account_941,SMB,Business,2024-02-20,0.0,0.0,0.0,0.0,True,2025-02-23,Business Closure,0.0,0.0
+CUST_0942,Account_942,SMB,Starter,2023-11-26,1443.44,0.0,157.14,0.0,False,,,1443.44,1.122
+CUST_0943,Account_943,MM,Enterprise,2024-10-17,22682.32,0.0,0.0,0.0,False,,,22682.32,1.0
+CUST_0944,Account_944,SMB,Professional,2025-09-18,2818.92,2818.92,0.0,0.0,False,,,2818.92,1.0
+CUST_0945,Account_945,MM,Enterprise,2023-06-02,0.0,0.0,0.0,0.0,True,2025-07-07,Budget Cut,0.0,0.0
+CUST_0946,Account_946,SMB,Starter,2023-11-25,970.36,0.0,0.0,0.0,False,,,970.36,1.0
+CUST_0947,Account_947,ENT,Business,2024-11-01,0.0,0.0,0.0,0.0,True,2025-09-09,Price,0.0,0.0
+CUST_0948,Account_948,MM,Enterprise,2024-08-31,39981.24,0.0,0.0,0.0,False,,,39981.24,1.0
+CUST_0949,Account_949,SMB,Professional,2024-03-24,1699.55,0.0,0.0,0.0,False,,,1699.55,1.0
+CUST_0950,Account_950,MM,Business,2023-06-25,0.0,0.0,0.0,0.0,True,2024-07-07,Merger,0.0,0.0
+CUST_0951,Account_951,ENT,Business,2023-09-16,0.0,0.0,0.0,0.0,True,2024-02-02,Price,0.0,0.0
+CUST_0952,Account_952,SMB,Professional,2024-11-09,2847.83,0.0,0.0,0.0,False,,,2847.83,1.0
+CUST_0953,Account_953,SMB,Professional,2023-04-02,0.0,0.0,0.0,0.0,True,2024-11-17,Business Closure,0.0,0.0
+CUST_0954,Account_954,SMB,Professional,2025-07-10,2691.35,0.0,0.0,0.0,False,,,2691.35,1.0
+CUST_0955,Account_955,ENT,Business,2024-05-31,0.0,0.0,0.0,0.0,True,2024-12-30,Budget Cut,0.0,0.0
+CUST_0956,Account_956,ENT,Custom,2025-09-16,151219.79,151219.79,0.0,0.0,False,,,151219.79,1.0
+CUST_0957,Account_957,ENT,Enterprise,2025-05-15,41033.99,0.0,0.0,0.0,False,,,41033.99,1.0
+CUST_0958,Account_958,SMB,Starter,2024-07-07,0.0,0.0,0.0,0.0,True,2025-07-31,Feature Gap,0.0,0.0
+CUST_0959,Account_959,ENT,Enterprise,2023-09-15,95913.0,0.0,8544.27,0.0,False,,,95913.0,1.098
+CUST_0960,Account_960,ENT,Enterprise,2023-04-07,0.0,0.0,0.0,0.0,True,2024-09-25,Business Closure,0.0,0.0
+CUST_0961,Account_961,ENT,Business,2025-02-23,35333.69,0.0,0.0,0.0,False,,,35333.69,1.0
+CUST_0962,Account_962,ENT,Business,2025-08-24,30557.58,0.0,0.0,0.0,False,,,30557.58,1.0
+CUST_0963,Account_963,SMB,Professional,2024-05-06,0.0,0.0,0.0,0.0,True,2025-08-23,Merger,0.0,0.0
+CUST_0964,Account_964,SMB,Starter,2023-07-27,0.0,0.0,0.0,0.0,True,2025-03-31,Budget Cut,0.0,0.0
+CUST_0965,Account_965,MM,Enterprise,2023-02-22,27800.25,0.0,5142.31,0.0,False,,,27800.25,1.227
+CUST_0966,Account_966,ENT,Business,2024-09-24,0.0,0.0,0.0,0.0,True,2025-02-06,Competition,0.0,0.0
+CUST_0967,Account_967,MM,Enterprise,2022-10-28,0.0,0.0,0.0,0.0,True,2025-01-04,Price,0.0,0.0
+CUST_0968,Account_968,SMB,Business,2024-08-26,0.0,0.0,0.0,0.0,True,2025-05-04,Merger,0.0,0.0
+CUST_0969,Account_969,ENT,Business,2025-01-07,29754.13,0.0,0.0,0.0,False,,,29754.13,1.0
+CUST_0970,Account_970,ENT,Custom,2024-06-22,0.0,0.0,0.0,0.0,True,2025-04-01,Feature Gap,0.0,0.0
+CUST_0971,Account_971,MM,Professional,2025-02-03,3524.96,0.0,0.0,0.0,False,,,3524.96,1.0
+CUST_0972,Account_972,ENT,Enterprise,2025-01-14,80074.52,0.0,0.0,0.0,False,,,80074.52,1.0
+CUST_0973,Account_973,ENT,Enterprise,2025-06-23,68708.2,0.0,0.0,0.0,False,,,68708.2,1.0
+CUST_0974,Account_974,ENT,Custom,2023-01-10,341009.19,0.0,0.0,0.0,False,,,341009.19,1.0
+CUST_0975,Account_975,SMB,Business,2023-09-13,5815.71,0.0,0.0,0.0,False,,,5815.71,1.0
+CUST_0976,Account_976,ENT,Custom,2023-07-11,499162.13,0.0,93962.03,0.0,False,,,499162.13,1.232
+CUST_0977,Account_977,SMB,Business,2023-02-16,0.0,0.0,0.0,0.0,True,2023-11-21,Price,0.0,0.0
+CUST_0978,Account_978,ENT,Custom,2025-09-13,249410.5,249410.5,0.0,0.0,False,,,249410.5,1.0
+CUST_0979,Account_979,MM,Enterprise,2024-01-31,31748.19,0.0,0.0,0.0,False,,,31748.19,1.0
+CUST_0980,Account_980,ENT,Custom,2024-05-01,404982.44,0.0,0.0,0.0,False,,,404982.44,1.0
+CUST_0981,Account_981,SMB,Professional,2023-06-28,0.0,0.0,0.0,0.0,True,2024-01-18,Merger,0.0,0.0
+CUST_0982,Account_982,MM,Professional,2023-08-03,3885.37,0.0,0.0,0.0,False,,,3885.37,1.0
+CUST_0983,Account_983,SMB,Professional,2023-03-20,2974.56,0.0,0.0,0.0,False,,,2974.56,1.0
+CUST_0984,Account_984,MM,Professional,2024-04-18,0.0,0.0,0.0,0.0,True,2025-03-10,Merger,0.0,0.0
+CUST_0985,Account_985,ENT,Business,2022-11-09,0.0,0.0,0.0,0.0,True,2023-03-29,Support,0.0,0.0
+CUST_0986,Account_986,ENT,Custom,2023-05-06,0.0,0.0,0.0,0.0,True,2024-04-21,Support,0.0,0.0
+CUST_0987,Account_987,ENT,Business,2022-12-18,0.0,0.0,0.0,0.0,True,2024-11-28,Budget Cut,0.0,0.0
+CUST_0988,Account_988,ENT,Business,2023-08-18,27505.57,0.0,0.0,0.0,False,,,27505.57,1.0
+CUST_0989,Account_989,MM,Enterprise,2025-07-13,39393.72,0.0,0.0,0.0,False,,,39393.72,1.0
+CUST_0990,Account_990,MM,Enterprise,2025-03-14,25180.25,0.0,0.0,0.0,False,,,25180.25,1.0
+CUST_0991,Account_991,MM,Professional,2024-08-31,0.0,0.0,0.0,0.0,True,2024-10-13,Merger,0.0,0.0
+CUST_0992,Account_992,ENT,Business,2022-12-28,19045.72,0.0,0.0,0.0,False,,,19045.72,1.0
+CUST_0993,Account_993,SMB,Starter,2024-08-22,887.24,0.0,0.0,0.0,False,,,887.24,1.0
+CUST_0994,Account_994,SMB,Starter,2023-06-16,0.0,0.0,0.0,0.0,True,2025-03-25,Feature Gap,0.0,0.0
+CUST_0995,Account_995,SMB,Business,2023-11-18,0.0,0.0,0.0,0.0,True,2024-01-31,Merger,0.0,0.0
+CUST_0996,Account_996,SMB,Starter,2025-04-05,1093.21,0.0,0.0,0.0,False,,,1093.21,1.0
+CUST_0997,Account_997,ENT,Enterprise,2023-12-25,0.0,0.0,0.0,0.0,True,2025-05-07,Competition,0.0,0.0
+CUST_0998,Account_998,MM,Enterprise,2023-11-23,29534.43,0.0,0.0,0.0,False,,,29534.43,1.0
+CUST_0999,Account_999,MM,Enterprise,2025-06-13,24302.48,0.0,0.0,0.0,False,,,24302.48,1.0
+CUST_1000,Account_1000,MM,Business,2025-04-30,11032.07,0.0,0.0,0.0,False,,,11032.07,1.0
+CUST_1001,Account_1001,SMB,Business,2024-05-21,4003.57,0.0,0.0,0.0,False,,,4003.57,1.0
+CUST_1002,Account_1002,MM,Professional,2024-11-30,0.0,0.0,0.0,0.0,True,2025-07-28,Price,0.0,0.0
+CUST_1003,Account_1003,MM,Business,2025-05-03,17839.6,0.0,0.0,0.0,False,,,17839.6,1.0
+CUST_1004,Account_1004,MM,Enterprise,2024-03-18,41611.66,0.0,0.0,0.0,False,,,41611.66,1.0
+CUST_1005,Account_1005,SMB,Starter,2024-05-08,1143.73,0.0,0.0,0.0,False,,,1143.73,1.0
+CUST_1006,Account_1006,SMB,Professional,2025-09-01,1961.78,1961.78,0.0,0.0,False,,,1961.78,1.0
+CUST_1007,Account_1007,MM,Professional,2024-11-19,0.0,0.0,0.0,0.0,True,2025-03-05,Business Closure,0.0,0.0
+CUST_1008,Account_1008,ENT,Business,2025-08-07,30127.09,0.0,0.0,0.0,False,,,30127.09,1.0
+CUST_1009,Account_1009,ENT,Enterprise,2024-05-10,42813.6,0.0,0.0,0.0,False,,,42813.6,1.0
+CUST_1010,Account_1010,MM,Business,2023-11-19,0.0,0.0,0.0,0.0,True,2025-02-08,Competition,0.0,0.0
+CUST_1011,Account_1011,ENT,Enterprise,2023-05-07,0.0,0.0,0.0,0.0,True,2024-10-28,Support,0.0,0.0
+CUST_1012,Account_1012,ENT,Custom,2024-01-01,301083.16,0.0,0.0,0.0,False,,,301083.16,1.0
+CUST_1013,Account_1013,MM,Business,2024-09-03,14156.83,0.0,0.0,0.0,False,,,14156.83,1.0
+CUST_1014,Account_1014,MM,Professional,2025-08-02,7185.04,0.0,0.0,0.0,False,,,7185.04,1.0
+CUST_1015,Account_1015,MM,Enterprise,2023-08-20,47392.03,0.0,0.0,0.0,False,,,47392.03,1.0
+CUST_1016,Account_1016,MM,Enterprise,2025-08-26,48190.27,0.0,0.0,0.0,False,,,48190.27,1.0
+CUST_1017,Account_1017,ENT,Enterprise,2023-08-25,74180.33,0.0,0.0,0.0,False,,,74180.33,1.0
+CUST_1018,Account_1018,MM,Enterprise,2025-07-16,40371.27,0.0,0.0,0.0,False,,,40371.27,1.0
+CUST_1019,Account_1019,ENT,Business,2023-11-03,17501.23,0.0,288.23,0.0,False,,,17501.23,1.017
+CUST_1020,Account_1020,SMB,Professional,2024-01-06,0.0,0.0,0.0,0.0,True,2025-05-18,Support,0.0,0.0
+CUST_1021,Account_1021,ENT,Enterprise,2024-10-30,93871.4,0.0,0.0,0.0,False,,,93871.4,1.0
+CUST_1022,Account_1022,ENT,Custom,2024-08-30,282278.86,0.0,0.0,0.0,False,,,282278.86,1.0
+CUST_1023,Account_1023,ENT,Custom,2025-05-05,127837.57,0.0,0.0,0.0,False,,,127837.57,1.0
+CUST_1024,Account_1024,ENT,Custom,2024-12-04,0.0,0.0,0.0,0.0,True,2025-06-24,Competition,0.0,0.0
+CUST_1025,Account_1025,SMB,Professional,2025-04-09,0.0,0.0,0.0,0.0,True,2025-08-23,Price,0.0,0.0
+CUST_1026,Account_1026,SMB,Business,2025-01-16,4187.64,0.0,0.0,0.0,False,,,4187.64,1.0
+CUST_1027,Account_1027,MM,Enterprise,2024-03-07,0.0,0.0,0.0,0.0,True,2024-05-31,Feature Gap,0.0,0.0
+CUST_1028,Account_1028,MM,Enterprise,2023-12-07,29988.86,0.0,0.0,0.0,False,,,29988.86,1.0
+CUST_1029,Account_1029,SMB,Business,2024-12-07,0.0,0.0,0.0,0.0,True,2025-04-15,Competition,0.0,0.0
+CUST_1030,Account_1030,SMB,Business,2022-11-04,0.0,0.0,0.0,0.0,True,2023-01-25,Price,0.0,0.0
+CUST_1031,Account_1031,SMB,Professional,2025-06-14,2824.07,0.0,0.0,0.0,False,,,2824.07,1.0
+CUST_1032,Account_1032,MM,Enterprise,2023-12-07,0.0,0.0,0.0,0.0,True,2024-10-09,Support,0.0,0.0
+CUST_1033,Account_1033,MM,Professional,2023-05-31,6116.91,0.0,0.0,0.0,False,,,6116.91,1.0
+CUST_1034,Account_1034,MM,Business,2024-11-16,15277.63,0.0,0.0,0.0,False,,,15277.63,1.0
+CUST_1035,Account_1035,MM,Professional,2023-09-21,0.0,0.0,0.0,0.0,True,2025-01-26,Business Closure,0.0,0.0
+CUST_1036,Account_1036,MM,Enterprise,2024-05-05,44699.46,0.0,0.0,0.0,False,,,44699.46,1.0
+CUST_1037,Account_1037,SMB,Professional,2025-09-23,2895.06,2895.06,0.0,0.0,False,,,2895.06,1.0
+CUST_1038,Account_1038,MM,Business,2023-02-15,0.0,0.0,0.0,0.0,True,2025-08-21,Price,0.0,0.0
+CUST_1039,Account_1039,MM,Professional,2024-12-13,3395.99,0.0,0.0,0.0,False,,,3395.99,1.0
+CUST_1040,Account_1040,SMB,Business,2024-01-12,0.0,0.0,0.0,0.0,True,2025-07-29,Price,0.0,0.0
+CUST_1041,Account_1041,ENT,Business,2022-11-16,23416.48,0.0,2514.81,0.0,False,,,23416.48,1.12
+CUST_1042,Account_1042,ENT,Custom,2023-08-19,0.0,0.0,0.0,0.0,True,2024-12-09,Price,0.0,0.0
+CUST_1043,Account_1043,SMB,Professional,2024-08-25,2888.25,0.0,387.13,0.0,False,,,2888.25,1.155
+CUST_1044,Account_1044,MM,Business,2023-07-09,0.0,0.0,0.0,0.0,True,2023-08-18,Budget Cut,0.0,0.0
+CUST_1045,Account_1045,SMB,Starter,2023-07-01,0.0,0.0,0.0,0.0,True,2024-11-25,Budget Cut,0.0,0.0
+CUST_1046,Account_1046,ENT,Enterprise,2025-05-22,81452.95,0.0,0.0,0.0,False,,,81452.95,1.0
+CUST_1047,Account_1047,SMB,Starter,2024-04-11,0.0,0.0,0.0,0.0,True,2025-04-26,Feature Gap,0.0,0.0
+CUST_1048,Account_1048,SMB,Professional,2024-03-26,0.0,0.0,0.0,0.0,True,2025-06-07,Budget Cut,0.0,0.0
+CUST_1049,Account_1049,SMB,Starter,2025-04-08,504.77,0.0,0.0,0.0,False,,,504.77,1.0
+CUST_1050,Account_1050,SMB,Business,2023-04-13,0.0,0.0,0.0,0.0,True,2025-05-01,Price,0.0,0.0
+CUST_1051,Account_1051,MM,Professional,2022-11-12,3838.23,0.0,0.0,0.0,False,,,3838.23,1.0
+CUST_1052,Account_1052,SMB,Professional,2024-10-16,0.0,0.0,0.0,0.0,True,2025-07-12,Merger,0.0,0.0
+CUST_1053,Account_1053,SMB,Business,2025-06-10,3199.62,0.0,0.0,0.0,False,,,3199.62,1.0
+CUST_1054,Account_1054,SMB,Professional,2023-08-29,2147.14,0.0,0.0,0.0,False,,,2147.14,1.0
+CUST_1055,Account_1055,SMB,Business,2024-02-07,0.0,0.0,0.0,0.0,True,2024-05-01,Feature Gap,0.0,0.0
+CUST_1056,Account_1056,SMB,Starter,2025-07-21,493.1,0.0,0.0,77.13,False,,,493.1,0.865
+CUST_1057,Account_1057,SMB,Starter,2022-12-19,0.0,0.0,0.0,0.0,True,2024-01-23,Price,0.0,0.0
+CUST_1058,Account_1058,ENT,Business,2025-09-06,22578.41,22578.41,0.0,0.0,False,,,22578.41,1.0
+CUST_1059,Account_1059,ENT,Enterprise,2024-10-31,69894.62,0.0,0.0,0.0,False,,,69894.62,1.0
+CUST_1060,Account_1060,ENT,Custom,2024-10-06,0.0,0.0,0.0,0.0,True,2024-11-11,Merger,0.0,0.0
+CUST_1061,Account_1061,SMB,Business,2023-02-10,0.0,0.0,0.0,0.0,True,2024-12-10,Budget Cut,0.0,0.0
+CUST_1062,Account_1062,ENT,Enterprise,2024-03-29,47410.27,0.0,0.0,0.0,False,,,47410.27,1.0
+CUST_1063,Account_1063,MM,Enterprise,2024-06-16,22481.59,0.0,0.0,0.0,False,,,22481.59,1.0
+CUST_1064,Account_1064,ENT,Enterprise,2024-01-06,0.0,0.0,0.0,0.0,True,2024-07-25,Feature Gap,0.0,0.0
+CUST_1065,Account_1065,SMB,Professional,2024-04-20,3070.2,0.0,238.92,0.0,False,,,3070.2,1.084
+CUST_1066,Account_1066,SMB,Professional,2024-07-25,0.0,0.0,0.0,0.0,True,2024-09-13,Budget Cut,0.0,0.0
+CUST_1067,Account_1067,ENT,Enterprise,2025-03-24,73599.57,0.0,0.0,0.0,False,,,73599.57,1.0
+CUST_1068,Account_1068,ENT,Business,2023-04-05,37219.35,0.0,0.0,0.0,False,,,37219.35,1.0
+CUST_1069,Account_1069,ENT,Custom,2023-03-29,0.0,0.0,0.0,0.0,True,2023-08-23,Merger,0.0,0.0
+CUST_1070,Account_1070,ENT,Enterprise,2025-09-21,56676.37,56676.37,0.0,0.0,False,,,56676.37,1.0
+CUST_1071,Account_1071,SMB,Professional,2024-01-23,0.0,0.0,0.0,0.0,True,2024-04-09,Budget Cut,0.0,0.0
+CUST_1072,Account_1072,MM,Enterprise,2024-01-29,29034.7,0.0,0.0,0.0,False,,,29034.7,1.0
+CUST_1073,Account_1073,MM,Business,2025-07-21,10725.41,0.0,0.0,0.0,False,,,10725.41,1.0
+CUST_1074,Account_1074,MM,Enterprise,2023-07-03,0.0,0.0,0.0,0.0,True,2025-08-23,Price,0.0,0.0
+CUST_1075,Account_1075,ENT,Enterprise,2023-04-05,0.0,0.0,0.0,0.0,True,2024-04-07,Price,0.0,0.0
+CUST_1076,Account_1076,ENT,Custom,2023-04-20,0.0,0.0,0.0,0.0,True,2024-02-08,Feature Gap,0.0,0.0
+CUST_1077,Account_1077,SMB,Professional,2024-12-07,1783.96,0.0,0.0,0.0,False,,,1783.96,1.0
+CUST_1078,Account_1078,SMB,Starter,2025-06-06,1291.86,0.0,0.0,0.0,False,,,1291.86,1.0
+CUST_1079,Account_1079,SMB,Business,2024-05-06,0.0,0.0,0.0,0.0,True,2025-01-08,Business Closure,0.0,0.0
+CUST_1080,Account_1080,ENT,Custom,2023-12-12,268349.51,0.0,0.0,20631.25,False,,,268349.51,0.929
+CUST_1081,Account_1081,ENT,Enterprise,2025-02-01,99817.71,0.0,0.0,0.0,False,,,99817.71,1.0
+CUST_1082,Account_1082,MM,Enterprise,2024-08-20,28468.15,0.0,0.0,0.0,False,,,28468.15,1.0
+CUST_1083,Account_1083,SMB,Starter,2024-11-15,0.0,0.0,0.0,0.0,True,2025-07-17,Feature Gap,0.0,0.0
+CUST_1084,Account_1084,SMB,Professional,2022-12-21,0.0,0.0,0.0,0.0,True,2023-06-06,Price,0.0,0.0
+CUST_1085,Account_1085,MM,Business,2024-02-01,21764.33,0.0,3199.37,0.0,False,,,21764.33,1.172
+CUST_1086,Account_1086,MM,Enterprise,2025-03-06,23803.43,0.0,0.0,0.0,False,,,23803.43,1.0
+CUST_1087,Account_1087,MM,Business,2024-04-25,16820.55,0.0,0.0,0.0,False,,,16820.55,1.0
+CUST_1088,Account_1088,MM,Professional,2024-02-05,0.0,0.0,0.0,0.0,True,2024-11-14,Support,0.0,0.0
+CUST_1089,Account_1089,SMB,Professional,2024-05-02,2134.39,0.0,0.0,0.0,False,,,2134.39,1.0
+CUST_1090,Account_1090,SMB,Professional,2023-05-04,0.0,0.0,0.0,0.0,True,2023-12-07,Support,0.0,0.0
+CUST_1091,Account_1091,MM,Enterprise,2025-06-25,40332.11,0.0,0.0,0.0,False,,,40332.11,1.0
+CUST_1092,Account_1092,SMB,Professional,2023-04-01,1869.11,0.0,0.0,0.0,False,,,1869.11,1.0
+CUST_1093,Account_1093,ENT,Custom,2023-03-14,253715.9,0.0,0.0,0.0,False,,,253715.9,1.0
+CUST_1094,Account_1094,MM,Business,2024-02-08,0.0,0.0,0.0,0.0,True,2025-08-16,Feature Gap,0.0,0.0
+CUST_1095,Account_1095,MM,Business,2025-05-12,19238.43,0.0,4154.44,0.0,False,,,19238.43,1.275
+CUST_1096,Account_1096,SMB,Business,2024-07-21,0.0,0.0,0.0,0.0,True,2024-08-21,Merger,0.0,0.0
+CUST_1097,Account_1097,MM,Enterprise,2023-04-24,0.0,0.0,0.0,0.0,True,2024-08-30,Feature Gap,0.0,0.0
+CUST_1098,Account_1098,ENT,Business,2024-07-30,30681.63,0.0,0.0,0.0,False,,,30681.63,1.0
+CUST_1099,Account_1099,SMB,Starter,2024-11-21,981.5,0.0,0.0,0.0,False,,,981.5,1.0
+CUST_1100,Account_1100,MM,Business,2024-05-22,15924.07,0.0,0.0,0.0,False,,,15924.07,1.0
+CUST_1101,Account_1101,SMB,Starter,2023-09-24,0.0,0.0,0.0,0.0,True,2024-12-08,Competition,0.0,0.0
+CUST_1102,Account_1102,ENT,Business,2024-05-27,34649.06,0.0,7633.68,0.0,False,,,34649.06,1.283
+CUST_1103,Account_1103,ENT,Enterprise,2023-11-14,99217.1,0.0,0.0,0.0,False,,,99217.1,1.0
+CUST_1104,Account_1104,SMB,Starter,2023-08-17,0.0,0.0,0.0,0.0,True,2025-09-08,Competition,0.0,0.0
+CUST_1105,Account_1105,MM,Enterprise,2024-01-26,0.0,0.0,0.0,0.0,True,2024-04-19,Competition,0.0,0.0
+CUST_1106,Account_1106,MM,Enterprise,2024-10-05,27992.93,0.0,0.0,0.0,False,,,27992.93,1.0
+CUST_1107,Account_1107,MM,Professional,2023-06-06,4905.6,0.0,402.88,0.0,False,,,4905.6,1.089
+CUST_1108,Account_1108,MM,Business,2024-09-10,10211.48,0.0,0.0,0.0,False,,,10211.48,1.0
+CUST_1109,Account_1109,ENT,Business,2024-07-28,26525.07,0.0,3724.66,0.0,False,,,26525.07,1.163
+CUST_1110,Account_1110,MM,Enterprise,2025-06-25,32744.62,0.0,0.0,0.0,False,,,32744.62,1.0
+CUST_1111,Account_1111,MM,Business,2022-11-20,0.0,0.0,0.0,0.0,True,2024-02-03,Support,0.0,0.0
+CUST_1112,Account_1112,SMB,Professional,2023-04-28,0.0,0.0,0.0,0.0,True,2025-09-27,Feature Gap,0.0,0.0
+CUST_1113,Account_1113,SMB,Business,2025-08-03,3481.23,0.0,0.0,0.0,False,,,3481.23,1.0
+CUST_1114,Account_1114,SMB,Professional,2024-12-19,0.0,0.0,0.0,0.0,True,2025-04-15,Merger,0.0,0.0
+CUST_1115,Account_1115,ENT,Custom,2023-08-12,373823.6,0.0,81224.79,0.0,False,,,373823.6,1.278
+CUST_1116,Account_1116,ENT,Enterprise,2023-07-25,60028.18,0.0,0.0,0.0,False,,,60028.18,1.0
+CUST_1117,Account_1117,MM,Professional,2022-12-08,7677.24,0.0,0.0,0.0,False,,,7677.24,1.0
+CUST_1118,Account_1118,MM,Business,2025-07-19,9233.13,0.0,0.0,0.0,False,,,9233.13,1.0
+CUST_1119,Account_1119,SMB,Business,2024-10-22,7630.18,0.0,0.0,0.0,False,,,7630.18,1.0
+CUST_1120,Account_1120,MM,Professional,2024-10-22,0.0,0.0,0.0,0.0,True,2025-02-10,Price,0.0,0.0
+CUST_1121,Account_1121,SMB,Professional,2023-08-11,0.0,0.0,0.0,0.0,True,2024-07-06,Competition,0.0,0.0
+CUST_1122,Account_1122,MM,Enterprise,2023-01-20,0.0,0.0,0.0,0.0,True,2023-07-08,Support,0.0,0.0
+CUST_1123,Account_1123,ENT,Custom,2023-11-08,0.0,0.0,0.0,0.0,True,2024-05-03,Business Closure,0.0,0.0
+CUST_1124,Account_1124,MM,Enterprise,2023-08-17,21844.24,0.0,0.0,0.0,False,,,21844.24,1.0
+CUST_1125,Account_1125,ENT,Enterprise,2023-03-26,97150.49,0.0,0.0,0.0,False,,,97150.49,1.0
+CUST_1126,Account_1126,SMB,Business,2025-09-16,3236.29,3236.29,0.0,0.0,False,,,3236.29,1.0
+CUST_1127,Account_1127,SMB,Professional,2023-10-21,1861.67,0.0,0.0,0.0,False,,,1861.67,1.0
+CUST_1128,Account_1128,ENT,Custom,2023-09-07,285673.89,0.0,0.0,0.0,False,,,285673.89,1.0
+CUST_1129,Account_1129,SMB,Business,2025-01-09,6780.29,0.0,0.0,0.0,False,,,6780.29,1.0
+CUST_1130,Account_1130,ENT,Custom,2025-07-18,480445.09,0.0,0.0,0.0,False,,,480445.09,1.0
+CUST_1131,Account_1131,MM,Enterprise,2023-02-11,0.0,0.0,0.0,0.0,True,2023-07-19,Budget Cut,0.0,0.0
+CUST_1132,Account_1132,MM,Professional,2025-01-14,0.0,0.0,0.0,0.0,True,2025-05-12,Budget Cut,0.0,0.0
+CUST_1133,Account_1133,MM,Professional,2023-12-31,5671.2,0.0,0.0,964.61,False,,,5671.2,0.855
+CUST_1134,Account_1134,SMB,Professional,2023-10-31,0.0,0.0,0.0,0.0,True,2025-01-23,Business Closure,0.0,0.0
+CUST_1135,Account_1135,ENT,Custom,2024-07-01,376367.67,0.0,0.0,0.0,False,,,376367.67,1.0
+CUST_1136,Account_1136,MM,Enterprise,2025-07-13,21142.0,0.0,0.0,0.0,False,,,21142.0,1.0
+CUST_1137,Account_1137,ENT,Custom,2025-05-12,276630.96,0.0,0.0,0.0,False,,,276630.96,1.0
+CUST_1138,Account_1138,MM,Business,2023-03-03,0.0,0.0,0.0,0.0,True,2024-05-06,Budget Cut,0.0,0.0
+CUST_1139,Account_1139,MM,Business,2025-09-10,13690.65,13690.65,0.0,0.0,False,,,13690.65,1.0
+CUST_1140,Account_1140,MM,Enterprise,2023-05-01,0.0,0.0,0.0,0.0,True,2024-01-19,Competition,0.0,0.0
+CUST_1141,Account_1141,SMB,Business,2024-09-30,8651.54,0.0,1483.35,0.0,False,,,8651.54,1.207
+CUST_1142,Account_1142,ENT,Enterprise,2023-10-10,91806.76,0.0,0.0,0.0,False,,,91806.76,1.0
+CUST_1143,Account_1143,SMB,Business,2023-05-18,3649.98,0.0,0.0,0.0,False,,,3649.98,1.0
+CUST_1144,Account_1144,MM,Enterprise,2024-03-08,25069.54,0.0,0.0,2254.69,False,,,25069.54,0.917
+CUST_1145,Account_1145,ENT,Custom,2023-12-09,0.0,0.0,0.0,0.0,True,2024-04-04,Competition,0.0,0.0
+CUST_1146,Account_1146,ENT,Business,2024-06-26,39570.02,0.0,0.0,0.0,False,,,39570.02,1.0
+CUST_1147,Account_1147,ENT,Business,2024-05-24,17729.44,0.0,0.0,3174.01,False,,,17729.44,0.848
+CUST_1148,Account_1148,SMB,Business,2024-06-29,0.0,0.0,0.0,0.0,True,2025-03-03,Business Closure,0.0,0.0
+CUST_1149,Account_1149,ENT,Business,2023-12-14,21873.16,0.0,0.0,0.0,False,,,21873.16,1.0
+CUST_1150,Account_1150,SMB,Business,2025-08-27,3198.97,0.0,0.0,0.0,False,,,3198.97,1.0
+CUST_1151,Account_1151,MM,Business,2024-08-22,0.0,0.0,0.0,0.0,True,2025-05-13,Price,0.0,0.0
+CUST_1152,Account_1152,SMB,Business,2023-03-24,0.0,0.0,0.0,0.0,True,2024-09-27,Budget Cut,0.0,0.0
+CUST_1153,Account_1153,MM,Professional,2023-12-18,4971.42,0.0,0.0,0.0,False,,,4971.42,1.0
+CUST_1154,Account_1154,ENT,Enterprise,2023-02-26,98009.45,0.0,0.0,0.0,False,,,98009.45,1.0
+CUST_1155,Account_1155,MM,Business,2023-11-03,16379.15,0.0,0.0,0.0,False,,,16379.15,1.0
+CUST_1156,Account_1156,MM,Professional,2023-10-30,0.0,0.0,0.0,0.0,True,2025-09-23,Competition,0.0,0.0
+CUST_1157,Account_1157,ENT,Custom,2023-07-31,0.0,0.0,0.0,0.0,True,2025-08-26,Merger,0.0,0.0
+CUST_1158,Account_1158,SMB,Professional,2025-02-08,0.0,0.0,0.0,0.0,True,2025-06-11,Budget Cut,0.0,0.0
+CUST_1159,Account_1159,MM,Professional,2024-06-28,7541.42,0.0,0.0,0.0,False,,,7541.42,1.0
+CUST_1160,Account_1160,SMB,Business,2023-09-10,0.0,0.0,0.0,0.0,True,2023-12-12,Support,0.0,0.0
+CUST_1161,Account_1161,ENT,Custom,2022-12-10,0.0,0.0,0.0,0.0,True,2025-02-24,Price,0.0,0.0
+CUST_1162,Account_1162,MM,Enterprise,2023-12-29,0.0,0.0,0.0,0.0,True,2024-04-05,Business Closure,0.0,0.0
+CUST_1163,Account_1163,ENT,Custom,2024-09-17,0.0,0.0,0.0,0.0,True,2025-04-26,Support,0.0,0.0
+CUST_1164,Account_1164,MM,Enterprise,2024-02-03,0.0,0.0,0.0,0.0,True,2024-05-04,Budget Cut,0.0,0.0
+CUST_1165,Account_1165,SMB,Starter,2024-12-27,845.48,0.0,0.0,0.0,False,,,845.48,1.0
+CUST_1166,Account_1166,MM,Business,2024-08-12,0.0,0.0,0.0,0.0,True,2025-09-20,Budget Cut,0.0,0.0
+CUST_1167,Account_1167,ENT,Business,2024-01-25,36495.81,0.0,6547.69,0.0,False,,,36495.81,1.219
+CUST_1168,Account_1168,SMB,Starter,2025-03-27,609.1,0.0,0.0,0.0,False,,,609.1,1.0
+CUST_1169,Account_1169,MM,Professional,2024-10-11,6914.11,0.0,0.0,0.0,False,,,6914.11,1.0
+CUST_1170,Account_1170,MM,Enterprise,2025-08-16,33189.36,0.0,0.0,0.0,False,,,33189.36,1.0
+CUST_1171,Account_1171,SMB,Business,2025-07-13,3011.11,0.0,0.0,0.0,False,,,3011.11,1.0
+CUST_1172,Account_1172,MM,Enterprise,2023-12-21,32696.94,0.0,261.85,0.0,False,,,32696.94,1.008
+CUST_1173,Account_1173,MM,Enterprise,2024-05-01,0.0,0.0,0.0,0.0,True,2025-07-14,Merger,0.0,0.0
+CUST_1174,Account_1174,SMB,Starter,2023-12-05,0.0,0.0,0.0,0.0,True,2024-01-12,Price,0.0,0.0
+CUST_1175,Account_1175,ENT,Custom,2025-04-05,160454.1,0.0,0.0,0.0,False,,,160454.1,1.0
+CUST_1176,Account_1176,MM,Enterprise,2024-06-10,0.0,0.0,0.0,0.0,True,2025-03-24,Merger,0.0,0.0
+CUST_1177,Account_1177,MM,Business,2025-05-13,18454.34,0.0,0.0,0.0,False,,,18454.34,1.0
+CUST_1178,Account_1178,MM,Enterprise,2024-10-05,23999.82,0.0,0.0,0.0,False,,,23999.82,1.0
+CUST_1179,Account_1179,SMB,Professional,2024-05-29,0.0,0.0,0.0,0.0,True,2024-09-01,Price,0.0,0.0
+CUST_1180,Account_1180,SMB,Starter,2025-08-08,879.24,0.0,0.0,0.0,False,,,879.24,1.0
+CUST_1181,Account_1181,ENT,Business,2022-12-06,0.0,0.0,0.0,0.0,True,2023-08-22,Price,0.0,0.0
+CUST_1182,Account_1182,SMB,Professional,2024-01-14,0.0,0.0,0.0,0.0,True,2024-07-28,Business Closure,0.0,0.0
+CUST_1183,Account_1183,ENT,Custom,2025-06-19,119259.57,0.0,0.0,0.0,False,,,119259.57,1.0
+CUST_1184,Account_1184,ENT,Enterprise,2023-06-09,0.0,0.0,0.0,0.0,True,2024-07-12,Competition,0.0,0.0
+CUST_1185,Account_1185,SMB,Starter,2025-02-22,606.24,0.0,0.0,19.28,False,,,606.24,0.969
+CUST_1186,Account_1186,ENT,Business,2024-09-02,27224.2,0.0,0.0,0.0,False,,,27224.2,1.0
+CUST_1187,Account_1187,ENT,Business,2025-03-22,37682.92,0.0,0.0,0.0,False,,,37682.92,1.0
+CUST_1188,Account_1188,ENT,Enterprise,2023-01-03,0.0,0.0,0.0,0.0,True,2023-12-06,Merger,0.0,0.0
+CUST_1189,Account_1189,ENT,Business,2023-01-13,0.0,0.0,0.0,0.0,True,2025-07-09,Merger,0.0,0.0
+CUST_1190,Account_1190,SMB,Business,2025-03-26,7928.49,0.0,0.0,0.0,False,,,7928.49,1.0
+CUST_1191,Account_1191,MM,Business,2025-07-19,8182.96,0.0,0.0,0.0,False,,,8182.96,1.0
+CUST_1192,Account_1192,ENT,Business,2024-11-09,0.0,0.0,0.0,0.0,True,2025-04-15,Feature Gap,0.0,0.0
+CUST_1193,Account_1193,MM,Enterprise,2023-09-08,0.0,0.0,0.0,0.0,True,2025-02-23,Price,0.0,0.0
+CUST_1194,Account_1194,MM,Enterprise,2023-02-01,45968.54,0.0,0.0,0.0,False,,,45968.54,1.0
+CUST_1195,Account_1195,MM,Business,2023-10-21,21535.31,0.0,3770.51,0.0,False,,,21535.31,1.212
+CUST_1196,Account_1196,SMB,Starter,2025-04-29,923.67,0.0,0.0,0.0,False,,,923.67,1.0
+CUST_1197,Account_1197,MM,Professional,2024-08-25,5366.3,0.0,0.0,0.0,False,,,5366.3,1.0
+CUST_1198,Account_1198,SMB,Starter,2025-06-10,765.09,0.0,0.0,0.0,False,,,765.09,1.0
+CUST_1199,Account_1199,SMB,Starter,2023-08-16,788.8,0.0,0.0,0.0,False,,,788.8,1.0
+CUST_1200,Account_1200,MM,Professional,2025-09-03,7905.87,7905.87,0.0,0.0,False,,,7905.87,1.0
+CUST_1201,Account_1201,ENT,Enterprise,2023-07-10,93331.17,0.0,0.0,0.0,False,,,93331.17,1.0
+CUST_1202,Account_1202,SMB,Starter,2023-03-01,0.0,0.0,0.0,0.0,True,2024-08-16,Price,0.0,0.0
+CUST_1203,Account_1203,ENT,Custom,2023-12-19,211876.5,0.0,1666.63,0.0,False,,,211876.5,1.008
+CUST_1204,Account_1204,SMB,Professional,2025-06-23,1662.97,0.0,0.0,0.0,False,,,1662.97,1.0
+CUST_1205,Account_1205,MM,Professional,2025-07-30,7944.35,0.0,0.0,0.0,False,,,7944.35,1.0
+CUST_1206,Account_1206,MM,Business,2024-02-24,18886.52,0.0,0.0,0.0,False,,,18886.52,1.0
+CUST_1207,Account_1207,SMB,Business,2024-10-15,0.0,0.0,0.0,0.0,True,2025-05-04,Business Closure,0.0,0.0
+CUST_1208,Account_1208,ENT,Business,2022-12-26,0.0,0.0,0.0,0.0,True,2024-07-15,Budget Cut,0.0,0.0
+CUST_1209,Account_1209,MM,Enterprise,2024-12-15,42438.41,0.0,0.0,0.0,False,,,42438.41,1.0
+CUST_1210,Account_1210,MM,Business,2023-12-23,12389.29,0.0,1943.55,0.0,False,,,12389.29,1.186
+CUST_1211,Account_1211,ENT,Enterprise,2025-08-12,96079.98,0.0,0.0,0.0,False,,,96079.98,1.0
+CUST_1212,Account_1212,SMB,Starter,2023-05-07,0.0,0.0,0.0,0.0,True,2024-12-31,Competition,0.0,0.0
+CUST_1213,Account_1213,ENT,Custom,2023-01-03,0.0,0.0,0.0,0.0,True,2025-07-20,Business Closure,0.0,0.0
+CUST_1214,Account_1214,ENT,Business,2024-12-07,21462.92,0.0,0.0,3464.15,False,,,21462.92,0.861
+CUST_1215,Account_1215,MM,Business,2023-04-15,0.0,0.0,0.0,0.0,True,2024-03-28,Support,0.0,0.0
+CUST_1216,Account_1216,MM,Business,2022-11-06,0.0,0.0,0.0,0.0,True,2025-08-14,Merger,0.0,0.0
+CUST_1217,Account_1217,MM,Professional,2023-07-19,0.0,0.0,0.0,0.0,True,2023-11-16,Competition,0.0,0.0
+CUST_1218,Account_1218,SMB,Professional,2024-06-21,0.0,0.0,0.0,0.0,True,2025-01-07,Feature Gap,0.0,0.0
+CUST_1219,Account_1219,SMB,Business,2023-04-09,0.0,0.0,0.0,0.0,True,2023-06-16,Price,0.0,0.0
+CUST_1220,Account_1220,MM,Business,2022-11-14,0.0,0.0,0.0,0.0,True,2024-05-22,Price,0.0,0.0
+CUST_1221,Account_1221,SMB,Business,2024-03-28,0.0,0.0,0.0,0.0,True,2024-07-17,Feature Gap,0.0,0.0
+CUST_1222,Account_1222,MM,Professional,2025-02-12,4272.32,0.0,0.0,0.0,False,,,4272.32,1.0
+CUST_1223,Account_1223,SMB,Starter,2023-06-05,0.0,0.0,0.0,0.0,True,2023-11-03,Price,0.0,0.0
+CUST_1224,Account_1224,MM,Business,2025-07-29,11515.43,0.0,0.0,0.0,False,,,11515.43,1.0
+CUST_1225,Account_1225,ENT,Custom,2024-10-25,473609.35,0.0,0.0,0.0,False,,,473609.35,1.0
+CUST_1226,Account_1226,MM,Business,2024-03-27,0.0,0.0,0.0,0.0,True,2025-04-20,Feature Gap,0.0,0.0
+CUST_1227,Account_1227,SMB,Business,2023-07-08,0.0,0.0,0.0,0.0,True,2024-04-15,Support,0.0,0.0
+CUST_1228,Account_1228,ENT,Enterprise,2024-06-13,91328.58,0.0,7155.3,5183.93,False,,,91328.58,1.022
+CUST_1229,Account_1229,ENT,Enterprise,2023-12-26,0.0,0.0,0.0,0.0,True,2025-01-05,Budget Cut,0.0,0.0
+CUST_1230,Account_1230,ENT,Enterprise,2023-06-13,103636.7,0.0,6823.01,1699.01,False,,,103636.7,1.052
+CUST_1231,Account_1231,ENT,Enterprise,2024-12-23,0.0,0.0,0.0,0.0,True,2025-08-08,Competition,0.0,0.0
+CUST_1232,Account_1232,SMB,Business,2023-08-22,6610.87,0.0,0.0,0.0,False,,,6610.87,1.0
+CUST_1233,Account_1233,SMB,Business,2025-03-12,5589.42,0.0,0.0,0.0,False,,,5589.42,1.0
+CUST_1234,Account_1234,ENT,Business,2023-07-24,16735.01,0.0,0.0,0.0,False,,,16735.01,1.0
+CUST_1235,Account_1235,SMB,Business,2023-12-05,2722.88,0.0,0.0,510.94,False,,,2722.88,0.842
+CUST_1236,Account_1236,SMB,Professional,2025-08-01,1683.17,0.0,0.0,0.0,False,,,1683.17,1.0
+CUST_1237,Account_1237,ENT,Enterprise,2025-07-25,57771.46,0.0,0.0,0.0,False,,,57771.46,1.0
+CUST_1238,Account_1238,ENT,Enterprise,2025-08-22,55546.79,0.0,0.0,0.0,False,,,55546.79,1.0
+CUST_1239,Account_1239,ENT,Enterprise,2024-09-09,83699.6,0.0,0.0,0.0,False,,,83699.6,1.0
+CUST_1240,Account_1240,SMB,Starter,2023-05-24,0.0,0.0,0.0,0.0,True,2024-11-02,Business Closure,0.0,0.0
+CUST_1241,Account_1241,MM,Enterprise,2023-11-14,61102.48,0.0,11960.65,0.0,False,,,61102.48,1.243
+CUST_1242,Account_1242,MM,Business,2024-02-25,11724.69,0.0,0.0,0.0,False,,,11724.69,1.0
+CUST_1243,Account_1243,MM,Professional,2025-04-10,7692.26,0.0,0.0,0.0,False,,,7692.26,1.0
+CUST_1244,Account_1244,ENT,Custom,2023-10-07,380633.94,0.0,35493.7,0.0,False,,,380633.94,1.103
+CUST_1245,Account_1245,SMB,Starter,2023-06-04,995.31,0.0,0.0,0.0,False,,,995.31,1.0
+CUST_1246,Account_1246,ENT,Business,2023-03-30,0.0,0.0,0.0,0.0,True,2024-03-07,Support,0.0,0.0
+CUST_1247,Account_1247,ENT,Custom,2024-02-26,381102.18,0.0,0.0,0.0,False,,,381102.18,1.0
+CUST_1248,Account_1248,MM,Enterprise,2025-02-02,25157.87,0.0,0.0,0.0,False,,,25157.87,1.0
+CUST_1249,Account_1249,SMB,Professional,2024-03-09,2627.57,0.0,0.0,0.0,False,,,2627.57,1.0
+CUST_1250,Account_1250,SMB,Business,2025-06-28,0.0,0.0,0.0,0.0,True,2025-09-22,Price,0.0,0.0
+CUST_1251,Account_1251,MM,Enterprise,2025-03-03,0.0,0.0,0.0,0.0,True,2025-09-08,Feature Gap,0.0,0.0
+CUST_1252,Account_1252,ENT,Custom,2023-11-09,464779.11,0.0,0.0,0.0,False,,,464779.11,1.0
+CUST_1253,Account_1253,SMB,Starter,2024-03-25,1184.66,0.0,0.0,0.0,False,,,1184.66,1.0
+CUST_1254,Account_1254,MM,Enterprise,2024-03-02,0.0,0.0,0.0,0.0,True,2025-01-21,Competition,0.0,0.0
+CUST_1255,Account_1255,ENT,Custom,2024-05-16,478394.25,0.0,0.0,0.0,False,,,478394.25,1.0
+CUST_1256,Account_1256,ENT,Business,2024-07-21,39179.46,0.0,0.0,0.0,False,,,39179.46,1.0
+CUST_1257,Account_1257,ENT,Enterprise,2023-06-23,89617.91,0.0,0.0,0.0,False,,,89617.91,1.0
+CUST_1258,Account_1258,ENT,Business,2025-06-24,34184.84,0.0,0.0,0.0,False,,,34184.84,1.0
+CUST_1259,Account_1259,MM,Enterprise,2023-03-11,23340.97,0.0,0.0,0.0,False,,,23340.97,1.0
+CUST_1260,Account_1260,MM,Enterprise,2025-01-07,40196.97,0.0,0.0,4712.69,False,,,40196.97,0.895
+CUST_1261,Account_1261,MM,Professional,2022-10-28,4265.98,0.0,0.0,0.0,False,,,4265.98,1.0
+CUST_1262,Account_1262,SMB,Professional,2025-01-26,0.0,0.0,0.0,0.0,True,2025-06-11,Price,0.0,0.0
+CUST_1263,Account_1263,SMB,Professional,2023-07-02,0.0,0.0,0.0,0.0,True,2024-08-25,Merger,0.0,0.0
+CUST_1264,Account_1264,ENT,Business,2025-03-03,23640.18,0.0,0.0,0.0,False,,,23640.18,1.0
+CUST_1265,Account_1265,ENT,Enterprise,2023-09-18,72110.16,0.0,13495.16,0.0,False,,,72110.16,1.23
+CUST_1266,Account_1266,MM,Professional,2022-11-08,7277.14,0.0,0.0,0.0,False,,,7277.14,1.0
+CUST_1267,Account_1267,ENT,Business,2024-05-25,34228.4,0.0,0.0,0.0,False,,,34228.4,1.0
+CUST_1268,Account_1268,MM,Enterprise,2022-12-21,0.0,0.0,0.0,0.0,True,2023-03-18,Support,0.0,0.0
+CUST_1269,Account_1269,ENT,Custom,2025-01-26,365792.2,0.0,0.0,0.0,False,,,365792.2,1.0
+CUST_1270,Account_1270,SMB,Starter,2025-04-06,1484.53,0.0,0.0,0.0,False,,,1484.53,1.0
+CUST_1271,Account_1271,SMB,Business,2024-10-31,4987.68,0.0,0.0,0.0,False,,,4987.68,1.0
+CUST_1272,Account_1272,ENT,Business,2023-06-16,25662.97,0.0,0.0,3114.55,False,,,25662.97,0.892
+CUST_1273,Account_1273,MM,Enterprise,2024-08-10,36005.71,0.0,0.0,0.0,False,,,36005.71,1.0
+CUST_1274,Account_1274,MM,Business,2025-05-24,19231.67,0.0,0.0,0.0,False,,,19231.67,1.0
+CUST_1275,Account_1275,ENT,Business,2025-02-20,23888.06,0.0,99.0,0.0,False,,,23888.06,1.004
+CUST_1276,Account_1276,ENT,Enterprise,2025-09-11,99175.29,99175.29,0.0,0.0,False,,,99175.29,1.0
+CUST_1277,Account_1277,SMB,Professional,2025-06-27,1957.05,0.0,0.0,0.0,False,,,1957.05,1.0
+CUST_1278,Account_1278,ENT,Custom,2022-11-17,143562.81,0.0,0.0,0.0,False,,,143562.81,1.0
+CUST_1279,Account_1279,MM,Enterprise,2024-06-27,0.0,0.0,0.0,0.0,True,2025-04-08,Budget Cut,0.0,0.0
+CUST_1280,Account_1280,ENT,Business,2022-11-11,0.0,0.0,0.0,0.0,True,2024-06-18,Business Closure,0.0,0.0
+CUST_1281,Account_1281,SMB,Business,2023-04-23,0.0,0.0,0.0,0.0,True,2024-03-29,Business Closure,0.0,0.0
+CUST_1282,Account_1282,MM,Business,2024-10-05,14201.9,0.0,0.0,0.0,False,,,14201.9,1.0
+CUST_1283,Account_1283,MM,Enterprise,2024-03-29,31288.35,0.0,0.0,0.0,False,,,31288.35,1.0
+CUST_1284,Account_1284,MM,Business,2023-07-14,0.0,0.0,0.0,0.0,True,2024-05-21,Price,0.0,0.0
+CUST_1285,Account_1285,ENT,Custom,2024-11-06,435522.51,0.0,0.0,0.0,False,,,435522.51,1.0
+CUST_1286,Account_1286,MM,Business,2023-10-15,0.0,0.0,0.0,0.0,True,2023-12-25,Competition,0.0,0.0
+CUST_1287,Account_1287,MM,Business,2025-01-02,18908.36,0.0,2193.62,0.0,False,,,18908.36,1.131
+CUST_1288,Account_1288,ENT,Business,2025-06-03,38811.21,0.0,0.0,0.0,False,,,38811.21,1.0
+CUST_1289,Account_1289,MM,Business,2024-10-14,15082.46,0.0,0.0,0.0,False,,,15082.46,1.0
+CUST_1290,Account_1290,SMB,Starter,2025-07-25,507.66,0.0,0.0,0.0,False,,,507.66,1.0
+CUST_1291,Account_1291,MM,Professional,2023-08-12,0.0,0.0,0.0,0.0,True,2023-12-08,Support,0.0,0.0
+CUST_1292,Account_1292,ENT,Enterprise,2024-12-04,59693.36,0.0,0.0,0.0,False,,,59693.36,1.0
+CUST_1293,Account_1293,MM,Business,2025-01-23,0.0,0.0,0.0,0.0,True,2025-08-22,Business Closure,0.0,0.0
+CUST_1294,Account_1294,SMB,Professional,2025-08-11,0.0,0.0,0.0,0.0,True,2025-09-21,Budget Cut,0.0,0.0
+CUST_1295,Account_1295,SMB,Professional,2023-06-18,0.0,0.0,0.0,0.0,True,2024-02-16,Competition,0.0,0.0
+CUST_1296,Account_1296,SMB,Professional,2023-04-25,0.0,0.0,0.0,0.0,True,2024-02-13,Competition,0.0,0.0
+CUST_1297,Account_1297,SMB,Business,2023-10-05,0.0,0.0,0.0,0.0,True,2024-04-15,Budget Cut,0.0,0.0
+CUST_1298,Account_1298,ENT,Business,2023-02-20,0.0,0.0,0.0,0.0,True,2025-06-04,Budget Cut,0.0,0.0
+CUST_1299,Account_1299,SMB,Professional,2024-10-04,0.0,0.0,0.0,0.0,True,2025-08-26,Competition,0.0,0.0
+CUST_1300,Account_1300,SMB,Starter,2024-06-10,531.3,0.0,0.0,0.0,False,,,531.3,1.0
+CUST_1301,Account_1301,ENT,Custom,2025-06-14,0.0,0.0,0.0,0.0,True,2025-09-26,Feature Gap,0.0,0.0
+CUST_1302,Account_1302,SMB,Business,2024-08-01,0.0,0.0,0.0,0.0,True,2024-09-17,Competition,0.0,0.0
+CUST_1303,Account_1303,ENT,Enterprise,2025-09-08,98632.35,98632.35,0.0,0.0,False,,,98632.35,1.0
+CUST_1304,Account_1304,SMB,Business,2025-01-20,4653.63,0.0,0.0,0.0,False,,,4653.63,1.0
+CUST_1305,Account_1305,SMB,Business,2024-03-04,0.0,0.0,0.0,0.0,True,2024-06-26,Competition,0.0,0.0
+CUST_1306,Account_1306,MM,Enterprise,2023-01-07,34107.0,0.0,0.0,3495.03,False,,,34107.0,0.907
+CUST_1307,Account_1307,MM,Professional,2022-10-24,7334.69,0.0,0.0,0.0,False,,,7334.69,1.0
+CUST_1308,Account_1308,ENT,Custom,2025-02-10,229718.89,0.0,0.0,0.0,False,,,229718.89,1.0
+CUST_1309,Account_1309,ENT,Business,2023-08-02,0.0,0.0,0.0,0.0,True,2025-08-23,Feature Gap,0.0,0.0
+CUST_1310,Account_1310,MM,Business,2024-12-09,0.0,0.0,0.0,0.0,True,2025-09-15,Merger,0.0,0.0
+CUST_1311,Account_1311,ENT,Custom,2024-07-02,344080.53,0.0,0.0,0.0,False,,,344080.53,1.0
+CUST_1312,Account_1312,SMB,Professional,2024-08-04,2583.07,0.0,0.0,0.0,False,,,2583.07,1.0
+CUST_1313,Account_1313,ENT,Custom,2023-05-07,238166.31,0.0,0.0,0.0,False,,,238166.31,1.0
+CUST_1314,Account_1314,ENT,Business,2022-10-19,23805.16,0.0,0.0,0.0,False,,,23805.16,1.0
+CUST_1315,Account_1315,SMB,Starter,2023-03-10,0.0,0.0,0.0,0.0,True,2024-12-20,Support,0.0,0.0
+CUST_1316,Account_1316,ENT,Custom,2022-11-05,401767.56,0.0,0.0,32321.81,False,,,401767.56,0.926
+CUST_1317,Account_1317,SMB,Starter,2025-03-21,600.85,0.0,0.0,0.0,False,,,600.85,1.0
+CUST_1318,Account_1318,ENT,Enterprise,2023-10-24,77888.76,0.0,0.0,0.0,False,,,77888.76,1.0
+CUST_1319,Account_1319,ENT,Business,2025-01-12,31933.7,0.0,0.0,0.0,False,,,31933.7,1.0
+CUST_1320,Account_1320,ENT,Custom,2022-10-23,0.0,0.0,0.0,0.0,True,2023-02-05,Support,0.0,0.0
+CUST_1321,Account_1321,ENT,Enterprise,2024-06-30,96150.3,0.0,0.0,0.0,False,,,96150.3,1.0
+CUST_1322,Account_1322,MM,Enterprise,2022-10-07,0.0,0.0,0.0,0.0,True,2023-08-24,Business Closure,0.0,0.0
+CUST_1323,Account_1323,ENT,Enterprise,2025-04-01,90435.47,0.0,12360.86,0.0,False,,,90435.47,1.158
+CUST_1324,Account_1324,SMB,Professional,2023-08-12,0.0,0.0,0.0,0.0,True,2023-12-25,Feature Gap,0.0,0.0
+CUST_1325,Account_1325,MM,Enterprise,2023-07-03,0.0,0.0,0.0,0.0,True,2025-06-25,Support,0.0,0.0
+CUST_1326,Account_1326,MM,Professional,2023-06-04,0.0,0.0,0.0,0.0,True,2025-03-13,Feature Gap,0.0,0.0
+CUST_1327,Account_1327,ENT,Enterprise,2024-02-17,0.0,0.0,0.0,0.0,True,2025-03-09,Feature Gap,0.0,0.0
+CUST_1328,Account_1328,ENT,Enterprise,2023-06-04,0.0,0.0,0.0,0.0,True,2025-09-08,Merger,0.0,0.0
+CUST_1329,Account_1329,ENT,Enterprise,2024-08-20,0.0,0.0,0.0,0.0,True,2024-10-18,Business Closure,0.0,0.0
+CUST_1330,Account_1330,MM,Professional,2025-07-28,0.0,0.0,0.0,0.0,True,2025-09-01,Price,0.0,0.0
+CUST_1331,Account_1331,ENT,Business,2023-02-16,20203.03,0.0,0.0,0.0,False,,,20203.03,1.0
+CUST_1332,Account_1332,ENT,Custom,2024-10-22,116284.39,0.0,0.0,0.0,False,,,116284.39,1.0
+CUST_1333,Account_1333,SMB,Business,2024-09-15,0.0,0.0,0.0,0.0,True,2025-01-27,Feature Gap,0.0,0.0
+CUST_1334,Account_1334,ENT,Enterprise,2024-03-31,48783.87,0.0,0.0,7516.45,False,,,48783.87,0.866
+CUST_1335,Account_1335,SMB,Starter,2025-01-20,0.0,0.0,0.0,0.0,True,2025-02-21,Feature Gap,0.0,0.0
+CUST_1336,Account_1336,ENT,Custom,2023-05-02,0.0,0.0,0.0,0.0,True,2025-06-14,Price,0.0,0.0
+CUST_1337,Account_1337,ENT,Enterprise,2024-08-01,43831.33,0.0,0.0,0.0,False,,,43831.33,1.0
+CUST_1338,Account_1338,MM,Business,2024-08-22,11471.22,0.0,0.0,0.0,False,,,11471.22,1.0
+CUST_1339,Account_1339,ENT,Enterprise,2025-03-27,93358.97,0.0,0.0,0.0,False,,,93358.97,1.0
+CUST_1340,Account_1340,ENT,Custom,2025-08-14,194663.61,0.0,0.0,0.0,False,,,194663.61,1.0
+CUST_1341,Account_1341,MM,Enterprise,2023-09-12,46386.74,0.0,0.0,3492.22,False,,,46386.74,0.93
+CUST_1342,Account_1342,MM,Professional,2024-03-23,0.0,0.0,0.0,0.0,True,2025-02-23,Feature Gap,0.0,0.0
+CUST_1343,Account_1343,MM,Professional,2024-06-09,6695.57,0.0,0.0,0.0,False,,,6695.57,1.0
+CUST_1344,Account_1344,ENT,Custom,2023-12-04,0.0,0.0,0.0,0.0,True,2025-08-11,Price,0.0,0.0
+CUST_1345,Account_1345,ENT,Enterprise,2023-07-27,46330.72,0.0,0.0,1843.96,False,,,46330.72,0.962
+CUST_1346,Account_1346,ENT,Enterprise,2023-03-25,0.0,0.0,0.0,0.0,True,2024-12-21,Business Closure,0.0,0.0
+CUST_1347,Account_1347,ENT,Custom,2024-06-03,370047.23,0.0,0.0,0.0,False,,,370047.23,1.0
+CUST_1348,Account_1348,MM,Professional,2023-06-28,0.0,0.0,0.0,0.0,True,2025-04-21,Competition,0.0,0.0
+CUST_1349,Account_1349,ENT,Business,2023-07-14,0.0,0.0,0.0,0.0,True,2024-07-09,Price,0.0,0.0
+CUST_1350,Account_1350,SMB,Starter,2025-06-30,705.53,0.0,0.0,0.0,False,,,705.53,1.0
+CUST_1351,Account_1351,ENT,Enterprise,2024-03-05,66914.86,0.0,0.0,0.0,False,,,66914.86,1.0
+CUST_1352,Account_1352,MM,Professional,2024-01-29,5561.23,0.0,0.0,0.0,False,,,5561.23,1.0
+CUST_1353,Account_1353,MM,Enterprise,2023-11-25,0.0,0.0,0.0,0.0,True,2024-04-17,Competition,0.0,0.0
+CUST_1354,Account_1354,SMB,Business,2023-10-03,0.0,0.0,0.0,0.0,True,2024-06-29,Business Closure,0.0,0.0
+CUST_1355,Account_1355,MM,Professional,2025-09-20,5307.77,5307.77,0.0,0.0,False,,,5307.77,1.0
+CUST_1356,Account_1356,MM,Business,2024-02-13,0.0,0.0,0.0,0.0,True,2024-03-14,Feature Gap,0.0,0.0
+CUST_1357,Account_1357,ENT,Business,2024-07-23,39122.64,0.0,0.0,0.0,False,,,39122.64,1.0
+CUST_1358,Account_1358,MM,Enterprise,2025-01-23,43685.65,0.0,0.0,0.0,False,,,43685.65,1.0
+CUST_1359,Account_1359,SMB,Starter,2025-02-05,811.21,0.0,149.74,0.0,False,,,811.21,1.226
+CUST_1360,Account_1360,ENT,Enterprise,2023-12-29,56362.11,0.0,0.0,0.0,False,,,56362.11,1.0
+CUST_1361,Account_1361,ENT,Custom,2025-05-10,131529.56,0.0,0.0,0.0,False,,,131529.56,1.0
+CUST_1362,Account_1362,MM,Professional,2023-12-28,3678.25,0.0,0.0,0.0,False,,,3678.25,1.0
+CUST_1363,Account_1363,SMB,Business,2023-06-02,0.0,0.0,0.0,0.0,True,2025-05-09,Support,0.0,0.0
+CUST_1364,Account_1364,SMB,Starter,2024-06-30,0.0,0.0,0.0,0.0,True,2025-01-07,Merger,0.0,0.0
+CUST_1365,Account_1365,SMB,Starter,2024-10-23,713.65,0.0,0.0,0.0,False,,,713.65,1.0
+CUST_1366,Account_1366,ENT,Business,2025-02-26,20769.26,0.0,0.0,0.0,False,,,20769.26,1.0
+CUST_1367,Account_1367,MM,Business,2023-02-20,0.0,0.0,0.0,0.0,True,2024-09-26,Price,0.0,0.0
+CUST_1368,Account_1368,MM,Enterprise,2025-06-10,23767.58,0.0,0.0,0.0,False,,,23767.58,1.0
+CUST_1369,Account_1369,ENT,Enterprise,2025-02-05,56670.1,0.0,0.0,0.0,False,,,56670.1,1.0
+CUST_1370,Account_1370,MM,Professional,2023-10-02,0.0,0.0,0.0,0.0,True,2025-06-12,Price,0.0,0.0
+CUST_1371,Account_1371,ENT,Custom,2024-07-02,194560.4,0.0,0.0,0.0,False,,,194560.4,1.0
+CUST_1372,Account_1372,SMB,Business,2023-04-28,3859.19,0.0,0.0,0.0,False,,,3859.19,1.0
+CUST_1373,Account_1373,ENT,Business,2024-01-02,20952.41,0.0,4260.01,0.0,False,,,20952.41,1.255
+CUST_1374,Account_1374,ENT,Custom,2023-09-13,0.0,0.0,0.0,0.0,True,2025-09-30,Price,0.0,0.0
+CUST_1375,Account_1375,ENT,Enterprise,2025-04-12,90518.96,0.0,0.0,0.0,False,,,90518.96,1.0
+CUST_1376,Account_1376,SMB,Starter,2024-08-28,0.0,0.0,0.0,0.0,True,2025-03-26,Competition,0.0,0.0
+CUST_1377,Account_1377,SMB,Starter,2024-04-05,0.0,0.0,0.0,0.0,True,2024-06-27,Budget Cut,0.0,0.0
+CUST_1378,Account_1378,SMB,Professional,2025-05-04,2475.93,0.0,0.0,0.0,False,,,2475.93,1.0
+CUST_1379,Account_1379,ENT,Enterprise,2023-08-03,0.0,0.0,0.0,0.0,True,2024-12-04,Feature Gap,0.0,0.0
+CUST_1380,Account_1380,ENT,Business,2023-07-28,0.0,0.0,0.0,0.0,True,2023-11-04,Merger,0.0,0.0
+CUST_1381,Account_1381,SMB,Professional,2025-01-05,2799.59,0.0,0.0,0.0,False,,,2799.59,1.0
+CUST_1382,Account_1382,MM,Enterprise,2023-09-03,21719.23,0.0,0.0,0.0,False,,,21719.23,1.0
+CUST_1383,Account_1383,SMB,Starter,2025-02-17,0.0,0.0,0.0,0.0,True,2025-07-07,Price,0.0,0.0
+CUST_1384,Account_1384,ENT,Business,2025-04-16,31770.75,0.0,0.0,0.0,False,,,31770.75,1.0
+CUST_1385,Account_1385,ENT,Custom,2024-06-16,480977.86,0.0,0.0,0.0,False,,,480977.86,1.0
+CUST_1386,Account_1386,SMB,Starter,2025-06-01,0.0,0.0,0.0,0.0,True,2025-08-15,Business Closure,0.0,0.0
+CUST_1387,Account_1387,ENT,Custom,2022-12-21,143742.49,0.0,0.0,26893.23,False,,,143742.49,0.842
+CUST_1388,Account_1388,SMB,Starter,2024-02-26,779.21,0.0,0.0,0.0,False,,,779.21,1.0
+CUST_1389,Account_1389,ENT,Custom,2022-12-01,405437.55,0.0,0.0,0.0,False,,,405437.55,1.0
+CUST_1390,Account_1390,SMB,Business,2023-07-31,0.0,0.0,0.0,0.0,True,2025-04-05,Budget Cut,0.0,0.0
+CUST_1391,Account_1391,MM,Enterprise,2025-06-23,36419.07,0.0,0.0,0.0,False,,,36419.07,1.0
+CUST_1392,Account_1392,SMB,Starter,2024-12-16,1108.98,0.0,0.0,0.0,False,,,1108.98,1.0
+CUST_1393,Account_1393,SMB,Business,2025-01-23,3516.46,0.0,0.0,0.0,False,,,3516.46,1.0
+CUST_1394,Account_1394,ENT,Custom,2025-09-03,442384.81,442384.81,0.0,0.0,False,,,442384.81,1.0
+CUST_1395,Account_1395,SMB,Business,2025-04-29,7315.67,0.0,0.0,0.0,False,,,7315.67,1.0
+CUST_1396,Account_1396,SMB,Business,2024-06-04,0.0,0.0,0.0,0.0,True,2025-04-18,Feature Gap,0.0,0.0
+CUST_1397,Account_1397,MM,Business,2023-10-10,0.0,0.0,0.0,0.0,True,2024-12-26,Price,0.0,0.0
+CUST_1398,Account_1398,ENT,Custom,2023-11-20,303711.74,0.0,0.0,60249.9,False,,,303711.74,0.834
+CUST_1399,Account_1399,ENT,Enterprise,2024-04-11,51383.36,0.0,0.0,0.0,False,,,51383.36,1.0
+CUST_1400,Account_1400,ENT,Custom,2023-10-18,156254.84,0.0,11220.91,0.0,False,,,156254.84,1.077
+CUST_1401,Account_1401,MM,Professional,2024-01-15,0.0,0.0,0.0,0.0,True,2024-03-01,Feature Gap,0.0,0.0
+CUST_1402,Account_1402,ENT,Enterprise,2023-03-15,94772.91,0.0,0.0,0.0,False,,,94772.91,1.0
+CUST_1403,Account_1403,MM,Professional,2023-12-23,4728.57,0.0,0.0,0.0,False,,,4728.57,1.0
+CUST_1404,Account_1404,MM,Business,2023-06-22,9029.97,0.0,0.0,0.0,False,,,9029.97,1.0
+CUST_1405,Account_1405,MM,Professional,2025-07-01,5329.0,0.0,0.0,0.0,False,,,5329.0,1.0
+CUST_1406,Account_1406,MM,Professional,2022-10-22,3378.13,0.0,0.0,0.0,False,,,3378.13,1.0
+CUST_1407,Account_1407,MM,Enterprise,2023-08-24,22557.52,0.0,0.0,0.0,False,,,22557.52,1.0
+CUST_1408,Account_1408,SMB,Business,2023-07-30,0.0,0.0,0.0,0.0,True,2024-11-27,Support,0.0,0.0
+CUST_1409,Account_1409,SMB,Starter,2023-07-24,0.0,0.0,0.0,0.0,True,2025-08-28,Business Closure,0.0,0.0
+CUST_1410,Account_1410,MM,Business,2025-09-14,14961.72,14961.72,0.0,0.0,False,,,14961.72,1.0
+CUST_1411,Account_1411,MM,Business,2023-06-08,0.0,0.0,0.0,0.0,True,2023-08-24,Price,0.0,0.0
+CUST_1412,Account_1412,MM,Business,2023-08-17,0.0,0.0,0.0,0.0,True,2025-02-06,Merger,0.0,0.0
+CUST_1413,Account_1413,MM,Enterprise,2024-02-04,0.0,0.0,0.0,0.0,True,2024-05-08,Feature Gap,0.0,0.0
+CUST_1414,Account_1414,MM,Professional,2024-08-04,0.0,0.0,0.0,0.0,True,2024-11-17,Feature Gap,0.0,0.0
+CUST_1415,Account_1415,SMB,Professional,2024-09-28,1957.11,0.0,0.0,0.0,False,,,1957.11,1.0
+CUST_1416,Account_1416,ENT,Enterprise,2025-07-23,0.0,0.0,0.0,0.0,True,2025-09-11,Merger,0.0,0.0
+CUST_1417,Account_1417,ENT,Custom,2024-01-07,257330.82,0.0,0.0,0.0,False,,,257330.82,1.0
+CUST_1418,Account_1418,SMB,Professional,2025-06-07,1993.67,0.0,0.0,0.0,False,,,1993.67,1.0
+CUST_1419,Account_1419,ENT,Business,2023-11-24,0.0,0.0,0.0,0.0,True,2024-03-22,Competition,0.0,0.0
+CUST_1420,Account_1420,ENT,Business,2022-11-11,0.0,0.0,0.0,0.0,True,2025-04-06,Price,0.0,0.0
+CUST_1421,Account_1421,MM,Enterprise,2024-06-17,0.0,0.0,0.0,0.0,True,2024-10-01,Competition,0.0,0.0
+CUST_1422,Account_1422,SMB,Starter,2025-01-20,0.0,0.0,0.0,0.0,True,2025-03-12,Competition,0.0,0.0
+CUST_1423,Account_1423,ENT,Enterprise,2024-04-20,60169.3,0.0,0.0,0.0,False,,,60169.3,1.0
+CUST_1424,Account_1424,MM,Enterprise,2025-04-30,62629.13,0.0,13353.81,0.0,False,,,62629.13,1.271
+CUST_1425,Account_1425,MM,Enterprise,2024-07-02,0.0,0.0,0.0,0.0,True,2025-09-14,Budget Cut,0.0,0.0
+CUST_1426,Account_1426,SMB,Business,2023-02-20,7445.05,0.0,0.0,0.0,False,,,7445.05,1.0
+CUST_1427,Account_1427,SMB,Business,2024-01-17,0.0,0.0,0.0,0.0,True,2024-07-17,Price,0.0,0.0
+CUST_1428,Account_1428,SMB,Professional,2022-10-09,0.0,0.0,0.0,0.0,True,2023-05-16,Competition,0.0,0.0
+CUST_1429,Account_1429,MM,Enterprise,2022-11-07,0.0,0.0,0.0,0.0,True,2023-07-18,Merger,0.0,0.0
+CUST_1430,Account_1430,SMB,Starter,2023-08-08,0.0,0.0,0.0,0.0,True,2024-07-21,Competition,0.0,0.0
+CUST_1431,Account_1431,MM,Business,2023-02-25,0.0,0.0,0.0,0.0,True,2024-12-17,Budget Cut,0.0,0.0
+CUST_1432,Account_1432,MM,Professional,2023-11-20,0.0,0.0,0.0,0.0,True,2025-04-17,Support,0.0,0.0
+CUST_1433,Account_1433,MM,Business,2025-01-12,10672.04,0.0,0.0,0.0,False,,,10672.04,1.0
+CUST_1434,Account_1434,ENT,Custom,2024-12-10,422408.17,0.0,0.0,0.0,False,,,422408.17,1.0
+CUST_1435,Account_1435,ENT,Business,2023-12-26,0.0,0.0,0.0,0.0,True,2024-08-02,Competition,0.0,0.0
+CUST_1436,Account_1436,ENT,Enterprise,2024-08-12,89226.29,0.0,10942.67,0.0,False,,,89226.29,1.14
+CUST_1437,Account_1437,ENT,Business,2025-08-10,31003.37,0.0,0.0,0.0,False,,,31003.37,1.0
+CUST_1438,Account_1438,MM,Professional,2022-10-17,0.0,0.0,0.0,0.0,True,2025-07-09,Competition,0.0,0.0
+CUST_1439,Account_1439,SMB,Professional,2023-04-11,0.0,0.0,0.0,0.0,True,2024-07-29,Support,0.0,0.0
+CUST_1440,Account_1440,MM,Enterprise,2025-07-02,41162.19,0.0,0.0,0.0,False,,,41162.19,1.0
+CUST_1441,Account_1441,MM,Business,2022-12-10,0.0,0.0,0.0,0.0,True,2025-01-18,Merger,0.0,0.0
+CUST_1442,Account_1442,SMB,Starter,2023-02-06,0.0,0.0,0.0,0.0,True,2023-05-20,Merger,0.0,0.0
+CUST_1443,Account_1443,SMB,Business,2023-07-25,0.0,0.0,0.0,0.0,True,2025-05-03,Competition,0.0,0.0
+CUST_1444,Account_1444,SMB,Professional,2024-12-25,2733.57,0.0,448.84,0.0,False,,,2733.57,1.196
+CUST_1445,Account_1445,MM,Enterprise,2025-04-15,38544.71,0.0,0.0,0.0,False,,,38544.71,1.0
+CUST_1446,Account_1446,ENT,Business,2025-08-30,25319.24,0.0,0.0,0.0,False,,,25319.24,1.0
+CUST_1447,Account_1447,MM,Professional,2023-08-10,3748.0,0.0,0.0,0.0,False,,,3748.0,1.0
+CUST_1448,Account_1448,MM,Professional,2024-07-20,0.0,0.0,0.0,0.0,True,2025-09-30,Business Closure,0.0,0.0
+CUST_1449,Account_1449,MM,Professional,2025-01-23,5657.68,0.0,0.0,0.0,False,,,5657.68,1.0
+CUST_1450,Account_1450,SMB,Professional,2023-03-22,0.0,0.0,0.0,0.0,True,2024-07-06,Budget Cut,0.0,0.0
+CUST_1451,Account_1451,ENT,Enterprise,2025-08-03,82827.24,0.0,0.0,0.0,False,,,82827.24,1.0
+CUST_1452,Account_1452,ENT,Enterprise,2024-06-24,77249.31,0.0,0.0,0.0,False,,,77249.31,1.0
+CUST_1453,Account_1453,ENT,Custom,2023-10-03,193163.31,0.0,0.0,0.0,False,,,193163.31,1.0
+CUST_1454,Account_1454,ENT,Custom,2022-10-24,0.0,0.0,0.0,0.0,True,2025-07-25,Business Closure,0.0,0.0
+CUST_1455,Account_1455,MM,Professional,2025-01-06,0.0,0.0,0.0,0.0,True,2025-07-01,Business Closure,0.0,0.0
+CUST_1456,Account_1456,SMB,Professional,2024-04-26,0.0,0.0,0.0,0.0,True,2025-01-04,Competition,0.0,0.0
+CUST_1457,Account_1457,ENT,Business,2022-12-30,21989.87,0.0,0.0,4957.34,False,,,21989.87,0.816
+CUST_1458,Account_1458,SMB,Starter,2024-11-06,0.0,0.0,0.0,0.0,True,2025-04-02,Budget Cut,0.0,0.0
+CUST_1459,Account_1459,ENT,Enterprise,2024-04-08,89582.81,0.0,0.0,0.0,False,,,89582.81,1.0
+CUST_1460,Account_1460,MM,Business,2024-08-03,15875.32,0.0,0.0,0.0,False,,,15875.32,1.0
+CUST_1461,Account_1461,ENT,Custom,2024-07-10,403799.8,0.0,0.0,0.0,False,,,403799.8,1.0
+CUST_1462,Account_1462,MM,Enterprise,2022-12-19,0.0,0.0,0.0,0.0,True,2024-05-02,Price,0.0,0.0
+CUST_1463,Account_1463,SMB,Professional,2023-08-04,0.0,0.0,0.0,0.0,True,2024-08-29,Support,0.0,0.0
+CUST_1464,Account_1464,SMB,Starter,2023-03-25,0.0,0.0,0.0,0.0,True,2025-04-27,Competition,0.0,0.0
+CUST_1465,Account_1465,SMB,Business,2024-11-18,0.0,0.0,0.0,0.0,True,2025-03-20,Budget Cut,0.0,0.0
+CUST_1466,Account_1466,ENT,Custom,2025-01-13,0.0,0.0,0.0,0.0,True,2025-09-12,Competition,0.0,0.0
+CUST_1467,Account_1467,ENT,Enterprise,2024-10-28,44991.34,0.0,0.0,0.0,False,,,44991.34,1.0
+CUST_1468,Account_1468,SMB,Professional,2024-04-13,1663.22,0.0,0.0,0.0,False,,,1663.22,1.0
+CUST_1469,Account_1469,SMB,Professional,2023-09-24,0.0,0.0,0.0,0.0,True,2025-01-07,Business Closure,0.0,0.0
+CUST_1470,Account_1470,SMB,Business,2025-07-17,7856.96,0.0,0.0,0.0,False,,,7856.96,1.0
+CUST_1471,Account_1471,SMB,Professional,2023-10-10,2818.91,0.0,161.35,0.0,False,,,2818.91,1.061
+CUST_1472,Account_1472,MM,Professional,2023-11-04,5420.94,0.0,0.0,0.0,False,,,5420.94,1.0
+CUST_1473,Account_1473,ENT,Business,2025-02-12,27651.52,0.0,0.0,0.0,False,,,27651.52,1.0
+CUST_1474,Account_1474,MM,Business,2025-03-14,0.0,0.0,0.0,0.0,True,2025-06-18,Competition,0.0,0.0
+CUST_1475,Account_1475,SMB,Starter,2023-07-27,932.73,0.0,0.0,0.0,False,,,932.73,1.0
+CUST_1476,Account_1476,MM,Enterprise,2025-08-23,32940.48,0.0,0.0,0.0,False,,,32940.48,1.0
+CUST_1477,Account_1477,MM,Business,2022-10-13,0.0,0.0,0.0,0.0,True,2025-03-02,Merger,0.0,0.0
+CUST_1478,Account_1478,MM,Enterprise,2023-10-15,33594.75,0.0,0.0,0.0,False,,,33594.75,1.0
+CUST_1479,Account_1479,ENT,Custom,2023-08-30,277511.98,0.0,0.0,14405.79,False,,,277511.98,0.951
+CUST_1480,Account_1480,ENT,Business,2025-03-01,31644.58,0.0,0.0,0.0,False,,,31644.58,1.0
+CUST_1481,Account_1481,ENT,Enterprise,2023-11-11,79500.29,0.0,8513.12,0.0,False,,,79500.29,1.12
+CUST_1482,Account_1482,MM,Business,2023-01-05,0.0,0.0,0.0,0.0,True,2023-09-06,Feature Gap,0.0,0.0
+CUST_1483,Account_1483,ENT,Enterprise,2025-05-06,62053.71,0.0,0.0,0.0,False,,,62053.71,1.0
+CUST_1484,Account_1484,MM,Enterprise,2025-05-04,32291.53,0.0,0.0,0.0,False,,,32291.53,1.0
+CUST_1485,Account_1485,ENT,Business,2024-01-30,0.0,0.0,0.0,0.0,True,2025-07-16,Budget Cut,0.0,0.0
+CUST_1486,Account_1486,SMB,Starter,2024-08-16,873.78,0.0,171.06,0.0,False,,,873.78,1.243
+CUST_1487,Account_1487,SMB,Professional,2025-08-05,0.0,0.0,0.0,0.0,True,2025-09-06,Price,0.0,0.0
+CUST_1488,Account_1488,SMB,Business,2025-02-25,6066.78,0.0,0.0,364.06,False,,,6066.78,0.943
+CUST_1489,Account_1489,ENT,Business,2023-06-08,25295.22,0.0,0.0,0.0,False,,,25295.22,1.0
+CUST_1490,Account_1490,SMB,Professional,2025-09-04,2859.92,2859.92,0.0,0.0,False,,,2859.92,1.0
+CUST_1491,Account_1491,MM,Professional,2023-08-05,6076.5,0.0,0.0,0.0,False,,,6076.5,1.0
+CUST_1492,Account_1492,MM,Enterprise,2025-08-24,24613.03,0.0,0.0,0.0,False,,,24613.03,1.0
+CUST_1493,Account_1493,ENT,Custom,2025-03-31,294977.74,0.0,0.0,0.0,False,,,294977.74,1.0
+CUST_1494,Account_1494,ENT,Business,2023-08-11,34119.47,0.0,0.0,0.0,False,,,34119.47,1.0
+CUST_1495,Account_1495,ENT,Business,2023-07-31,31083.63,0.0,0.0,0.0,False,,,31083.63,1.0
+CUST_1496,Account_1496,MM,Professional,2025-06-30,7426.32,0.0,0.0,0.0,False,,,7426.32,1.0
+CUST_1497,Account_1497,MM,Business,2024-06-29,19595.24,0.0,2595.45,0.0,False,,,19595.24,1.153
+CUST_1498,Account_1498,ENT,Enterprise,2024-11-10,43696.83,0.0,0.0,0.0,False,,,43696.83,1.0
+CUST_1499,Account_1499,MM,Professional,2023-09-16,0.0,0.0,0.0,0.0,True,2025-09-13,Support,0.0,0.0
+CUST_1500,Account_1500,ENT,Business,2024-11-13,30521.17,0.0,0.0,722.55,False,,,30521.17,0.977

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "revops"
+version = "0.1.0"
+description = "Revenue Operations analytics toolkit with Streamlit dashboard"
+authors = [
+    { name = "RevOps Team", email = "revops@example.com" }
+]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "streamlit>=1.37",
+    "plotly>=5.18",
+    "pydantic>=2.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

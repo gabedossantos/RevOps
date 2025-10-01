@@ -1,0 +1,40 @@
+benchmark_id,metric_type,category,subcategory,target_value,min_value,max_value,unit,description
+BENCH_001,channel_cpl_range,Google Ads,SMB,25.0,15.0,50.0,currency,Channel Cpl Range benchmark for SMB
+BENCH_002,channel_cpl_range,Google Ads,MM,45.0,25.0,80.0,currency,Channel Cpl Range benchmark for MM
+BENCH_003,channel_cpl_range,Google Ads,ENT,100.0,50.0,200.0,currency,Channel Cpl Range benchmark for ENT
+BENCH_004,channel_cpl_range,Facebook Ads,SMB,20.0,10.0,35.0,currency,Channel Cpl Range benchmark for SMB
+BENCH_005,channel_cpl_range,Facebook Ads,MM,35.0,20.0,60.0,currency,Channel Cpl Range benchmark for MM
+BENCH_006,channel_cpl_range,LinkedIn,ENT,150.0,75.0,300.0,currency,Channel Cpl Range benchmark for ENT
+BENCH_007,stage_conversion_benchmarks,SMB,SMB,0.65,0.52,0.78,percentage,Stage Conversion Benchmarks benchmark for SMB
+BENCH_008,stage_conversion_benchmarks,MM,MM,0.6,0.48,0.72,percentage,Stage Conversion Benchmarks benchmark for MM
+BENCH_009,stage_conversion_benchmarks,ENT,ENT,0.55,0.44000000000000006,0.66,percentage,Stage Conversion Benchmarks benchmark for ENT
+BENCH_010,stage_conversion_benchmarks,SMB,SMB,0.3,0.24,0.36,percentage,Stage Conversion Benchmarks benchmark for SMB
+BENCH_011,stage_conversion_benchmarks,MM,MM,0.25,0.2,0.3,percentage,Stage Conversion Benchmarks benchmark for MM
+BENCH_012,stage_conversion_benchmarks,ENT,ENT,0.2,0.16000000000000003,0.24,percentage,Stage Conversion Benchmarks benchmark for ENT
+BENCH_013,stage_conversion_benchmarks,SMB,SMB,0.8,0.6400000000000001,0.96,percentage,Stage Conversion Benchmarks benchmark for SMB
+BENCH_014,stage_conversion_benchmarks,MM,MM,0.75,0.6000000000000001,0.8999999999999999,percentage,Stage Conversion Benchmarks benchmark for MM
+BENCH_015,stage_conversion_benchmarks,ENT,ENT,0.7,0.5599999999999999,0.84,percentage,Stage Conversion Benchmarks benchmark for ENT
+BENCH_016,stage_conversion_benchmarks,SMB,SMB,0.6,0.48,0.72,percentage,Stage Conversion Benchmarks benchmark for SMB
+BENCH_017,stage_conversion_benchmarks,MM,MM,0.55,0.44000000000000006,0.66,percentage,Stage Conversion Benchmarks benchmark for MM
+BENCH_018,stage_conversion_benchmarks,ENT,ENT,0.5,0.4,0.6,percentage,Stage Conversion Benchmarks benchmark for ENT
+BENCH_019,stage_conversion_benchmarks,SMB,SMB,0.45,0.36000000000000004,0.54,percentage,Stage Conversion Benchmarks benchmark for SMB
+BENCH_020,stage_conversion_benchmarks,MM,MM,0.4,0.32000000000000006,0.48,percentage,Stage Conversion Benchmarks benchmark for MM
+BENCH_021,stage_conversion_benchmarks,ENT,ENT,0.35,0.27999999999999997,0.42,percentage,Stage Conversion Benchmarks benchmark for ENT
+BENCH_022,stage_conversion_benchmarks,SMB,SMB,0.65,0.52,0.78,percentage,Stage Conversion Benchmarks benchmark for SMB
+BENCH_023,stage_conversion_benchmarks,MM,MM,0.6,0.48,0.72,percentage,Stage Conversion Benchmarks benchmark for MM
+BENCH_024,stage_conversion_benchmarks,ENT,ENT,0.55,0.44000000000000006,0.66,percentage,Stage Conversion Benchmarks benchmark for ENT
+BENCH_025,sales_cycle_by_segment,SMB,SMB,60.0,30.0,90.0,days,Sales Cycle By Segment benchmark for SMB
+BENCH_026,sales_cycle_by_segment,MM,MM,120.0,90.0,180.0,days,Sales Cycle By Segment benchmark for MM
+BENCH_027,sales_cycle_by_segment,ENT,ENT,240.0,180.0,360.0,days,Sales Cycle By Segment benchmark for ENT
+BENCH_028,nrr_targets,SMB,SMB,1.05,0.95,1.15,number,Nrr Targets benchmark for SMB
+BENCH_029,nrr_targets,MM,MM,1.08,1.0,1.2,number,Nrr Targets benchmark for MM
+BENCH_030,nrr_targets,ENT,ENT,1.12,1.05,1.25,number,Nrr Targets benchmark for ENT
+BENCH_031,ltv_cac_targets,SMB,SMB,3.0,2.5,5.0,ratio,Ltv Cac Targets benchmark for SMB
+BENCH_032,ltv_cac_targets,MM,MM,4.0,3.0,6.0,ratio,Ltv Cac Targets benchmark for MM
+BENCH_033,ltv_cac_targets,ENT,ENT,5.0,3.5,8.0,ratio,Ltv Cac Targets benchmark for ENT
+BENCH_034,win_rate_targets,SMB,SMB,0.25,0.2,0.35,percentage,Win Rate Targets benchmark for SMB
+BENCH_035,win_rate_targets,MM,MM,0.2,0.15,0.3,percentage,Win Rate Targets benchmark for MM
+BENCH_036,win_rate_targets,ENT,ENT,0.15,0.1,0.25,percentage,Win Rate Targets benchmark for ENT
+BENCH_037,cac_payback_targets,SMB,SMB,12.0,6.0,18.0,days,Cac Payback Targets benchmark for SMB
+BENCH_038,cac_payback_targets,MM,MM,18.0,12.0,24.0,days,Cac Payback Targets benchmark for MM
+BENCH_039,cac_payback_targets,ENT,ENT,24.0,18.0,36.0,days,Cac Payback Targets benchmark for ENT
