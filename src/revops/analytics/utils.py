@@ -14,6 +14,7 @@ class FilterSet:
     segments: Optional[Iterable[str]] = None
     channels: Optional[Iterable[str]] = None
     geo: Optional[Iterable[str]] = None
+    plans: Optional[Iterable[str]] = None
 
     def apply(self, df: pd.DataFrame, *, date_column: str = "date") -> pd.DataFrame:
         filtered = df.copy()
@@ -31,6 +32,8 @@ class FilterSet:
             filtered = filtered[filtered["channel"].isin(self.channels)]
         if self.geo and "geo" in filtered.columns:
             filtered = filtered[filtered["geo"].isin(self.geo)]
+        if self.plans and "plan" in filtered.columns:
+            filtered = filtered[filtered["plan"].isin(self.plans)]
 
         return filtered
 

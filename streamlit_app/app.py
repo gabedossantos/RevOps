@@ -6,7 +6,7 @@ from datetime import date
 from html import escape
 from textwrap import dedent
 from pathlib import Path
-from typing import Optional, Sequence
+from typing import Any, Optional, Sequence
 
 import pandas as pd
 import plotly.express as px
@@ -58,15 +58,45 @@ def load_data() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     )
 
 
-def build_filters(marketing_df: pd.DataFrame) -> FilterSet:
-    """Render global filters in the sidebar and return the current selection."""
-    all_dates = pd.to_datetime(marketing_df["date"]).dt.date
-    min_date, max_date = all_dates.min(), all_dates.max()
+def build_filters(
+    *,
+    active_tab: str,
+    marketing_df: pd.DataFrame,
+    pipeline_df: pd.DataFrame,
+    revenue_df: pd.DataFrame,
+) -> tuple[FilterSet, dict[str, Any]]:
+    """Render tab-specific signal controls in the sidebar and return the current selection."""
+
+    config = TAB_FILTER_CONFIG.get(active_tab, TAB_FILTER_CONFIG["Marketing"])
+    controls = config.get("controls", set())
+
+    dataset_map = {
+        "marketing": marketing_df,
+        "pipeline": pipeline_df,
+        "revenue": revenue_df,
+    }
+
+    date_series: list[pd.Series] = []
+    for source_name, column in config.get("date_sources", []):
+        source_df = dataset_map.get(source_name)
+        if source_df is None or column not in source_df.columns:
+            continue
+        date_series.append(pd.to_datetime(source_df[column]).dt.date)
+
+    if date_series:
+        combined_dates = pd.concat([pd.Series(series) for series in date_series], ignore_index=True)
+        min_date = combined_dates.min()
+        max_date = combined_dates.max()
+    else:
+        today = date.today()
+        min_date = max_date = today
+
+    key_prefix = active_tab.lower().replace(" ", "_")
 
     st.sidebar.markdown(
         """
         <div class="sidebar-title">Signal Controls</div>
-        <p class="sidebar-subtitle">Tune cohorts, regions, and activity windows to reframe performance narratives.</p>
+        <p class="sidebar-subtitle">Tune the active view without juggling unused filters.</p>
         """,
         unsafe_allow_html=True,
     )
@@ -76,47 +106,91 @@ def build_filters(marketing_df: pd.DataFrame) -> FilterSet:
         value=min_date,
         min_value=min_date,
         max_value=max_date,
-        key="global_start",
+        key=_tab_key(active_tab, "start"),
     )
     end = st.sidebar.date_input(
         "End date",
         value=max_date,
         min_value=min_date,
         max_value=max_date,
-        key="global_end",
+        key=_tab_key(active_tab, "end"),
     )
 
-    segments = sorted(marketing_df["segment"].unique())
-    selected_segments = st.sidebar.multiselect(
-        "Segments",
-        options=segments,
-        default=segments,
-        key="segments_filter",
-    )
+    selected_segments: Optional[list[str]] = None
+    if "segments" in controls:
+        segment_values: set[str] = set()
+        for source_name in config.get("segment_sources", []):
+            source_df = dataset_map.get(source_name)
+            if source_df is None or "segment" not in source_df.columns:
+                continue
+            segment_values.update(source_df["segment"].dropna().astype(str).unique())
+        segment_options = sorted(segment_values)
+        if segment_options:
+            selected_segments = st.sidebar.multiselect(
+                "Segments",
+                options=segment_options,
+                default=segment_options,
+                key=_tab_key(active_tab, "segments"),
+            )
+        else:
+            selected_segments = []
 
-    channels = sorted(marketing_df["channel"].unique())
-    selected_channels = st.sidebar.multiselect(
-        "Channels",
-        options=channels,
-        default=channels[:4],
-        key="channels_filter",
-    )
+    selected_plans: Optional[list[str]] = None
+    if "plans" in controls and "plan" in revenue_df.columns:
+        plan_options = sorted(revenue_df["plan"].dropna().astype(str).unique())
+        if plan_options:
+            selected_plans = st.sidebar.multiselect(
+                "Plans",
+                options=plan_options,
+                default=plan_options,
+                key=_tab_key(active_tab, "plans"),
+            )
+        else:
+            selected_plans = []
 
-    geo = sorted(marketing_df["geo"].unique())
-    selected_geo = st.sidebar.multiselect(
-        "Regions",
-        options=geo,
-        default=geo,
-        key="geo_filter",
-    )
+    selected_channels: Optional[list[str]] = None
+    if "channels" in controls and "channel" in marketing_df.columns:
+        channel_options = sorted(marketing_df["channel"].dropna().astype(str).unique())
+        default_channels = channel_options[:4] if channel_options else []
+        selected_channels = st.sidebar.multiselect(
+            "Channels",
+            options=channel_options,
+            default=default_channels,
+            key=_tab_key(active_tab, "channels"),
+        )
 
-    return FilterSet(
+    selected_geo: Optional[list[str]] = None
+    if "geo" in controls and "geo" in marketing_df.columns:
+        geo_options = sorted(marketing_df["geo"].dropna().astype(str).unique())
+        selected_geo = st.sidebar.multiselect(
+            "Regions",
+            options=geo_options,
+            default=geo_options,
+            key=_tab_key(active_tab, "geo"),
+        )
+
+    customer_view_mode: Optional[str] = None
+    if "customer_view" in controls:
+        customer_view_mode = st.sidebar.radio(
+            "Customer performance view",
+            options=("Segment", "Plan"),
+            key=_tab_key(active_tab, "customer_view"),
+        )
+
+    filters = FilterSet(
         start_date=start if isinstance(start, date) else min_date,
         end_date=end if isinstance(end, date) else max_date,
-        segments=selected_segments or None,
-        channels=selected_channels or None,
-        geo=selected_geo or None,
+        segments=(selected_segments or None) if "segments" in controls else None,
+        channels=(selected_channels or None) if "channels" in controls else None,
+        geo=(selected_geo or None) if "geo" in controls else None,
+        plans=(selected_plans or None) if "plans" in controls else None,
     )
+
+    extras: dict[str, Any] = {}
+    if customer_view_mode is not None:
+        extras["customer_view_mode"] = customer_view_mode
+
+    return filters, extras
 
 
 def select_theme() -> str:
@@ -170,6 +244,64 @@ def apply_compact_margins(
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
     )
+
+
+TAB_FILTER_CONFIG: dict[str, dict] = {
+    "Marketing": {
+        "date_sources": [("marketing", "date")],
+        "segment_sources": ["marketing"],
+        "controls": {"segments", "channels", "geo"},
+    },
+    "Pipeline": {
+        "date_sources": [("pipeline", "created_at")],
+        "segment_sources": ["pipeline"],
+        "controls": {"segments"},
+    },
+    "Revenue": {
+        "date_sources": [("revenue", "start_date")],
+        "segment_sources": ["revenue"],
+        "controls": {"segments", "plans"},
+    },
+    "Cohort Analysis": {
+        "date_sources": [("revenue", "start_date")],
+        "segment_sources": ["revenue"],
+        "controls": {"segments", "plans"},
+    },
+    "Customer Segment": {
+        "date_sources": [("revenue", "start_date")],
+        "segment_sources": ["revenue"],
+        "controls": {"segments", "plans", "customer_view"},
+    },
+    "MRR Waterfall": {
+        "date_sources": [("revenue", "start_date")],
+        "segment_sources": ["revenue"],
+        "controls": {"segments", "plans"},
+    },
+    "AI Co-Pilot": {
+        "date_sources": [
+            ("marketing", "date"),
+            ("pipeline", "created_at"),
+            ("revenue", "start_date"),
+        ],
+        "segment_sources": ["marketing", "pipeline", "revenue"],
+        "controls": {"segments", "channels", "geo", "plans"},
+    },
+}
+
+
+def _tab_key(active_tab: str, suffix: str) -> str:
+    slug = active_tab.lower().replace(" ", "_")
+    return f"{slug}_{suffix}"
+
+
+def render_tab_navigation(tab_titles: list[str], active_tab: str) -> str:
+    columns = st.columns(len(tab_titles))
+    for title, column in zip(tab_titles, columns):
+        button_type = "primary" if title == active_tab else "secondary"
+        if column.button(title, key=_tab_key(title, "nav"), type=button_type):
+            st.session_state["active_tab"] = title
+            st.rerun()
+    return st.session_state.get("active_tab", active_tab)
 
 
 
@@ -1073,45 +1205,68 @@ def render_ai_tab(
 
 
 
-def render_revenue_new_tab(revenue_df: pd.DataFrame) -> None:
+def render_cohort_analysis_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
     import plotly.graph_objects as go
-    # import numpy as np
+
     st.subheader("Revenue Cohort Analysis")
 
+    # Respect global filters but ignore geography for this tab
+    tab_filters = FilterSet(
+        start_date=filters.start_date,
+        end_date=filters.end_date,
+        segments=filters.segments,
+        channels=filters.channels,
+        geo=None,
+        plans=filters.plans,
+    )
+    df = tab_filters.apply(revenue_df, date_column="start_date").copy()
+
+    if df.empty:
+        st.info("No revenue data matches the current Signal Controls.")
+        return
+
     # --- Cohort Heatmap ---
-    # Try to build cohort matrix from data, else fallback to sample
-    df = revenue_df.copy()
-    df['start_date'] = pd.to_datetime(df['start_date'])
-    df['churn_date'] = pd.to_datetime(df['churn_date'], errors='coerce')
-    df['cohort'] = df['start_date'].dt.to_period('M').astype(str)
-    # Only use customers with a start_date
-    df = df[~df['start_date'].isna()]
-    # Build retention matrix: for each cohort, what % remain each month
-    cohorts = sorted(df['cohort'].unique())
+    df["start_date"] = pd.to_datetime(df["start_date"])
+    df["churn_date"] = pd.to_datetime(df["churn_date"], errors="coerce")
+    df = df[~df["start_date"].isna()]
+
+    if df.empty:
+        st.info("Not enough cohort data after filtering by segment and plan.")
+        return
+
+    df["cohort"] = df["start_date"].dt.to_period("M").astype(str)
+    cohorts = sorted(df["cohort"].unique())
     max_months = 12
     month_labels = [f"M{i}" for i in range(max_months)]
+
+    as_of_date = pd.Timestamp(filters.end_date) if filters.end_date else pd.Timestamp.today()
+
     def months_between(start, end):
         return (end.year - start.year) * 12 + (end.month - start.month)
-    retention_matrix = []
+
+    retention_matrix: list[list[float]] = []
     for cohort in cohorts:
-        cohort_df = df[df['cohort'] == cohort].copy()
+        cohort_df = df[df["cohort"] == cohort].copy()
         if cohort_df.empty:
-            retention_matrix.append([np.nan]*max_months)
+            retention_matrix.append([np.nan] * max_months)
             continue
-        cohort_start = pd.to_datetime(cohort + '-01')
-        cohort_df['months_since'] = cohort_df['churn_date'].fillna(pd.Timestamp.today()).apply(
-            lambda d: months_between(cohort_start, d)
-        )
+
+        cohort_start = pd.to_datetime(f"{cohort}-01")
+        cohort_df["effective_end"] = cohort_df["churn_date"].fillna(as_of_date)
+        cohort_df["months_since"] = cohort_df["effective_end"].apply(lambda d: months_between(cohort_start, d))
+
         base_count = len(cohort_df)
-        row = []
-        for m in range(max_months):
-            still_active = ((cohort_df['churned_flag'] == False) | (cohort_df['months_since'] >= m)).sum()
+        row: list[float] = []
+        for month_index in range(max_months):
+            still_active = (
+                (cohort_df["churned_flag"] == False)
+                | (cohort_df["months_since"] >= month_index)
+            ).sum()
             pct = 100 * still_active / base_count if base_count else np.nan
             row.append(round(pct, 1))
         retention_matrix.append(row)
 
-    # If not enough data, fallback to sample
-    if np.isnan(np.array(retention_matrix)).all():
+    if not retention_matrix or np.isnan(np.array(retention_matrix)).all():
         cohorts = [
             "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03",
             "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09",
@@ -1138,50 +1293,67 @@ def render_revenue_new_tab(revenue_df: pd.DataFrame) -> None:
             [100, 88, 81, 75, 71, 68, 65, 62, 59, 57, 55, 53]
         ]
 
-    fig = go.Figure(data=go.Heatmap(
-        z=retention_matrix,
-        x=month_labels,
-        y=cohorts,
-        colorscale='Blues',
-        reversescale=False,
-        showscale=True,
-        colorbar=dict(title="Retention %"),
-        hovertemplate='Cohort: %{y}<br>Month: %{x}<br>Retention: %{z}%<extra></extra>'
-    ))
-    fig.update_layout(
-        title='Revenue Cohort Analysis',
-        xaxis_title='Months Since',
-        yaxis_title='Cohort',
+    heatmap = go.Figure(
+        data=go.Heatmap(
+            z=retention_matrix,
+            x=month_labels,
+            y=cohorts,
+            colorscale="Blues",
+            reversescale=False,
+            showscale=True,
+            colorbar=dict(title="Retention %"),
+            hovertemplate="Cohort: %{y}<br>Month: %{x}<br>Retention: %{z}%<extra></extra>",
+        )
     )
-    fig.update_xaxes(side='bottom')
-    fig.update_yaxes(autorange='reversed')
-    st.plotly_chart(fig, use_container_width=True)
+    heatmap.update_layout(
+        title="Retention by Cohort",
+        xaxis_title="Months Since Start",
+        yaxis_title="Cohort",
+    )
+    heatmap.update_xaxes(side="bottom")
+    heatmap.update_yaxes(autorange="reversed")
+    apply_compact_margins(heatmap, top=60, left=60, right=28, bottom=40)
+    st.plotly_chart(heatmap, use_container_width=True)
 
     # --- Summary Table ---
     st.markdown("### Revenue Data Summary")
-    # Unique segments/plans
-    st.write("**Unique segments:**", sorted(df['segment'].dropna().unique()))
-    st.write("**Unique plans:**", sorted(df['plan'].dropna().unique()))
-    # Churn rate
-    churn_rate = df['churned_flag'].mean()
-    st.write(f"**Churn rate:** {churn_rate:.2%}")
-    # Date ranges
-    st.write(f"**Start dates range:** {df['start_date'].min().date()} to {df['start_date'].max().date()}")
-    if df['churn_date'].notna().any():
-        st.write(f"**Churn dates range:** {df['churn_date'].min().date()} to {df['churn_date'].max().date()}")
-    # Churn reasons
+
+    info_columns = st.columns(3)
+    churn_rate = df["churned_flag"].mean()
+    distinct_segments = sorted(df["segment"].dropna().unique())
+    distinct_plans = sorted(df["plan"].dropna().unique())
+    info_columns[0].metric("Distinct Segments", len(distinct_segments))
+    info_columns[1].metric("Distinct Plans", len(distinct_plans))
+    info_columns[2].metric("Churn Rate", f"{churn_rate:.2%}")
+
+    st.write(
+        f"**Start dates range:** {df['start_date'].min().date()} ➜ {df['start_date'].max().date()}"
+    )
+    if df["churn_date"].notna().any():
+        st.write(
+            f"**Churn dates range:** {df['churn_date'].min().date()} ➜ {df['churn_date'].max().date()}"
+        )
+
     st.write("**Churn reasons:**")
-    st.dataframe(df['churn_reason'].value_counts().reset_index().rename(columns={'index':'Reason','churn_reason':'Count'}))
-    # MRR by segment/plan
+    churn_reason_counts = (
+        df[df["churned_flag"]]["churn_reason"].value_counts().reset_index().rename(
+            columns={"index": "Reason", "churn_reason": "Count"}
+        )
+    )
+    st.dataframe(churn_reason_counts, use_container_width=True)
+
     st.write("**MRR by segment:**")
-    st.dataframe(df.groupby('segment')['mrr'].agg(['count','mean','sum']))
+    segment_summary = df.groupby("segment")["mrr"].agg(["count", "mean", "sum"])
+    st.dataframe(segment_summary, use_container_width=True)
+
     st.write("**MRR by plan:**")
-    st.dataframe(df.groupby('plan')['mrr'].agg(['count','mean','sum']))
-    # Active/churned
-    active_customers = df[df['churned_flag'] == False]
+    plan_summary = df.groupby("plan")["mrr"].agg(["count", "mean", "sum"])
+    st.dataframe(plan_summary, use_container_width=True)
+
+    active_customers = df[~df["churned_flag"]]
     st.write(f"**Active customers:** {len(active_customers)}")
-    st.write(f"**Churned customers:** {len(df[df['churned_flag'] == True])}")
-    # NRR stats
+    st.write(f"**Churned customers:** {int(df['churned_flag'].sum())}")
+
     st.write("**NRR statistics:**")
     st.write(f"Mean NRR: {df['nrr'].mean():.3f}")
     st.write(f"Median NRR: {df['nrr'].median():.3f}")
@@ -1190,26 +1362,39 @@ def render_revenue_new_tab(revenue_df: pd.DataFrame) -> None:
     st.write(f"NRR < 1.0 (contracting/churned customers): {(df['nrr'] < 1.0).sum()}")
 
 
-def render_waterfall_chart_tab(revenue_df: pd.DataFrame) -> None:
+def render_customer_segment_tab(
+    revenue_df: pd.DataFrame,
+    filters: FilterSet,
+    *,
+    view_mode: str = "Segment",
+) -> None:
     import plotly.graph_objects as go
 
-    st.subheader("Segment Waterfall Dashboard")
+    st.subheader("Customer Segment Dashboard")
 
-    if revenue_df.empty:
-        st.info("No revenue data available to render segment performance.")
+    tab_filters = FilterSet(
+        start_date=filters.start_date,
+        end_date=filters.end_date,
+        segments=filters.segments,
+        channels=filters.channels,
+        geo=None,
+        plans=filters.plans,
+    )
+    df = tab_filters.apply(revenue_df, date_column="start_date").copy()
+
+    if df.empty:
+        st.info("No revenue data matches the current Signal Controls.")
         return
 
-    segment_map = {
-        "ENT": "Enterprise",
-        "MM": "Mid-Market",
-        "SMB": "SMB",
-    }
+    dimension = "segment" if view_mode == "Segment" else "plan"
+    dimension_label = "Segment" if view_mode == "Segment" else "Plan"
 
-    df = revenue_df.copy()
-    df["segment_label"] = df["segment"].map(segment_map).fillna(df["segment"].astype(str))
+    if dimension not in df.columns or df[dimension].dropna().empty:
+        st.warning(f"No {dimension_label.lower()} data available for the current Signal Controls.")
+        return
 
     grouped = (
-        df.groupby("segment_label")
+        df.groupby(dimension)
         .agg(
             mrr_sum=("mrr", "sum"),
             customer_count=("customer_id", "nunique"),
@@ -1220,25 +1405,23 @@ def render_waterfall_chart_tab(revenue_df: pd.DataFrame) -> None:
             new_total=("new_mrr", "sum"),
         )
         .reset_index()
+        .sort_values("mrr_sum", ascending=False)
     )
 
     if grouped.empty:
-        st.info("Segment aggregation returned no records.")
+        st.info("Unable to aggregate performance for the selected filters.")
         return
 
-    grouped.sort_values("mrr_sum", ascending=False, inplace=True)
+    categories = grouped[dimension].astype(str).tolist()
+    mrr_millions = grouped["mrr_sum"].div(1_000_000).round(3)
+    nrr_percent = grouped["nrr_mean"].fillna(0).mul(100).round(1)
+    churn_percent = grouped["churn_rate"].fillna(0).mul(100).round(1)
+    customer_count = grouped["customer_count"].astype(int)
 
-    segments = grouped["segment_label"].tolist()
-    mrr_millions = grouped["mrr_sum"].div(1_000_000).round(3).tolist()
-    nrr_percent = grouped["nrr_mean"].fillna(0).mul(100).round(1).tolist()
-    churn_percent = grouped["churn_rate"].fillna(0).mul(100).round(1).tolist()
-    customer_count = grouped["customer_count"].astype(int).tolist()
-
-    fig = go.Figure()
-
-    fig.add_trace(
+    chart = go.Figure()
+    chart.add_trace(
         go.Bar(
-            x=segments,
+            x=categories,
             y=mrr_millions,
             name="MRR ($M)",
             customdata=customer_count,
@@ -1248,10 +1431,9 @@ def render_waterfall_chart_tab(revenue_df: pd.DataFrame) -> None:
             marker_color="#1FB8CD",
         )
     )
-
-    fig.add_trace(
+    chart.add_trace(
         go.Scatter(
-            x=segments,
+            x=categories,
             y=nrr_percent,
             mode="lines+markers",
             name="NRR (%)",
@@ -1261,10 +1443,9 @@ def render_waterfall_chart_tab(revenue_df: pd.DataFrame) -> None:
             yaxis="y2",
         )
     )
-
-    fig.add_trace(
+    chart.add_trace(
         go.Scatter(
-            x=segments,
+            x=categories,
             y=churn_percent,
             mode="lines+markers",
             name="Churn (%)",
@@ -1275,54 +1456,137 @@ def render_waterfall_chart_tab(revenue_df: pd.DataFrame) -> None:
         )
     )
 
-    fig.update_layout(
-        title="Segment Performance Dashboard",
-        xaxis_title="Segment",
+    chart.update_layout(
+        title=f"{dimension_label} Performance",
+        xaxis_title=dimension_label,
         yaxis=dict(title="MRR ($ millions)", rangemode="tozero"),
         yaxis2=dict(title="Rate (%)", overlaying="y", side="right", rangemode="tozero"),
         legend=dict(orientation="h", yanchor="bottom", y=1.04, xanchor="center", x=0.5),
         margin=dict(t=70, b=40, l=60, r=60),
         hovermode="x unified",
     )
+    chart.update_traces(cliponaxis=False)
+    st.plotly_chart(chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
 
-    fig.update_traces(cliponaxis=False)
-
-    st.plotly_chart(fig, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
-
-    st.markdown("### Segment Summary Table")
+    st.markdown(f"### {dimension_label} Summary Table")
     summary = grouped.assign(
-        mrr_sum=lambda d: d["mrr_sum"].map(lambda value: f"${value:,.0f}"),
-        expansion_total=lambda d: d["expansion_total"].map(lambda value: f"${value:,.0f}"),
-        contraction_total=lambda d: d["contraction_total"].map(lambda value: f"${value:,.0f}"),
-        new_total=lambda d: d["new_total"].map(lambda value: f"${value:,.0f}"),
-        nrr_mean=lambda d: d["nrr_mean"].map(lambda value: f"{value:.3f}"),
-        churn_rate=lambda d: d["churn_rate"].map(lambda value: f"{value:.2%}"),
+        Total_MRR=lambda d: d["mrr_sum"].map(lambda value: f"${value:,.0f}"),
+        Customers=lambda d: d["customer_count"].astype(int),
+        Avg_NRR=lambda d: d["nrr_mean"].fillna(0).map(lambda value: f"{value:.3f}"),
+        Churn_Rate=lambda d: d["churn_rate"].fillna(0).map(lambda value: f"{value:.2%}"),
+        Expansion_MRR=lambda d: d["expansion_total"].map(lambda value: f"${value:,.0f}"),
+        Contraction_MRR=lambda d: d["contraction_total"].map(lambda value: f"${value:,.0f}"),
+        New_MRR=lambda d: d["new_total"].map(lambda value: f"${value:,.0f}"),
     )
-    summary = summary.rename(
-        columns={
-            "segment_label": "Segment",
-            "mrr_sum": "Total MRR",
-            "customer_count": "Customers",
-            "nrr_mean": "Avg NRR",
-            "churn_rate": "Churn Rate",
-            "expansion_total": "Expansion MRR",
-            "contraction_total": "Contraction MRR",
-            "new_total": "New MRR",
+
+    summary = summary.rename(columns={dimension: dimension_label})
+    display_columns = [
+        dimension_label,
+        "Customers",
+        "Total_MRR",
+        "New_MRR",
+        "Expansion_MRR",
+        "Contraction_MRR",
+        "Avg_NRR",
+        "Churn_Rate",
+    ]
+    st.dataframe(summary[display_columns], use_container_width=True)
+
+
+def render_mrr_waterfall_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
+    import plotly.graph_objects as go
+
+    st.subheader("MRR Waterfall Overview")
+
+    filtered = filters.apply(revenue_df, date_column="start_date")
+
+    if filtered.empty:
+        st.info("No revenue data available for the current Signal Controls.")
+        return
+
+    ending_mrr = float(filtered["mrr"].sum())
+    new_mrr_total = float(filtered["new_mrr"].sum())
+    expansion_total = float(filtered["expansion_mrr"].sum())
+    contraction_total = float(filtered["contraction_mrr"].sum())
+    churned_total = float(filtered.loc[filtered["churned_flag"], "mrr"].sum())
+
+    starting_mrr = ending_mrr - new_mrr_total - expansion_total + contraction_total + churned_total
+    starting_mrr = max(starting_mrr, 0.0)
+
+    categories = [
+        "Start MRR",
+        "New MRR",
+        "Expansion",
+        "Contraction",
+        "Churned",
+        "End MRR",
+    ]
+
+    values = [
+        starting_mrr,
+        new_mrr_total,
+        expansion_total,
+        -contraction_total,
+        -churned_total,
+        ending_mrr,
+    ]
+
+    measures = ["absolute", "relative", "relative", "relative", "relative", "total"]
+
+    def format_value(val: float) -> str:
+        abs_val = abs(val)
+        if abs_val >= 1_000_000:
+            return f"{val / 1_000_000:.1f}m"
+        if abs_val >= 1_000:
+            return f"{val / 1_000:.1f}k"
+        return f"{val:.0f}"
+
+    waterfall = go.Figure(
+        go.Waterfall(
+            name="MRR Movement",
+            orientation="v",
+            measure=measures,
+            x=categories,
+            y=values,
+            textposition="outside",
+            text=[format_value(value) for value in values],
+            connector={"line": {"color": "rgba(148, 163, 184, 0.7)"}},
+            increasing={"marker": {"color": "#2E8B57"}},
+            decreasing={"marker": {"color": "#DB4545"}},
+            totals={"marker": {"color": "#1FB8CD"}},
+            hovertemplate="<b>%{x}</b><br>$%{y:,.0f}<extra></extra>",
+        )
+    )
+
+    waterfall.update_layout(
+        title="SaaS Revenue Waterfall",
+        yaxis_title="MRR ($)",
+        xaxis_title="Components",
+        yaxis=dict(tickformat=".2s"),
+    )
+    apply_compact_margins(waterfall, top=60, left=60, right=20, bottom=40)
+    st.plotly_chart(waterfall, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
+
+    contribution_table = pd.DataFrame(
+        {
+            "Component": categories,
+            "Amount": [
+                starting_mrr,
+                new_mrr_total,
+                expansion_total,
+                -contraction_total,
+                -churned_total,
+                ending_mrr,
+            ],
         }
     )
-    summary_display = summary[
-        [
-            "Segment",
-            "Customers",
-            "Total MRR",
-            "New MRR",
-            "Expansion MRR",
-            "Contraction MRR",
-            "Avg NRR",
-            "Churn Rate",
-        ]
-    ]
-    st.dataframe(summary_display, use_container_width=True)
+    contribution_table["Amount"] = contribution_table["Amount"].map(lambda value: f"${value:,.0f}")
+    st.markdown("### Contribution Breakdown")
+    st.dataframe(contribution_table, hide_index=True, use_container_width=True)
+
+    st.caption(
+        "Each bar highlights how new wins, expansions, contractions, and churn reshape recurring revenue across the filtered period."
+    )
 
 
 def main() -> None:
@@ -1330,7 +1594,29 @@ def main() -> None:
 
     theme_name = select_theme()
     marketing_df, pipeline_df, revenue_df = load_data()
-    filters = build_filters(marketing_df)
+
+    tab_titles = [
+        "Marketing",
+        "Pipeline",
+        "Revenue",
+        "Cohort Analysis",
+        "Customer Segment",
+        "MRR Waterfall",
+        "AI Co-Pilot",
+    ]
+
+    if "active_tab" not in st.session_state:
+        st.session_state["active_tab"] = tab_titles[0]
+
+    active_tab = render_tab_navigation(tab_titles, st.session_state["active_tab"])
+    st.session_state["active_tab"] = active_tab
+
+    filters, extras = build_filters(
+        active_tab=active_tab,
+        marketing_df=marketing_df,
+        pipeline_df=pipeline_df,
+        revenue_df=revenue_df,
+    )
 
     st.markdown(
         f"""
@@ -1353,26 +1639,23 @@ def main() -> None:
         unsafe_allow_html=True,
     )
 
-    marketing_tab, pipeline_tab, revenue_tab, revenue_new_tab, waterfall_tab, ai_tab = st.tabs(
-        ["Marketing", "Pipeline", "Revenue", "Revenue New", "Waterfall Chart", "AI Co-Pilot"]
-    )
-
-    with marketing_tab:
+    if active_tab == "Marketing":
         render_marketing_tab(marketing_df, filters)
-
-    with pipeline_tab:
+    elif active_tab == "Pipeline":
         render_pipeline_tab(pipeline_df, filters)
-
-    with revenue_tab:
+    elif active_tab == "Revenue":
         render_revenue_tab(revenue_df, filters)
-
-    with revenue_new_tab:
-        render_revenue_new_tab(revenue_df)
-
-    with waterfall_tab:
-        render_waterfall_chart_tab(revenue_df)
-
-    with ai_tab:
+    elif active_tab == "Cohort Analysis":
+        render_cohort_analysis_tab(revenue_df, filters)
+    elif active_tab == "Customer Segment":
+        render_customer_segment_tab(
+            revenue_df,
+            filters,
+            view_mode=extras.get("customer_view_mode", "Segment"),
+        )
+    elif active_tab == "MRR Waterfall":
+        render_mrr_waterfall_tab(revenue_df, filters)
+    elif active_tab == "AI Co-Pilot":
         render_ai_tab(marketing_df, pipeline_df, revenue_df, filters)
 
 
