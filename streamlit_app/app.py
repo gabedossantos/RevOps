@@ -196,21 +196,67 @@ def build_filters(
 def select_theme() -> str:
     """Render a sidebar selector and apply the chosen brand theme."""
 
-    options = list(AVAILABLE_THEMES.keys())
-    default_index = st.session_state.get("theme_index", options.index(DEFAULT_THEME_NAME))
-    default_index = max(0, min(default_index, len(options) - 1))
-
-    theme_name = st.sidebar.selectbox(
-        "Visual theme",
-        options=options,
-        index=default_index,
-        key="theme_selector",
-        help="Switch between modern dark, light, and the original neon styling.",
+    # Detect the browser's preferred color scheme once per session.
+    detected_scheme = components.html(
+        """
+        <script>
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        const sendTheme = (value) => {
+            const Streamlit = window.parent.Streamlit || window.Streamlit;
+            if (Streamlit) {
+                Streamlit.setComponentValue(value);
+            }
+        };
+        sendTheme(mq.matches ? 'dark' : 'light');
+        mq.addEventListener('change', (event) => {
+            sendTheme(event.matches ? 'dark' : 'light');
+        });
+        </script>
+        """,
+        height=0,
+        width=0,
     )
 
-    st.session_state["theme_index"] = options.index(theme_name)
+    if isinstance(detected_scheme, str) and detected_scheme in {"dark", "light"}:
+        st.session_state["system_theme"] = detected_scheme
+
+    options = list(AVAILABLE_THEMES.keys())
+    brand_modes = ["Light Mode", "Dark Mode"]
+
+    if "theme_name" not in st.session_state:
+        system_pref = st.session_state.get("system_theme", "dark")
+        st.session_state["theme_name"] = "Light Mode" if system_pref == "light" else DEFAULT_THEME_NAME
+
+    if st.session_state["theme_name"] not in options:
+        st.session_state["theme_name"] = DEFAULT_THEME_NAME
+
+    if "brand_theme_choice" not in st.session_state:
+        starting_theme = st.session_state["theme_name"]
+        st.session_state["brand_theme_choice"] = (
+            starting_theme if starting_theme in brand_modes else ("Light Mode" if st.session_state.get("system_theme") == "light" else "Dark Mode")
+        )
+
+    brand_theme = st.sidebar.radio(
+        "Brand mode",
+        options=brand_modes,
+        index=brand_modes.index(st.session_state["brand_theme_choice"]),
+        key="brand_theme_choice",
+        horizontal=True,
+        help="Toggle between the polished light and dark brand palettes.",
+    )
+
+    legacy_enabled = st.sidebar.checkbox(
+        "Enable Neon Pulse (Legacy)",
+        value=st.session_state.get("legacy_theme_enabled", st.session_state["theme_name"] == "Neon Pulse (Legacy)"),
+        key="legacy_theme_enabled",
+        help="Throwback neon styling for nostalgia or demos.",
+    )
+
+    theme_name = "Neon Pulse (Legacy)" if legacy_enabled else brand_theme
+    st.session_state["theme_name"] = theme_name
+
     apply_theme(theme_name)
-    st.sidebar.caption("Theme changes apply instantly for this session.")
+    st.sidebar.caption("Themes follow your system preference on first load and can be toggled anytime.")
     st.sidebar.divider()
     return theme_name
 

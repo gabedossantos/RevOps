@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Mapping, Sequence
+from typing import Literal, Mapping, Sequence
 
 import plotly.graph_objects as go
 import plotly.io as pio
@@ -15,6 +15,7 @@ class BrandTheme:
     """Brand system for the RevOps Control Center UI."""
 
     key: str = "default"
+    base: Literal["light", "dark"] = "dark"
     font_family: str = "'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
     gradient_background: str = "linear-gradient(140deg, #05070f 0%, #0b1728 45%, #25113c 100%)"
     sidebar_background: str = "rgba(10, 17, 34, 0.75)"
@@ -42,6 +43,7 @@ class BrandTheme:
 
 NEON_THEME = BrandTheme(
     key="neon",
+    base="dark",
     gradient_background="linear-gradient(140deg, #05070f 0%, #0b1728 45%, #25113c 100%)",
     sidebar_background="rgba(10, 17, 34, 0.75)",
     surface_color="rgba(15, 23, 42, 0.55)",
@@ -66,8 +68,9 @@ NEON_THEME = BrandTheme(
     ),
 )
 
-MIDNIGHT_THEME = BrandTheme(
-    key="midnight",
+DARK_THEME = BrandTheme(
+    key="dark",
+    base="dark",
     gradient_background="linear-gradient(150deg, #0B1220 0%, #111C2E 52%, #1C273A 100%)",
     sidebar_background="rgba(11, 17, 30, 0.82)",
     surface_color="rgba(18, 25, 39, 0.72)",
@@ -92,8 +95,9 @@ MIDNIGHT_THEME = BrandTheme(
     ),
 )
 
-LUMA_THEME = BrandTheme(
-    key="luma",
+LIGHT_THEME = BrandTheme(
+    key="light",
+    base="light",
     gradient_background="linear-gradient(160deg, #F4F7FB 0%, #FFFFFF 55%, #E9ECF5 100%)",
     sidebar_background="rgba(255, 255, 255, 0.94)",
     surface_color="rgba(255, 255, 255, 0.85)",
@@ -119,12 +123,12 @@ LUMA_THEME = BrandTheme(
 )
 
 AVAILABLE_THEMES: Mapping[str, BrandTheme] = {
-    "Midnight Aurora": MIDNIGHT_THEME,
-    "Luma Skyline": LUMA_THEME,
+    "Dark Mode": DARK_THEME,
+    "Light Mode": LIGHT_THEME,
     "Neon Pulse (Legacy)": NEON_THEME,
 }
 
-DEFAULT_THEME_NAME = "Midnight Aurora"
+DEFAULT_THEME_NAME = "Dark Mode"
 
 DEFAULT_PLOTLY_CONFIG: Mapping[str, object] = {
     "displayModeBar": False,
@@ -141,8 +145,10 @@ def register_plotly_template(theme: BrandTheme) -> str:
     if template_name in pio.templates:
         return template_name
 
-    grid_color = "rgba(148, 163, 184, 0.25)" if theme.key != "luma" else "rgba(148, 163, 184, 0.35)"
-    hover_bg = "rgba(15, 23, 42, 0.85)" if theme.key != "luma" else "rgba(255, 255, 255, 0.9)"
+    grid_color = (
+        "rgba(148, 163, 184, 0.35)" if theme.base == "light" else "rgba(148, 163, 184, 0.25)"
+    )
+    hover_bg = "rgba(255, 255, 255, 0.9)" if theme.base == "light" else "rgba(15, 23, 42, 0.85)"
 
     template = go.layout.Template(
         layout=dict(
@@ -202,12 +208,18 @@ def apply_plotly_theme(theme: BrandTheme) -> None:
 def inject_global_styles(theme: BrandTheme) -> None:
     """Inject global CSS overrides for a modern, AI SaaS aesthetic."""
 
+    panel_background = theme.surface_color if theme.base == "dark" else "rgba(255, 255, 255, 0.94)"
+    control_surface = "rgba(15, 23, 42, 0.72)" if theme.base == "dark" else "rgba(255, 255, 255, 0.98)"
+    control_hover = "rgba(99, 102, 241, 0.3)" if theme.base == "dark" else "rgba(37, 99, 235, 0.16)"
+    sidebar_backdrop = theme.sidebar_background if theme.base == "dark" else "rgba(255, 255, 255, 0.86)"
+
     st.markdown(
         f"""
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600&display=swap');
 
             :root {{
+                color-scheme: {theme.base};
                 --brand-surface: {theme.surface_color};
                 --brand-border: {theme.surface_border};
                 --brand-radius: {theme.border_radius};
@@ -217,6 +229,10 @@ def inject_global_styles(theme: BrandTheme) -> None:
                 --brand-accent: {theme.accent_primary};
                 --brand-accent-secondary: {theme.accent_secondary};
                 --brand-accent-tertiary: {theme.accent_tertiary};
+                --sidebar-panel-bg: {panel_background};
+                --sidebar-control-bg: {control_surface};
+                --sidebar-control-hover: {control_hover};
+                --sidebar-background: {sidebar_backdrop};
             }}
 
             html, body, [class*="css"] {{
@@ -238,13 +254,26 @@ def inject_global_styles(theme: BrandTheme) -> None:
             }}
 
             section[data-testid="stSidebar"] {{
-                background: {theme.sidebar_background};
+                background: var(--sidebar-background);
                 backdrop-filter: blur(22px);
                 border-right: 1px solid {theme.surface_border};
             }}
 
             section[data-testid="stSidebar"] * {{
                 color: {theme.text_color} !important;
+            }}
+
+            section[data-testid="stSidebar"] .block-container {{
+                background: var(--sidebar-panel-bg);
+                border-radius: calc({theme.border_radius} - 6px);
+                padding: 1.25rem 1.1rem 1.6rem;
+                border: 1px solid var(--brand-border);
+                box-shadow: var(--brand-shadow);
+                backdrop-filter: blur(18px);
+            }}
+
+            section[data-testid="stSidebar"] .block-container > *:not(:last-child) {{
+                margin-bottom: 0.9rem;
             }}
 
             div[data-testid="stSidebar"] .stMarkdown, div[data-testid="stSidebar"] .stMarkdown p {{
@@ -265,6 +294,45 @@ def inject_global_styles(theme: BrandTheme) -> None:
                 margin-bottom: 1.2rem;
             }}
 
+            section[data-testid="stSidebar"] label {{
+                color: {theme.text_color} !important;
+            }}
+
+            section[data-testid="stSidebar"] .stRadio > label,
+            section[data-testid="stSidebar"] .stCheckbox > label {{
+                color: {theme.text_color} !important;
+            }}
+
+            section[data-testid="stSidebar"] .stRadio [role="radiogroup"] label {{
+                color: {theme.text_color};
+            }}
+
+            section[data-testid="stSidebar"] .stSelectbox > div,
+            section[data-testid="stSidebar"] .stMultiSelect > div,
+            section[data-testid="stSidebar"] .stDateInput > div {{
+                background: var(--sidebar-control-bg);
+                border: 1px solid var(--brand-border);
+                border-radius: 12px;
+                box-shadow: none;
+                transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            }}
+
+            section[data-testid="stSidebar"] .stSelectbox > div:hover,
+            section[data-testid="stSidebar"] .stMultiSelect > div:hover,
+            section[data-testid="stSidebar"] .stDateInput > div:hover,
+            section[data-testid="stSidebar"] .stSelectbox > div:focus-within,
+            section[data-testid="stSidebar"] .stMultiSelect > div:focus-within,
+            section[data-testid="stSidebar"] .stDateInput > div:focus-within {{
+                border-color: {theme.accent_primary};
+                box-shadow: 0 0 0 2px var(--sidebar-control-hover);
+            }}
+
+            section[data-testid="stSidebar"] .stDateInput input,
+            section[data-testid="stSidebar"] .stMultiSelect span,
+            section[data-testid="stSidebar"] .stSelectbox span {{
+                color: {theme.text_color};
+            }}
+
             div.block-container {{
                 padding-top: 2.8rem;
                 max-width: 1180px;
@@ -278,7 +346,7 @@ def inject_global_styles(theme: BrandTheme) -> None:
             .stTabs [data-baseweb="tab"] {{
                 padding: 0.75rem 1.5rem;
                 background: {theme.surface_color};
-                border: 1px solid rgba(255,255,255,0.04);
+                border: 1px solid var(--brand-border);
                 border-radius: 999px;
                 color: {theme.muted_text};
                 font-weight: 600;
@@ -596,6 +664,13 @@ def inject_global_styles(theme: BrandTheme) -> None:
                 }}
             }}
         </style>
+        <script>
+            const body = document.body;
+            if (body) {{
+                body.dataset.themeMode = "{theme.base}";
+            }}
+            document.documentElement.dataset.themeMode = "{theme.base}";
+        </script>
         """,
         unsafe_allow_html=True,
     )
@@ -613,8 +688,8 @@ def apply_theme(theme_name: str) -> BrandTheme:
 __all__ = [
     "BrandTheme",
     "NEON_THEME",
-    "MIDNIGHT_THEME",
-    "LUMA_THEME",
+    "DARK_THEME",
+    "LIGHT_THEME",
     "AVAILABLE_THEMES",
     "DEFAULT_THEME_NAME",
     "DEFAULT_PLOTLY_CONFIG",
