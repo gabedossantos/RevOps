@@ -197,68 +197,10 @@ def build_filters(
 def select_theme() -> str:
     """Render a sidebar selector and apply the chosen brand theme."""
 
-    # Detect the browser's preferred color scheme once per session.
-    detected_scheme = components.html(
-        """
-        <script>
-        const mq = window.matchMedia('(prefers-color-scheme: dark)');
-        const sendTheme = (value) => {
-            const Streamlit = window.parent.Streamlit || window.Streamlit;
-            if (Streamlit) {
-                Streamlit.setComponentValue(value);
-            }
-        };
-        sendTheme(mq.matches ? 'dark' : 'light');
-        mq.addEventListener('change', (event) => {
-            sendTheme(event.matches ? 'dark' : 'light');
-        });
-        </script>
-        """,
-        height=0,
-        width=0,
-    )
-
-    if isinstance(detected_scheme, str) and detected_scheme in {"dark", "light"}:
-        if "system_theme" not in st.session_state:
-            st.session_state["system_theme"] = detected_scheme
-        elif st.session_state.get("theme_user_override") is not True:
-            st.session_state["system_theme"] = detected_scheme
-
-    brand_modes = ["Light Mode", "Dark Mode"]
-
-    if "theme_name" not in st.session_state:
-        system_pref = st.session_state.get("system_theme", "dark")
-        st.session_state["theme_name"] = "Light Mode" if system_pref == "light" else DEFAULT_THEME_NAME
-
-    current_theme = st.session_state.get("theme_name", DEFAULT_THEME_NAME)
-    if current_theme not in AVAILABLE_THEMES:
-        current_theme = DEFAULT_THEME_NAME
-        st.session_state["theme_name"] = current_theme
-
-    st.sidebar.markdown('<div class="theme-toggle">', unsafe_allow_html=True)
-    selected_mode = st.sidebar.radio(
-        "Choose color mode",
-        options=brand_modes,
-        index=brand_modes.index(current_theme if current_theme in brand_modes else DEFAULT_THEME_NAME),
-        key="brand_theme_choice",
-        format_func=lambda mode: "☀️  Light" if mode == "Light Mode" else "🌙  Dark",
-        horizontal=True,
-        label_visibility="collapsed",
-    )
-    st.sidebar.markdown("</div>", unsafe_allow_html=True)
-
-    if selected_mode != current_theme:
-        st.session_state["theme_user_override"] = True
-
-    theme_name = selected_mode if selected_mode in AVAILABLE_THEMES else DEFAULT_THEME_NAME
-    st.session_state["theme_name"] = theme_name
-
-    apply_theme(theme_name)
-    st.sidebar.caption(
-        "We follow your system default on first load and keep your last choice pinned until you switch back."
-    )
-    st.sidebar.divider()
-    return theme_name
+    # Hide color mode selector and always use dark mode
+    st.session_state["theme_name"] = "Dark Mode"
+    apply_theme("Dark Mode")
+    return "Dark Mode"
 
 
 def render_metric_grid(metrics: Sequence[tuple[str, str]], columns: int = 3) -> None:

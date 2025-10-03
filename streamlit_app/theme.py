@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from string import Template
+from textwrap import dedent
 from typing import Literal, Mapping, Sequence
 
 import plotly.graph_objects as go
@@ -96,6 +97,7 @@ LIGHT_THEME = BrandTheme(
     ),
 )
 
+
 AVAILABLE_THEMES: Mapping[str, BrandTheme] = {
     "Dark Mode": DARK_THEME,
     "Light Mode": LIGHT_THEME,
@@ -104,90 +106,97 @@ AVAILABLE_THEMES: Mapping[str, BrandTheme] = {
 DEFAULT_THEME_NAME = "Dark Mode"
 
 DEFAULT_PLOTLY_CONFIG: Mapping[str, object] = {
+    "displaylogo": False,
     "displayModeBar": False,
-    "scrollZoom": False,
     "responsive": True,
+    "scrollZoom": False,
 }
-"""Default Plotly configuration applied to every chart render."""
 
 
-def _surface_tokens(theme: BrandTheme) -> dict[str, str]:
-    """Return derived surface colors and borders for the active theme."""
+def _surface_tokens(theme: BrandTheme) -> Mapping[str, str]:
+    """Return derived CSS token values for the active theme."""
 
-    is_dark = theme.base == "dark"
+    if theme.base == "dark":
+        return {
+            "sidebar_panel_bg": "rgba(15, 23, 42, 0.68)",
+            "control_surface": "rgba(15, 23, 42, 0.78)",
+            "control_hover": "rgba(99, 102, 241, 0.22)",
+            "control_border": "rgba(99, 102, 241, 0.32)",
+            "sidebar_backdrop": theme.sidebar_background,
+            "card_surface": theme.surface_color,
+            "card_border": theme.surface_border,
+            "chart_surface": theme.surface_color,
+            "chart_border": theme.surface_border,
+            "metric_value_color": theme.accent_secondary,
+            "table_header_bg": "rgba(99, 102, 241, 0.22)",
+            "table_row_border": "rgba(148, 163, 184, 0.22)",
+            "toggle_track_inactive": "rgba(15, 23, 42, 0.78)",
+            "toggle_glint": theme.accent_secondary,
+        }
+
     return {
-        "sidebar_panel_bg": theme.surface_color if is_dark else "rgba(255, 255, 255, 0.98)",
-        "control_surface": "rgba(32, 42, 66, 0.82)" if is_dark else "rgba(255, 255, 255, 0.98)",
-        "control_hover": "rgba(96, 165, 250, 0.35)" if is_dark else "rgba(37, 99, 235, 0.18)",
-        "sidebar_backdrop": theme.sidebar_background if is_dark else "rgba(255, 255, 255, 0.88)",
-        "control_border": theme.surface_border if is_dark else "rgba(203, 213, 225, 0.7)",
-        "card_surface": theme.surface_color if is_dark else "rgba(255, 255, 255, 0.99)",
-        "card_border": theme.surface_border if is_dark else "rgba(203, 213, 225, 0.55)",
-        "chart_surface": "rgba(17, 24, 39, 0.78)" if is_dark else "rgba(255, 255, 255, 0.99)",
-        "chart_border": theme.surface_border if is_dark else "rgba(226, 232, 240, 0.6)",
-        "metric_value_color": theme.accent_secondary if is_dark else theme.accent_primary,
-        "table_header_bg": "rgba(96, 165, 250, 0.18)" if is_dark else "rgba(37, 99, 235, 0.12)",
-        "table_row_border": "rgba(148, 163, 184, 0.22)" if is_dark else "rgba(226, 232, 240, 0.65)",
-        "toggle_track_inactive": "rgba(99, 102, 241, 0.35)" if is_dark else "rgba(148, 163, 184, 0.4)",
-        "toggle_glint": theme.accent_secondary if is_dark else theme.accent_primary,
+        "sidebar_panel_bg": "rgba(255, 255, 255, 0.96)",
+        "control_surface": "rgba(255, 255, 255, 0.94)",
+        "control_hover": "rgba(37, 99, 235, 0.12)",
+        "control_border": "rgba(203, 213, 225, 0.75)",
+        "sidebar_backdrop": theme.sidebar_background,
+        "card_surface": theme.surface_color,
+        "card_border": theme.surface_border,
+        "chart_surface": "rgba(248, 250, 255, 0.96)",
+        "chart_border": theme.surface_border,
+        "metric_value_color": theme.accent_primary,
+        "table_header_bg": "rgba(226, 232, 240, 0.65)",
+        "table_row_border": "rgba(226, 232, 240, 0.7)",
+        "toggle_track_inactive": "rgba(226, 232, 240, 0.85)",
+        "toggle_glint": theme.accent_secondary,
     }
 
 
 def register_plotly_template(theme: BrandTheme) -> str:
-    """Register and return the custom Plotly template name."""
+    """Register and return the Plotly template name for the provided theme."""
 
     template_name = f"revops-{theme.key}"
-    if template_name in pio.templates:
-        return template_name
 
-    surfaces = _surface_tokens(theme)
-    grid_color = (
-        "rgba(148, 163, 184, 0.35)" if theme.base == "light" else "rgba(148, 163, 184, 0.25)"
-    )
-    hover_bg = "rgba(255, 255, 255, 0.9)" if theme.base == "light" else "rgba(15, 23, 42, 0.85)"
+    axis_style = {
+        "gridcolor": theme.surface_border,
+        "linecolor": theme.surface_border,
+        "zerolinecolor": theme.surface_border,
+        "title": {"font": {"color": theme.muted_text}},
+        "tickfont": {"color": theme.muted_text},
+        "ticks": "outside",
+        "automargin": True,
+    }
 
-    template = go.layout.Template(
-        layout=dict(
-            font=dict(family=theme.font_family, color=theme.text_color, size=14),
-            title=dict(font=dict(size=26, color=theme.text_color, family=theme.font_family), x=0.02),
-            paper_bgcolor=surfaces["chart_surface"],
-            plot_bgcolor=surfaces["chart_surface"],
-            colorway=list(theme.colorway),
-            legend=dict(
-                bgcolor=surfaces["chart_surface"],
-                bordercolor=surfaces["chart_border"],
-                borderwidth=1,
-                font=dict(color=theme.text_color, size=12),
-                orientation="h",
-                yanchor="bottom",
-                y=1.02,
-            ),
-            xaxis=dict(
-                gridcolor=grid_color,
-                title=dict(font=dict(color=theme.muted_text)),
-                tickfont=dict(color=theme.muted_text),
-                zerolinecolor="rgba(148, 163, 184, 0.15)",
-                showspikes=True,
-                spikemode="across",
-                spikethickness=1,
-                spikecolor=theme.accent_secondary,
-            ),
-            yaxis=dict(
-                gridcolor=grid_color,
-                title=dict(font=dict(color=theme.muted_text)),
-                tickfont=dict(color=theme.muted_text),
-                zerolinecolor="rgba(148, 163, 184, 0.15)",
-            ),
-            margin=dict(l=40, r=32, t=70, b=45),
-            hovermode="x unified",
-            hoverlabel=dict(
-                bgcolor=hover_bg,
-                bordercolor=theme.accent_primary,
-                font=dict(color=theme.text_color, family=theme.font_family, size=13),
-            ),
-        )
-    )
-    pio.templates[template_name] = template
+    layout = {
+        "font": {"family": theme.font_family, "color": theme.text_color},
+        "paper_bgcolor": theme.surface_color,
+        "plot_bgcolor": theme.surface_color,
+        "colorway": list(theme.colorway),
+        "margin": {"l": 48, "r": 32, "t": 60, "b": 40},
+        "xaxis": axis_style,
+        "yaxis": axis_style,
+        "legend": {
+            "bgcolor": theme.surface_color,
+            "bordercolor": theme.surface_border,
+            "borderwidth": 1,
+            "font": {"color": theme.muted_text},
+            "orientation": "h",
+            "x": 0,
+            "y": -0.15,
+        },
+        "hoverlabel": {
+            "bgcolor": theme.surface_color,
+            "bordercolor": theme.surface_border,
+            "font": {"color": theme.text_color, "family": theme.font_family},
+        },
+        "title": {
+            "font": {"size": 22, "family": theme.font_family, "color": theme.text_color},
+        },
+        "bargap": 0.18,
+        "bargroupgap": 0.12,
+    }
+
+    pio.templates[template_name] = go.layout.Template(layout=layout)
     return template_name
 
 
@@ -214,66 +223,144 @@ def inject_global_styles(theme: BrandTheme) -> None:
 
     mode_specific_rules = ""
     if theme.base == "light":
-        tokens_for_light = tokens
-        light_surface = tokens_for_light["card_surface"]
-        light_border = tokens_for_light["card_border"]
-        table_header_bg = tokens_for_light["table_header_bg"]
-        table_border = tokens_for_light["table_row_border"]
-        control_hover = tokens_for_light["control_hover"]
-        mode_specific_rules = f"""
+        light_surface = tokens["card_surface"]
+        light_border = tokens["card_border"]
+        chart_surface = tokens["chart_surface"]
+        chart_border = tokens["chart_border"]
+        sidebar_panel = tokens["sidebar_panel_bg"]
+        sidebar_background = tokens["sidebar_backdrop"]
+        table_header_bg = tokens["table_header_bg"]
+        table_border = tokens["table_row_border"]
+        control_surface = tokens["control_surface"]
+        control_border = tokens["control_border"]
+        control_hover = tokens["control_hover"]
+        metric_value_color = tokens["metric_value_color"]
+        mode_specific_rules = dedent(
+            f"""
+            body[data-theme-mode="light"],
             body[data-theme-mode="light"] div[data-testid="stAppViewContainer"] {{
                 background: {theme.gradient_background};
                 color: {theme.text_color};
+            }}
+
+            body[data-theme-mode="light"] ::selection {{
+                background: {accent_primary26};
+                color: {theme.text_color};
+            }}
+
+            body[data-theme-mode="light"] header[data-testid="stHeader"] {{
+                background: transparent;
+            }}
+
+            body[data-theme-mode="light"] section[data-testid="stSidebar"] {{
+                background: {sidebar_background};
+                border-right: 1px solid {light_border};
+                backdrop-filter: blur(22px);
+                box-shadow: none;
+            }}
+
+            body[data-theme-mode="light"] section[data-testid="stSidebar"] .block-container {{
+                background: {sidebar_panel};
+                border: 1px solid {light_border};
+                border-radius: calc({theme.border_radius} - 6px);
+                box-shadow: {theme.overlay_shadow};
+            }}
+
+            body[data-theme-mode="light"] section[data-testid="stSidebar"] * {{
+                color: {theme.text_color} !important;
+            }}
+
+            body[data-theme-mode="light"] section[data-testid="stSidebar"] .stMarkdown,
+            body[data-theme-mode="light"] section[data-testid="stSidebar"] .stMarkdown p {{
+                color: {theme.muted_text} !important;
+            }}
+
+            body[data-theme-mode="light"] .theme-toggle > div[role="radiogroup"] {{
+                background: {control_surface};
+                border: 1px solid {control_border};
+            }}
+
+            body[data-theme-mode="light"] .theme-toggle [role="radio"] {{
+                color: {theme.muted_text};
+            }}
+
+            body[data-theme-mode="light"] .theme-toggle [role="radio"][aria-checked="true"] {{
+                color: {theme.text_color};
+                box-shadow: 0 10px 26px rgba(37, 99, 235, 0.24);
+            }}
+
+            body[data-theme-mode="light"] .stTabs [data-baseweb="tab-list"] {{
+                border-color: {light_border};
             }}
 
             body[data-theme-mode="light"] .stTabs [data-baseweb="tab"] {{
                 background: {light_surface} !important;
                 border-color: {light_border} !important;
                 color: {theme.muted_text} !important;
+                box-shadow: none !important;
             }}
 
             body[data-theme-mode="light"] .stTabs [aria-selected="true"] {{
                 color: {theme.text_color} !important;
+                box-shadow: 0 14px 32px rgba(37, 99, 235, 0.22);
+            }}
+
+            body[data-theme-mode="light"] div[data-testid="stMetric"] {{
+                background: {light_surface};
+                border: 1px solid {light_border};
+                box-shadow: {theme.overlay_shadow};
+            }}
+
+            body[data-theme-mode="light"] div[data-testid="stMetricValue"] {{
+                color: {metric_value_color};
+            }}
+
+            body[data-theme-mode="light"] div[data-testid="stMetricLabel"] {{
+                color: {theme.muted_text} !important;
             }}
 
             body[data-theme-mode="light"] div[data-testid="stPlotlyChart"] {{
                 background: {light_surface} !important;
-                border-color: {light_border} !important;
+                border: 1px solid {chart_border} !important;
+                box-shadow: {theme.overlay_shadow};
             }}
 
             body[data-theme-mode="light"] div[data-testid="stPlotlyChart"] .plotly .bg,
             body[data-theme-mode="light"] div[data-testid="stPlotlyChart"] .plotly .cartesianlayer .bg,
             body[data-theme-mode="light"] div[data-testid="stPlotlyChart"] .plotly .legend rect,
             body[data-theme-mode="light"] div[data-testid="stPlotlyChart"] .plotly .legend path {{
-                fill: {light_surface} !important;
+                fill: {chart_surface} !important;
             }}
 
-            body[data-theme-mode="light"] div[data-testid="stDataFrame"] {{
-                background: {light_surface} !important;
-                border-color: {light_border} !important;
-                color: {theme.text_color} !important;
+            body[data-theme-mode="light"] div[data-testid="stPlotlyChart"] .plotly text {{
+                fill: {theme.text_color} !important;
             }}
 
-            body[data-theme-mode="light"] div[data-testid="stDataFrame"] table {{
-                color: {theme.text_color} !important;
-            }}
-
-            body[data-theme-mode="light"] div[data-testid="stDataFrame"] thead tr {{
-                background: {table_header_bg} !important;
-            }}
-
-            body[data-theme-mode="light"] div[data-testid="stDataFrame"] tbody td {{
-                border-color: {table_border} !important;
+            body[data-theme-mode="light"] div[data-testid="stPlotlyChart"] .hoverlayer text {{
+                fill: {theme.text_color} !important;
             }}
 
             body[data-theme-mode="light"] div[data-testid="stSelectbox"] > div,
             body[data-theme-mode="light"] div[data-testid="stMultiSelect"] > div,
-            body[data-theme-mode="light"] div[data-testid="stDateInput"] > div,
+            body[data-theme-mode="light"] div[data-testid="stDateInput"] > div {{
+                background: {light_surface} !important;
+                border: 1px solid {light_border} !important;
+                box-shadow: none !important;
+            }}
+
+            body[data-theme-mode="light"] div[data-testid="stSelectbox"] label,
+            body[data-theme-mode="light"] div[data-testid="stMultiSelect"] label,
+            body[data-theme-mode="light"] div[data-testid="stDateInput"] label {{
+                color: {theme.muted_text} !important;
+            }}
+
             body[data-theme-mode="light"] div[data-baseweb="select"],
             body[data-theme-mode="light"] div[data-baseweb="input"],
             body[data-theme-mode="light"] div[data-baseweb="datepicker"] {{
                 background: {light_surface} !important;
                 border: 1px solid {light_border} !important;
+                border-radius: 12px !important;
+                box-shadow: none !important;
                 color: {theme.text_color} !important;
             }}
 
@@ -287,10 +374,6 @@ def inject_global_styles(theme: BrandTheme) -> None:
                 background: {light_surface} !important;
                 border: 1px solid {light_border} !important;
                 box-shadow: {theme.overlay_shadow} !important;
-            }}
-
-            body[data-theme-mode="light"] div[data-baseweb="popover"] ul {{
-                background: transparent !important;
             }}
 
             body[data-theme-mode="light"] div[data-baseweb="popover"] li,
@@ -307,7 +390,7 @@ def inject_global_styles(theme: BrandTheme) -> None:
                 background: linear-gradient(135deg, {theme.accent_primary}, {theme.accent_secondary}) !important;
                 color: #f8fafc !important;
                 border: none !important;
-                box-shadow: 0px 12px 24px rgba(37, 99, 235, 0.22) !important;
+                box-shadow: 0 12px 24px rgba(37, 99, 235, 0.2) !important;
             }}
 
             body[data-theme-mode="light"] div[data-baseweb="tag"] span,
@@ -317,22 +400,99 @@ def inject_global_styles(theme: BrandTheme) -> None:
                 color: #f8fafc !important;
             }}
 
+            body[data-theme-mode="light"] button[kind="primary"],
+            body[data-theme-mode="light"] div[data-testid="stFormSubmitButton"] button {{
+                background: linear-gradient(135deg, {theme.accent_primary}, {theme.accent_secondary});
+                box-shadow: 0 16px 32px rgba(37, 99, 235, 0.28);
+                border: 1px solid transparent;
+            }}
+
             body[data-theme-mode="light"] button[kind="secondary"] {{
                 background: {light_surface} !important;
-                border-color: {light_border} !important;
+                border: 1px solid {light_border} !important;
                 color: {theme.muted_text} !important;
+                box-shadow: none !important;
             }}
 
             body[data-theme-mode="light"] button[kind="secondary"]:hover,
             body[data-theme-mode="light"] button[kind="secondary"][aria-pressed="true"] {{
                 color: {theme.text_color} !important;
                 border-color: {theme.accent_primary} !important;
+                box-shadow: 0 10px 20px rgba(37, 99, 235, 0.18) !important;
             }}
 
-            body[data-theme-mode="light"] section[data-testid="stSidebar"] {{
-                background: {theme.sidebar_background} !important;
+            body[data-theme-mode="light"] div[data-testid="stDataFrame"] {{
+                background: {light_surface};
+                border: 1px solid {light_border};
+                box-shadow: {theme.overlay_shadow};
             }}
-        """
+
+            body[data-theme-mode="light"] div[data-testid="stDataFrame"] table {{
+                color: {theme.text_color};
+            }}
+
+            body[data-theme-mode="light"] div[data-testid="stDataFrame"] thead tr {{
+                background: {table_header_bg} !important;
+            }}
+
+            body[data-theme-mode="light"] div[data-testid="stDataFrame"] tbody td {{
+                border-color: {table_border} !important;
+            }}
+
+            body[data-theme-mode="light"] div[data-testid="stDataFrame"] tbody tr:nth-child(even) {{
+                background: rgba(148, 163, 184, 0.12);
+            }}
+
+            body[data-theme-mode="light"] div[data-testid="stDataFrame"] tbody tr:hover {{
+                background: {control_hover};
+            }}
+
+            body[data-theme-mode="light"] .marketing-table__card {{
+                background: {light_surface};
+                border: 1px solid {light_border};
+                box-shadow: {theme.overlay_shadow};
+            }}
+
+            body[data-theme-mode="light"] .marketing-table tbody tr:nth-child(even) {{
+                background: rgba(148, 163, 184, 0.12);
+            }}
+
+            body[data-theme-mode="light"] .marketing-table tbody tr:hover {{
+                background: {control_hover};
+            }}
+
+            body[data-theme-mode="light"] .insight-card {{
+                background: {light_surface};
+                border: 1px solid {light_border};
+                box-shadow: {theme.overlay_shadow};
+            }}
+
+            body[data-theme-mode="light"] .insight-chip {{
+                color: {theme.accent_secondary};
+            }}
+
+            body[data-theme-mode="light"] div[data-testid="stMarkdown"] h1,
+            body[data-theme-mode="light"] div[data-testid="stMarkdown"] h2,
+            body[data-theme-mode="light"] div[data-testid="stMarkdown"] h3,
+            body[data-theme-mode="light"] .stMarkdown h1,
+            body[data-theme-mode="light"] .stMarkdown h2,
+            body[data-theme-mode="light"] .stMarkdown h3 {{
+                color: {theme.text_color};
+            }}
+
+            body[data-theme-mode="light"] .stDivider {{
+                border-top: 1px solid {light_border} !important;
+            }}
+
+            body[data-theme-mode="light"] div[data-testid="stProgressBar"] {{
+                background: linear-gradient(90deg, {accent_primary26}, {accent_secondary26});
+            }}
+
+            body[data-theme-mode="light"] div[data-testid="stProgressBar"] > div {{
+                background: linear-gradient(135deg, {theme.accent_primary}, {theme.accent_secondary});
+            }}
+            """
+        ).strip()
 
     template = Template(
         """
