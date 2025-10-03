@@ -40,6 +40,7 @@ from revops.ai.insights import generate_insights
 from revops.data import get_marketing_df, get_pipeline_df, get_revenue_df
 from streamlit_app.theme import (
     AVAILABLE_THEMES,
+    BrandTheme,
     DEFAULT_THEME_NAME,
     DEFAULT_PLOTLY_CONFIG,
     apply_theme,
@@ -218,45 +219,44 @@ def select_theme() -> str:
     )
 
     if isinstance(detected_scheme, str) and detected_scheme in {"dark", "light"}:
-        st.session_state["system_theme"] = detected_scheme
+        if "system_theme" not in st.session_state:
+            st.session_state["system_theme"] = detected_scheme
+        elif st.session_state.get("theme_user_override") is not True:
+            st.session_state["system_theme"] = detected_scheme
 
-    options = list(AVAILABLE_THEMES.keys())
     brand_modes = ["Light Mode", "Dark Mode"]
 
     if "theme_name" not in st.session_state:
         system_pref = st.session_state.get("system_theme", "dark")
         st.session_state["theme_name"] = "Light Mode" if system_pref == "light" else DEFAULT_THEME_NAME
 
-    if st.session_state["theme_name"] not in options:
-        st.session_state["theme_name"] = DEFAULT_THEME_NAME
+    current_theme = st.session_state.get("theme_name", DEFAULT_THEME_NAME)
+    if current_theme not in AVAILABLE_THEMES:
+        current_theme = DEFAULT_THEME_NAME
+        st.session_state["theme_name"] = current_theme
 
-    if "brand_theme_choice" not in st.session_state:
-        starting_theme = st.session_state["theme_name"]
-        st.session_state["brand_theme_choice"] = (
-            starting_theme if starting_theme in brand_modes else ("Light Mode" if st.session_state.get("system_theme") == "light" else "Dark Mode")
-        )
-
-    brand_theme = st.sidebar.radio(
-        "Brand mode",
+    st.sidebar.markdown('<div class="theme-toggle">', unsafe_allow_html=True)
+    selected_mode = st.sidebar.radio(
+        "Choose color mode",
         options=brand_modes,
-        index=brand_modes.index(st.session_state["brand_theme_choice"]),
+        index=brand_modes.index(current_theme if current_theme in brand_modes else DEFAULT_THEME_NAME),
         key="brand_theme_choice",
+        format_func=lambda mode: "☀️  Light" if mode == "Light Mode" else "🌙  Dark",
         horizontal=True,
-        help="Toggle between the polished light and dark brand palettes.",
+        label_visibility="collapsed",
     )
+    st.sidebar.markdown("</div>", unsafe_allow_html=True)
 
-    legacy_enabled = st.sidebar.checkbox(
-        "Enable Neon Pulse (Legacy)",
-        value=st.session_state.get("legacy_theme_enabled", st.session_state["theme_name"] == "Neon Pulse (Legacy)"),
-        key="legacy_theme_enabled",
-        help="Throwback neon styling for nostalgia or demos.",
-    )
+    if selected_mode != current_theme:
+        st.session_state["theme_user_override"] = True
 
-    theme_name = "Neon Pulse (Legacy)" if legacy_enabled else brand_theme
+    theme_name = selected_mode if selected_mode in AVAILABLE_THEMES else DEFAULT_THEME_NAME
     st.session_state["theme_name"] = theme_name
 
     apply_theme(theme_name)
-    st.sidebar.caption("Themes follow your system preference on first load and can be toggled anytime.")
+    st.sidebar.caption(
+        "We follow your system default on first load and keep your last choice pinned until you switch back."
+    )
     st.sidebar.divider()
     return theme_name
 
@@ -340,11 +340,20 @@ def _tab_key(active_tab: str, suffix: str) -> str:
     return f"{slug}_{suffix}"
 
 
+def _current_theme() -> BrandTheme:
+    return st.session_state.get("_brand_theme", AVAILABLE_THEMES[DEFAULT_THEME_NAME])
+
+
 def render_tab_navigation(tab_titles: list[str], active_tab: str) -> str:
     columns = st.columns(len(tab_titles))
     for title, column in zip(tab_titles, columns):
         button_type = "primary" if title == active_tab else "secondary"
-        if column.button(title, key=_tab_key(title, "nav"), type=button_type):
+        if column.button(
+            title,
+            key=_tab_key(title, "nav"),
+            type=button_type,
+            use_container_width=True,
+        ):
             st.session_state["active_tab"] = title
             st.rerun()
     return st.session_state.get("active_tab", active_tab)
@@ -819,6 +828,7 @@ def render_marketing_table(df: pd.DataFrame, visible_columns: Optional[Sequence[
 
 def render_marketing_tab(marketing_df: pd.DataFrame, filters: FilterSet) -> None:
     """Display marketing KPIs, charts, and tabular insights."""
+    theme = _current_theme()
     st.subheader("Marketing Funnel Overview")
 
     kpis = marketing_kpis(marketing_df, filters)
@@ -874,13 +884,13 @@ def render_marketing_tab(marketing_df: pd.DataFrame, filters: FilterSet) -> None
     funnel_area_data.reset_index(drop=True, inplace=True)
 
     stage_palette = {
-        "Leads": "#c7d2fe",
-        "MQLs": "#a5b4fc",
-        "SQLs": "#7dd3fc",
-        "Opportunities": "#38bdf8",
-        "Closed Won": "#0ea5e9",
+        "Leads": theme.accent_secondary,
+        "MQLs": theme.accent_primary,
+        "SQLs": theme.accent_tertiary,
+        "Opportunities": theme.success,
+        "Closed Won": theme.warning,
     }
-    gradient_colors = [stage_palette.get(stage, "#38bdf8") for stage in funnel_area_data["stage"]]
+    gradient_colors = [stage_palette.get(stage, theme.accent_secondary) for stage in funnel_area_data["stage"]]
     trends = trend_timeseries(marketing_df, filters)
 
     left, right = st.columns(2)
@@ -892,6 +902,7 @@ def render_marketing_tab(marketing_df: pd.DataFrame, filters: FilterSet) -> None
         color="roi_percentage",
         title="Channel Spend vs ROI",
         labels={"roi_percentage": "ROI %"},
+        color_continuous_scale=[theme.accent_secondary, theme.accent_primary],
     )
     channel_chart.update_layout(
         xaxis_title="",
@@ -943,6 +954,7 @@ def render_marketing_tab(marketing_df: pd.DataFrame, filters: FilterSet) -> None
         x="date",
         y=["leads", "mqls", "sqls"],
         title="Weekly Performance Trends",
+        color_discrete_sequence=list(theme.colorway[:3]),
     )
     trend_chart.update_layout(yaxis_title="Volume", xaxis_title="Week")
     apply_compact_margins(trend_chart, top=64, bottom=32)
@@ -966,6 +978,7 @@ def render_marketing_tab(marketing_df: pd.DataFrame, filters: FilterSet) -> None
 
 def render_pipeline_tab(pipeline_df: pd.DataFrame, filters: FilterSet) -> None:
     """Display pipeline health, stage distribution, and rep performance."""
+    theme = _current_theme()
     st.subheader("Sales Pipeline Health")
 
     kpis = pipeline_kpis(pipeline_df, filters)
@@ -986,6 +999,7 @@ def render_pipeline_tab(pipeline_df: pd.DataFrame, filters: FilterSet) -> None:
         y="amount",
         color="deals",
         title="Stage Distribution",
+        color_continuous_scale=[theme.accent_secondary, theme.accent_primary],
     )
     stage_chart.update_layout(xaxis_title="", yaxis_title="Pipeline Amount (USD)")
     stage_chart.update_traces(marker=dict(line=dict(color="rgba(255,255,255,0.1)", width=1)))
@@ -1000,8 +1014,13 @@ def render_pipeline_tab(pipeline_df: pd.DataFrame, filters: FilterSet) -> None:
         color="win_rate",
         title="Rep Performance",
         labels={"total_amount": "Total Amount", "win_rate": "Win Rate %"},
+        color_continuous_scale=[theme.success, theme.accent_primary],
     )
-    owner_chart.update_layout(xaxis_title="", yaxis_title="Total Closed (USD)", legend=dict(title="Win Rate %"))
+    owner_chart.update_layout(
+        xaxis_title="",
+        yaxis_title="Total Closed (USD)",
+        legend=dict(title="Win Rate %"),
+    )
     apply_compact_margins(owner_chart, top=68)
     st.plotly_chart(owner_chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
 
@@ -1015,6 +1034,7 @@ def render_pipeline_tab(pipeline_df: pd.DataFrame, filters: FilterSet) -> None:
 
 def render_revenue_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
     """Display revenue retention metrics and churn analysis."""
+    theme = _current_theme()
     st.subheader("Revenue & Retention")
 
     kpis = revenue_kpis(revenue_df, filters)
@@ -1035,6 +1055,7 @@ def render_revenue_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
         values="mrr",
         color="expansion",
         title="MRR by Segment",
+        color_continuous_scale=[theme.accent_secondary, theme.accent_primary],
     )
     apply_compact_margins(segment_chart, top=70, left=8, right=8, bottom=16)
     st.plotly_chart(segment_chart, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
@@ -1071,7 +1092,7 @@ def render_revenue_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
             -churn,
         ]
 
-        contribution_colors = ["#22c55e" if value >= 0 else "#f87171" for value in contribution_values]
+        contribution_colors = [theme.success if value >= 0 else theme.danger for value in contribution_values]
 
         def format_currency(value: float, *, show_sign: bool = False) -> str:
             sign = "+" if value >= 0 else "-"
@@ -1093,7 +1114,7 @@ def render_revenue_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
                 x=[starting],
                 y=["Starting MRR"],
                 orientation="h",
-                marker=dict(color="#93c5fd"),
+                marker=dict(color=theme.accent_secondary),
                 text=[format_currency(starting)],
                 textposition="outside",
                 hovertemplate="Starting MRR<br>%{x:$,.0f}<extra></extra>",
@@ -1108,7 +1129,7 @@ def render_revenue_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
                 x=[ending],
                 y=["Ending MRR"],
                 orientation="h",
-                marker=dict(color="#4f46e5"),
+                marker=dict(color=theme.accent_primary),
                 text=[format_currency(ending)],
                 textposition="outside",
                 hovertemplate="Ending MRR<br>%{x:$,.0f}<extra></extra>",
@@ -1125,7 +1146,7 @@ def render_revenue_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
                 y="Ending MRR",
                 align="left",
                 text=f"Net Δ {format_currency(net_change, show_sign=True)}",
-                font=dict(color="#0f172a", size=13),
+                font=dict(color=theme.text_color, size=13),
                 showarrow=False,
             )
         )
@@ -1192,6 +1213,7 @@ def render_revenue_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
             category_orders={"period": period_order},
             title="Contribution Trends",
             labels={"Amount": "MRR Change (USD)", "period": "Period"},
+            color_discrete_sequence=list(theme.colorway[:5]),
         )
         trend_chart.update_layout(legend=dict(title="Motion", orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1))
         trend_chart.update_yaxes(tickprefix="$", separatethousands=True)
@@ -1418,6 +1440,8 @@ def render_customer_segment_tab(
 
     st.subheader("Customer Segment Dashboard")
 
+    theme = _current_theme()
+
     tab_filters = FilterSet(
         start_date=filters.start_date,
         end_date=filters.end_date,
@@ -1474,7 +1498,7 @@ def render_customer_segment_tab(
             hovertemplate=(
                 "<b>%{x}</b><br>MRR: $%{y:.2f}M<br>Customers: %{customdata}<extra></extra>"
             ),
-            marker_color="#1FB8CD",
+            marker=dict(color=theme.accent_secondary, line=dict(color=theme.accent_secondary, width=0)),
         )
     )
     chart.add_trace(
@@ -1483,7 +1507,7 @@ def render_customer_segment_tab(
             y=nrr_percent,
             mode="lines+markers",
             name="NRR (%)",
-            line=dict(color="#DB4545", width=3),
+            line=dict(color=theme.accent_primary, width=3),
             marker=dict(size=8),
             hovertemplate="<b>%{x}</b><br>NRR: %{y:.1f}%<extra></extra>",
             yaxis="y2",
@@ -1495,7 +1519,7 @@ def render_customer_segment_tab(
             y=churn_percent,
             mode="lines+markers",
             name="Churn (%)",
-            line=dict(color="#2E8B57", width=3),
+            line=dict(color=theme.danger, width=3),
             marker=dict(size=8),
             hovertemplate="<b>%{x}</b><br>Churn: %{y:.1f}%<extra></extra>",
             yaxis="y2",
@@ -1507,7 +1531,14 @@ def render_customer_segment_tab(
         xaxis_title=dimension_label,
         yaxis=dict(title="MRR ($ millions)", rangemode="tozero"),
         yaxis2=dict(title="Rate (%)", overlaying="y", side="right", rangemode="tozero"),
-        legend=dict(orientation="h", yanchor="bottom", y=1.04, xanchor="center", x=0.5),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.04,
+            xanchor="center",
+            x=0.5,
+            font=dict(color=theme.text_color, size=12),
+        ),
         margin=dict(t=70, b=40, l=60, r=60),
         hovermode="x unified",
     )
@@ -1543,6 +1574,8 @@ def render_mrr_waterfall_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> No
     import plotly.graph_objects as go
 
     st.subheader("MRR Waterfall Overview")
+
+    theme = _current_theme()
 
     filtered = filters.apply(revenue_df, date_column="start_date")
 
@@ -1596,10 +1629,11 @@ def render_mrr_waterfall_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> No
             y=values,
             textposition="outside",
             text=[format_value(value) for value in values],
-            connector={"line": {"color": "rgba(148, 163, 184, 0.7)"}},
-            increasing={"marker": {"color": "#2E8B57"}},
-            decreasing={"marker": {"color": "#DB4545"}},
-            totals={"marker": {"color": "#1FB8CD"}},
+            textfont=dict(color=theme.text_color, family=theme.font_family, size=12),
+            connector={"line": {"color": theme.surface_border}},
+            increasing={"marker": {"color": theme.success}},
+            decreasing={"marker": {"color": theme.danger}},
+            totals={"marker": {"color": theme.accent_secondary}},
             hovertemplate="<b>%{x}</b><br>$%{y:,.0f}<extra></extra>",
         )
     )
@@ -1672,13 +1706,6 @@ def main() -> None:
                 <h1>AI-assisted revenue intelligence</h1>
                 <p class="hero-subtitle">Monitor acquisition, pipeline velocity, and retention in a single panoramic workspace powered by automated insights.</p>
                 <p class="hero-theme">Active theme · {theme_name}</p>
-            </div>
-            <div class="hero-badge">
-                <span class="hero-badge__pulse"></span>
-                <div>
-                    <span class="hero-badge__label">Live Sync</span>
-                    <span class="hero-badge__meta">Synthetic data refreshed daily</span>
-                </div>
             </div>
         </div>
         """,

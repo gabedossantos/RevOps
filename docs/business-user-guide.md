@@ -10,10 +10,9 @@ This guide explains how revenue, sales, and marketing leaders can use the RevOps
    - Preferred: open the deployed Streamlit link provided by your RevOps team.
    - Local/demo: run `streamlit run streamlit_app/app.py` (RevOps engineering can help if needed).
 2. **Choose a visual theme**
-   - Open the left sidebar and use the **Visual theme** selector to toggle between:
-     - **Midnight Aurora** – high-contrast dark mode (default)
-     - **Luma Skyline** – light mode optimized for bright rooms
-     - **Neon Pulse (Legacy)** – original neon design preserved for familiarity
+    - Open the left sidebar and use the **Visual theme** selector to toggle between:
+       - **Dark Mode** – high-contrast Midnight Aurora aesthetic (default)
+       - **Light Mode** – Luma Skyline variant that honors your system preference on first load
 3. **Review the hero summary**
    - The hero card confirms the active theme, highlights that data is synthetic (demo) and updated daily, and sets the context for the session.
 

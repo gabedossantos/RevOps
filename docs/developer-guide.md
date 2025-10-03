@@ -189,7 +189,7 @@ Each analytics module returns primitive Python types or pandas `DataFrame` objec
 ### Theming (`streamlit_app/theme.py`)
 
 - `BrandTheme` dataclass encapsulates typography, gradients, colorway, spacing, and component tokens.
-- Three presets are shipped by default: **Midnight Aurora** (modern dark), **Luma Skyline** (light), and **Neon Pulse (Legacy)**.
+- Two presets are shipped by default: **Dark Mode** (Midnight Aurora) and **Light Mode** (Luma Skyline) with system preference detection on first load.
 - `apply_theme()` registers a Plotly template and injects global CSS with responsive breakpoints.
 - `DEFAULT_PLOTLY_CONFIG` ensures consistent chart interactivity (no mode bar, responsive sizing).
 - Sidebar theme selector persists choice in `st.session_state` for current session.
