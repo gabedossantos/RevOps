@@ -234,6 +234,86 @@ def apply_compact_margins(
     )
 
 
+NAV_SECTIONS: list[dict[str, Any]] = [
+    {
+        "label": "Acquisition",
+        "items": [
+            {
+                "id": "Marketing",
+                "label": "Marketing Performance",
+                "description": "Channel ROI, CAC efficiency, and demand generation trends across campaigns.",
+            },
+            {
+                "id": "Pipeline",
+                "label": "Pipeline Velocity",
+                "description": "Sales progression, rep throughput, and stuck opportunity diagnostics.",
+            },
+        ],
+    },
+    {
+        "label": "Revenue",
+        "items": [
+            {
+                "id": "Revenue",
+                "label": "Revenue Overview",
+                "description": "ARR growth, contraction signals, and retention KPIs at a glance.",
+            },
+            {
+                "id": "Cohort Analysis",
+                "label": "Cohort Analysis",
+                "description": "Monthly cohorts with retention heatmaps and lifecycle context.",
+            },
+            {
+                "id": "Customer Segment",
+                "label": "Customer Segment",
+                "description": "Segment or plan-level health, expansion, and churn correlation insights.",
+            },
+            {
+                "id": "Churn Reasons",
+                "label": "Churn Reasons",
+                "description": "Top churn drivers and their revenue impact for targeted mitigation.",
+            },
+            {
+                "id": "Plan Performance",
+                "label": "Plan Performance",
+                "description": "ARPA versus MRR bubbles to compare plan mix, churn risk, and upsell potential.",
+            },
+            {
+                "id": "NRR Trends",
+                "label": "NRR Trends",
+                "description": "Segmented NRR trajectories benchmarked against 100% retention targets.",
+            },
+            {
+                "id": "MRR Waterfall",
+                "label": "MRR Waterfall",
+                "description": "Decompose new, expansion, contraction, and churn impacts on recurring revenue.",
+            },
+        ],
+    },
+    {
+        "label": "Intelligence",
+        "items": [
+            {
+                "id": "AI Co-Pilot",
+                "label": "AI Co-Pilot",
+                "description": "Automated narratives that highlight emerging risks and opportunities.",
+            },
+        ],
+    },
+]
+
+
+def _nav_items_flat() -> list[dict[str, Any]]:
+    return [item for section in NAV_SECTIONS for item in section["items"]]
+
+
+def _find_nav_item(tab_name: str) -> dict[str, Any]:
+    for item in _nav_items_flat():
+        if item["id"] == tab_name:
+            return item
+    raise KeyError(f"Unknown navigation item: {tab_name}")
+
+
 TAB_FILTER_CONFIG: dict[str, dict] = {
     "Marketing": {
         "date_sources": [("marketing", "date")],
@@ -259,6 +339,21 @@ TAB_FILTER_CONFIG: dict[str, dict] = {
         "date_sources": [("revenue", "start_date")],
         "segment_sources": ["revenue"],
         "controls": {"segments", "plans", "customer_view"},
+    },
+    "Churn Reasons": {
+        "date_sources": [("revenue", "start_date")],
+        "segment_sources": ["revenue"],
+        "controls": {"segments", "plans"},
+    },
+    "Plan Performance": {
+        "date_sources": [("revenue", "start_date")],
+        "segment_sources": ["revenue"],
+        "controls": {"segments", "plans"},
+    },
+    "NRR Trends": {
+        "date_sources": [("revenue", "start_date")],
+        "segment_sources": ["revenue"],
+        "controls": {"segments", "plans"},
     },
     "MRR Waterfall": {
         "date_sources": [("revenue", "start_date")],
@@ -286,19 +381,114 @@ def _current_theme() -> BrandTheme:
     return st.session_state.get("_brand_theme", AVAILABLE_THEMES[DEFAULT_THEME_NAME])
 
 
-def render_tab_navigation(tab_titles: list[str], active_tab: str) -> str:
-    columns = st.columns(len(tab_titles))
-    for title, column in zip(tab_titles, columns):
-        button_type = "primary" if title == active_tab else "secondary"
-        if column.button(
-            title,
-            key=_tab_key(title, "nav"),
-            type=button_type,
-            use_container_width=True,
-        ):
-            st.session_state["active_tab"] = title
-            st.rerun()
-    return st.session_state.get("active_tab", active_tab)
+def inject_navigation_styles(theme: BrandTheme) -> None:
+    st.markdown(
+        f"""
+        <style>
+            .nav-panel {{
+                background: {theme.surface_color};
+                border: 1px solid {theme.surface_border};
+                border-radius: 16px;
+                padding: 1.2rem 1rem;
+                position: sticky;
+                top: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                box-shadow: {theme.overlay_shadow};
+            }}
+
+            .nav-section-title {{
+                font-size: 0.78rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: {theme.muted_text};
+                margin: 0.25rem 0;
+            }}
+
+            .nav-description {{
+                font-size: 0.78rem;
+                line-height: 1.25;
+                margin: 0.2rem 0 0.4rem 0;
+                color: {theme.muted_text};
+            }}
+
+            .nav-description.nav-description--active {{
+                color: {theme.accent_secondary};
+            }}
+
+            .nav-panel div[data-testid="stButton"] > button {{
+                width: 100%;
+                justify-content: flex-start;
+                padding: 0.6rem 0.9rem;
+            }}
+
+            .nav-panel hr {{
+                margin: 0.4rem 0 0.6rem 0;
+                border: none;
+                border-top: 1px solid {theme.surface_border};
+            }}
+
+            .view-callout {{
+                border: 1px solid {theme.surface_border};
+                border-radius: 16px;
+                padding: 1rem 1.2rem;
+                margin-bottom: 1.6rem;
+                background: {theme.surface_color};
+                box-shadow: {theme.overlay_shadow};
+            }}
+
+            .view-callout__label {{
+                text-transform: uppercase;
+                font-size: 0.72rem;
+                letter-spacing: 0.08em;
+                color: {theme.muted_text};
+                margin: 0 0 0.4rem 0;
+            }}
+
+            .view-callout__body {{
+                font-size: 0.92rem;
+                margin: 0;
+                color: {theme.text_color};
+                line-height: 1.45;
+            }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def render_navigation_panel(sections: Sequence[dict[str, Any]], active_tab: str) -> str:
+    current_tab = active_tab
+    with st.container():
+        st.markdown('<nav class="nav-panel" aria-label="Workspace views">', unsafe_allow_html=True)
+        for index, section in enumerate(sections):
+            st.markdown(f"<div class='nav-section-title'>{section['label']}</div>", unsafe_allow_html=True)
+            for item in section["items"]:
+                session_active = st.session_state.get("active_tab", current_tab)
+                is_active = item["id"] == session_active
+                button_type = "primary" if is_active else "secondary"
+                if st.button(
+                    item["label"],
+                    key=_tab_key(item["id"], "nav"),
+                    type=button_type,
+                    use_container_width=True,
+                ):
+                    st.session_state["active_tab"] = item["id"]
+                    st.rerun()
+                description_classes = "nav-description"
+                if is_active:
+                    description_classes += " nav-description--active"
+                st.markdown(
+                    f"<p class='{description_classes}'>{item['description']}</p>",
+                    unsafe_allow_html=True,
+                )
+            if index < len(sections) - 1:
+                st.markdown("<hr />", unsafe_allow_html=True)
+    st.markdown("</nav>", unsafe_allow_html=True)
+
+    return st.session_state.get("active_tab", current_tab)
 
 
 
@@ -1372,6 +1562,83 @@ def render_cohort_analysis_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> 
     st.write(f"NRR < 1.0 (contracting/churned customers): {(df['nrr'] < 1.0).sum()}")
 
 
+def render_churn_reason_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
+    import plotly.graph_objects as go
+
+    st.subheader("Customer Churn by Reason")
+
+    theme = _current_theme()
+
+    tab_filters = FilterSet(
+        start_date=filters.start_date,
+        end_date=filters.end_date,
+        segments=filters.segments,
+        channels=filters.channels,
+        geo=None,
+        plans=filters.plans,
+    )
+    df = tab_filters.apply(revenue_df, date_column="start_date").copy()
+
+    if df.empty:
+        st.info("No revenue data matches the current Signal Controls.")
+        return
+
+    churned = df[df["churned_flag"]]
+    if churned.empty or churned["churn_reason"].dropna().empty:
+        st.info("No churn reasons available for the selected filters.")
+        return
+
+    summary = (
+        churned.groupby("churn_reason")
+        .agg(
+            customers=("customer_id", "nunique"),
+            lost_mrr=("mrr", "sum"),
+        )
+        .reset_index()
+        .sort_values("customers", ascending=False)
+    )
+
+    colors = list(theme.colorway)
+    while len(colors) < len(summary):
+        colors.extend(theme.colorway)
+
+    bar = go.Figure(
+        go.Bar(
+            x=summary["customers"],
+            y=summary["churn_reason"],
+            orientation="h",
+            marker_color=colors[: len(summary)],
+            text=summary["customers"],
+            textposition="outside",
+            hovertemplate=(
+                "Reason: %{y}<br>Customers: %{x:,}<br>Lost MRR: $%{customdata:,.0f}<extra></extra>"
+            ),
+            customdata=summary["lost_mrr"],
+        )
+    )
+
+    bar.update_layout(
+        title="Churned Customers by Reason",
+        xaxis_title="Customers",
+        yaxis_title="Churn Reason",
+        xaxis=dict(showgrid=True, gridcolor=theme.surface_border),
+        margin=dict(t=60, b=40, l=120, r=40),
+    )
+
+    apply_compact_margins(bar, top=60, bottom=40, left=120, right=40)
+    st.plotly_chart(bar, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
+
+    summary_table = summary.copy()
+    summary_table["lost_mrr"] = summary_table["lost_mrr"].map(lambda value: f"${value:,.0f}")
+    st.dataframe(
+        summary_table.rename(columns={"churn_reason": "Reason", "customers": "Customers", "lost_mrr": "Lost MRR"}),
+        hide_index=True,
+        use_container_width=True,
+    )
+
+    st.caption("Horizontal bars highlight the leading churn drivers along with their revenue impact.")
+
+
 def render_customer_segment_tab(
     revenue_df: pd.DataFrame,
     filters: FilterSet,
@@ -1512,6 +1779,240 @@ def render_customer_segment_tab(
     st.dataframe(summary[display_columns], use_container_width=True)
 
 
+def render_plan_performance_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
+    st.subheader("Plan Performance")
+
+    theme = _current_theme()
+
+    tab_filters = FilterSet(
+        start_date=filters.start_date,
+        end_date=filters.end_date,
+        segments=filters.segments,
+        channels=filters.channels,
+        geo=None,
+        plans=filters.plans,
+    )
+    df = tab_filters.apply(revenue_df, date_column="start_date").copy()
+
+    if df.empty:
+        st.info("No revenue data matches the current Signal Controls.")
+        return
+
+    if "plan" not in df.columns or df["plan"].dropna().empty:
+        st.info("Plan details are unavailable for the selected filters.")
+        return
+
+    grouped = (
+        df.groupby("plan")
+        .agg(
+            total_mrr=("mrr", "sum"),
+            customers=("customer_id", "nunique"),
+            churn_rate=("churned_flag", "mean"),
+            nrr_mean=("nrr", "mean"),
+        )
+        .reset_index()
+        .dropna(subset=["plan"])
+        .sort_values("total_mrr", ascending=False)
+    )
+
+    grouped = grouped[grouped["customers"] > 0]
+    if grouped.empty:
+        st.info("No plans have active customers in the filtered dataset.")
+        return
+
+    grouped["arpa"] = grouped["total_mrr"] / grouped["customers"]
+    grouped["mrr_millions"] = grouped["total_mrr"] / 1_000_000
+
+    color_scale = [theme.success, theme.accent_secondary, theme.danger]
+
+    bubble = px.scatter(
+        grouped,
+        x="arpa",
+        y="mrr_millions",
+        size="customers",
+        color="churn_rate",
+        hover_name="plan",
+        hover_data={
+            "customers": True,
+            "total_mrr": True,
+            "nrr_mean": True,
+            "churn_rate": True,
+        },
+        size_max=60,
+        color_continuous_scale=color_scale,
+    )
+
+    bubble.update_traces(
+        marker=dict(
+            line=dict(color=theme.surface_border, width=1),
+            opacity=0.9,
+        )
+    )
+    bubble.update_layout(
+        title="Plan-Level Revenue, Churn, and ARPA",
+        xaxis_title="ARPA ($)",
+        yaxis_title="MRR ($M)",
+        coloraxis_colorbar=dict(title="Churn %", tickformat=".0%"),
+    )
+    bubble.update_xaxes(tickprefix="$", showgrid=True, gridcolor=theme.surface_border)
+    bubble.update_yaxes(showgrid=True, gridcolor=theme.surface_border)
+
+    apply_compact_margins(bubble, top=60, left=60, right=36, bottom=50)
+    st.plotly_chart(bubble, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
+
+    detail_table = grouped.rename(
+        columns={
+            "plan": "Plan",
+            "arpa": "ARPA",
+            "mrr_millions": "MRR ($M)",
+            "customers": "Customers",
+            "churn_rate": "Churn Rate",
+            "nrr_mean": "Avg NRR",
+            "total_mrr": "Total MRR",
+        }
+    )
+    detail_table["ARPA"] = detail_table["ARPA"].map(lambda value: f"${value:,.0f}")
+    detail_table["MRR ($M)"] = detail_table["MRR ($M)"].map(lambda value: f"{value:.2f}")
+    detail_table["Churn Rate"] = detail_table["Churn Rate"].map(lambda value: f"{value:.1%}")
+    detail_table["Avg NRR"] = detail_table["Avg NRR"].map(lambda value: f"{value:.2f}")
+    detail_table["Total MRR"] = detail_table["Total MRR"].map(lambda value: f"${value:,.0f}")
+    st.dataframe(
+        detail_table[["Plan", "Customers", "ARPA", "Total MRR", "MRR ($M)", "Churn Rate", "Avg NRR"]],
+        hide_index=True,
+        use_container_width=True,
+    )
+
+    st.caption("Bubble size indicates customer volume, color reflects churn, and position shows ARPA versus total MRR.")
+
+
+def render_nrr_trends_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
+    st.subheader("NRR Trends by Segment")
+
+    theme = _current_theme()
+
+    tab_filters = FilterSet(
+        start_date=filters.start_date,
+        end_date=filters.end_date,
+        segments=filters.segments,
+        channels=None,
+        geo=None,
+        plans=filters.plans,
+    )
+    df = tab_filters.apply(revenue_df, date_column="start_date").copy()
+
+    if df.empty:
+        st.info("No revenue data matches the current Signal Controls.")
+        return
+
+    if "segment" not in df.columns or df["segment"].dropna().empty:
+        st.info("Segment information is unavailable for the selected filters.")
+        return
+
+    df = df.dropna(subset=["segment", "start_date", "nrr"]).copy()
+    if df.empty:
+        st.info("Unable to calculate NRR trends with the current dataset.")
+        return
+
+    df["start_date"] = pd.to_datetime(df["start_date"])
+    df["period"] = df["start_date"].dt.to_period("M").dt.to_timestamp()
+
+    grouped = (
+        df.groupby(["period", "segment"])
+        .agg(
+            avg_nrr=("nrr", "mean"),
+            customers=("customer_id", "nunique"),
+            total_mrr=("mrr", "sum"),
+        )
+        .reset_index()
+        .sort_values("period")
+    )
+
+    if grouped.empty:
+        st.info("No segment-level NRR trends are available for the selected filters.")
+        return
+
+    figure = go.Figure()
+    for segment, segment_data in grouped.groupby("segment"):
+        figure.add_trace(
+            go.Scatter(
+                x=segment_data["period"],
+                y=segment_data["avg_nrr"] * 100,
+                mode="lines+markers",
+                name=str(segment),
+                line=dict(width=3),
+                marker=dict(size=8),
+                hovertemplate=(
+                    "<b>%{x|%b %Y}</b><br>Segment: %{text}<br>NRR: %{y:.1f}%<br>Customers: %{customdata:,}<extra></extra>"
+                ),
+                text=segment_data["segment"],
+                customdata=segment_data["customers"],
+            )
+        )
+
+    if not grouped["period"].empty:
+        min_period = grouped["period"].min()
+        max_period = grouped["period"].max()
+        figure.add_shape(
+            type="line",
+            x0=min_period,
+            x1=max_period,
+            y0=100,
+            y1=100,
+            line=dict(color=theme.surface_border, width=2, dash="dash"),
+        )
+        figure.add_annotation(
+            x=max_period,
+            y=100,
+            text="NRR Target 100%",
+            showarrow=False,
+            bgcolor=theme.surface_color,
+            font=dict(color=theme.text_color, size=11),
+            xanchor="right",
+            yanchor="bottom",
+            borderpad=4,
+        )
+
+    figure.update_layout(
+        title="Net Revenue Retention by Segment",
+        yaxis_title="NRR (%)",
+        xaxis_title="Month",
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.05,
+            xanchor="center",
+            x=0.5,
+            font=dict(size=12, color=theme.text_color),
+        ),
+        hovermode="x unified",
+    )
+    figure.update_yaxes(rangemode="tozero", gridcolor=theme.surface_border)
+    figure.update_xaxes(showgrid=True, gridcolor=theme.surface_border)
+
+    apply_compact_margins(figure, top=70, left=60, right=24, bottom=40)
+    st.plotly_chart(figure, config=DEFAULT_PLOTLY_CONFIG, use_container_width=True)
+
+    latest_period = grouped["period"].max()
+    latest_snapshot = (
+        grouped[grouped["period"] == latest_period]
+        .copy()
+        .sort_values("avg_nrr", ascending=False)
+    )
+    latest_snapshot["NRR (%)"] = latest_snapshot["avg_nrr"].mul(100).map(lambda value: f"{value:.1f}%")
+    latest_snapshot["Customers"] = latest_snapshot["customers"].map(lambda value: f"{value:,}")
+    latest_snapshot["MRR ($)"] = latest_snapshot["total_mrr"].map(lambda value: f"${value:,.0f}")
+    latest_snapshot = latest_snapshot.rename(columns={"segment": "Segment"})
+
+    st.markdown(f"### Latest Period · {latest_period.strftime('%b %Y')}")
+    st.dataframe(
+        latest_snapshot[["Segment", "Customers", "MRR ($)", "NRR (%)"]],
+        hide_index=True,
+        use_container_width=True,
+    )
+
+    st.caption("Track how each segment is trending against the 100% NRR benchmark. Hover for customer counts and deeper context.")
+
+
 def render_mrr_waterfall_tab(revenue_df: pd.DataFrame, filters: FilterSet) -> None:
     import plotly.graph_objects as go
 
@@ -1615,23 +2116,21 @@ def main() -> None:
     """Application entry point."""
 
     theme_name = select_theme()
+    theme = _current_theme()
+    inject_navigation_styles(theme)
     marketing_df, pipeline_df, revenue_df = load_data()
 
-    tab_titles = [
-        "Marketing",
-        "Pipeline",
-        "Revenue",
-        "Cohort Analysis",
-        "Customer Segment",
-        "MRR Waterfall",
-        "AI Co-Pilot",
-    ]
-
+    default_tab = NAV_SECTIONS[0]["items"][0]["id"]
     if "active_tab" not in st.session_state:
-        st.session_state["active_tab"] = tab_titles[0]
+        st.session_state["active_tab"] = default_tab
 
-    active_tab = render_tab_navigation(tab_titles, st.session_state["active_tab"])
+    nav_column, content_column = st.columns([1.2, 5], gap="large")
+
+    with nav_column:
+        active_tab = render_navigation_panel(NAV_SECTIONS, st.session_state["active_tab"])
+
     st.session_state["active_tab"] = active_tab
+    active_item = _find_nav_item(active_tab)
 
     filters, extras = build_filters(
         active_tab=active_tab,
@@ -1640,38 +2139,55 @@ def main() -> None:
         revenue_df=revenue_df,
     )
 
-    st.markdown(
-        f"""
-        <div class="hero-header">
-            <div>
-                <p class="hero-eyebrow">RevOps Control Center</p>
-                <h1>AI-assisted revenue intelligence</h1>
-                <p class="hero-subtitle">Monitor acquisition, pipeline velocity, and retention in a single panoramic workspace powered by automated insights.</p>
-                <p class="hero-theme">Active theme · {theme_name}</p>
+    with content_column:
+        st.markdown(
+            f"""
+            <div class="hero-header">
+                <div>
+                    <p class="hero-eyebrow">RevOps Control Center</p>
+                    <h1>AI-assisted revenue intelligence</h1>
+                    <p class="hero-subtitle">Monitor acquisition, pipeline velocity, and retention in a single panoramic workspace powered by automated insights.</p>
+                    <p class="hero-theme">Active theme · {theme_name}</p>
+                </div>
             </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    if active_tab == "Marketing":
-        render_marketing_tab(marketing_df, filters)
-    elif active_tab == "Pipeline":
-        render_pipeline_tab(pipeline_df, filters)
-    elif active_tab == "Revenue":
-        render_revenue_tab(revenue_df, filters)
-    elif active_tab == "Cohort Analysis":
-        render_cohort_analysis_tab(revenue_df, filters)
-    elif active_tab == "Customer Segment":
-        render_customer_segment_tab(
-            revenue_df,
-            filters,
-            view_mode=extras.get("customer_view_mode", "Segment"),
+            """,
+            unsafe_allow_html=True,
         )
-    elif active_tab == "MRR Waterfall":
-        render_mrr_waterfall_tab(revenue_df, filters)
-    elif active_tab == "AI Co-Pilot":
-        render_ai_tab(marketing_df, pipeline_df, revenue_df, filters)
+
+        st.markdown(
+            f"""
+            <div class="view-callout">
+                <p class="view-callout__label">Currently viewing</p>
+                <p class="view-callout__body">{active_item['description']}</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        if active_tab == "Marketing":
+            render_marketing_tab(marketing_df, filters)
+        elif active_tab == "Pipeline":
+            render_pipeline_tab(pipeline_df, filters)
+        elif active_tab == "Revenue":
+            render_revenue_tab(revenue_df, filters)
+        elif active_tab == "Cohort Analysis":
+            render_cohort_analysis_tab(revenue_df, filters)
+        elif active_tab == "Customer Segment":
+            render_customer_segment_tab(
+                revenue_df,
+                filters,
+                view_mode=extras.get("customer_view_mode", "Segment"),
+            )
+        elif active_tab == "Churn Reasons":
+            render_churn_reason_tab(revenue_df, filters)
+        elif active_tab == "Plan Performance":
+            render_plan_performance_tab(revenue_df, filters)
+        elif active_tab == "NRR Trends":
+            render_nrr_trends_tab(revenue_df, filters)
+        elif active_tab == "MRR Waterfall":
+            render_mrr_waterfall_tab(revenue_df, filters)
+        elif active_tab == "AI Co-Pilot":
+            render_ai_tab(marketing_df, pipeline_df, revenue_df, filters)
 
 
 if __name__ == "__main__":
